@@ -14,6 +14,8 @@ import { StoryComponent } from './feature/news-feed/story/story.component';
 import { LikeListComponent } from './feature/news-feed/like-list/like-list.component';
 import { CommentListComponent } from './feature/news-feed/comment-list/comment-list.component';
 
+import { CardModule } from 'primeng/card';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -30,7 +32,8 @@ import { CommentListComponent } from './feature/news-feed/comment-list/comment-l
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    CardModule
   ],
   providers: [],
   bootstrap: [AppComponent]
