@@ -9,6 +9,10 @@ import { NewsFeedComponent } from './feature/news-feed/news-feed.component';
 import { ProfileComponent } from './feature/profile/profile.component';
 import { SettingComponent } from './feature/setting/setting.component';
 import { AdminComponent } from './feature/admin/admin.component';
+import { NavBarComponent } from './shared/nav-bar/nav-bar.component';
+import { StoryComponent } from './feature/news-feed/story/story.component';
+import { LikeListComponent } from './feature/news-feed/like-list/like-list.component';
+import { CommentListComponent } from './feature/news-feed/comment-list/comment-list.component';
 
 @NgModule({
   declarations: [
@@ -18,7 +22,11 @@ import { AdminComponent } from './feature/admin/admin.component';
     NewsFeedComponent,
     ProfileComponent,
     SettingComponent,
-    AdminComponent
+    AdminComponent,
+    NavBarComponent,
+    StoryComponent,
+    LikeListComponent,
+    CommentListComponent
   ],
   imports: [
     BrowserModule,
