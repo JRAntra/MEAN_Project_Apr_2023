@@ -3,7 +3,7 @@ import { Component } from '@angular/core';
 @Component({
   selector: 'app-story',
   templateUrl: './story.component.html',
-  styleUrls: ['./story.component.sass']
+  styleUrls: ['./story.component.sass'],
 })
 export class StoryComponent {
 
