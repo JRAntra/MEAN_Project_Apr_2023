@@ -13,6 +13,7 @@ import { NavBarComponent } from './shared/nav-bar/nav-bar.component';
 import { StoryComponent } from './feature/news-feed/story/story.component';
 import { LikeListComponent } from './feature/news-feed/like-list/like-list.component';
 import { CommentListComponent } from './feature/news-feed/comment-list/comment-list.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { FormsModule } from '@angular/forms';
 
@@ -22,6 +23,12 @@ import { InputTextModule } from 'primeng/inputtext';
 import { PasswordModule } from 'primeng/password';
 import { ButtonModule } from 'primeng/button';
 import { CheckboxModule } from 'primeng/checkbox';
+import { AvatarModule } from 'primeng/avatar';
+import { InplaceModule } from 'primeng/inplace';
+import { DropdownModule } from 'primeng/dropdown';
+import { CalendarModule } from 'primeng/calendar';
+import { BadgeModule } from 'primeng/badge';
+
 
 @NgModule({
   declarations: [
@@ -47,6 +54,12 @@ import { CheckboxModule } from 'primeng/checkbox';
     PasswordModule,
     ButtonModule,
     CheckboxModule
+    BrowserAnimationsModule,
+    AvatarModule,
+    InplaceModule,
+    DropdownModule,
+    CalendarModule,
+    BadgeModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
