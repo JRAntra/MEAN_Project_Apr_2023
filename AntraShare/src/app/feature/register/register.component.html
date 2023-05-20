@@ -1,1 +1,39 @@
-<p>register works!</p>
+<div>
+    
+    <div class="card flex justify-content-center">
+        <span class="p-float-label">
+            <input pInputText id="username" [(ngModel)]="register.username" />
+            <label htmlFor="username">Username</label>
+        </span>
+    </div>
+
+    
+    <div class="card flex justify-content-center">
+        <span class="p-float-label">
+            <input pInputText id="email" 
+                [(ngModel)]="register.email"
+                [email] = "true"
+                #email="ngModel" 
+                [required] = "true" 
+                [minlength]= 5 
+                pattern="^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$" />
+            <label htmlFor="email">Email</label>
+            <div *ngIf="email.value !== '' && email.untouched && email.invalid">
+                Please Enter a valid email address
+            </div>
+        </span>
+    </div>
+
+    
+    <div class="card flex justify-content-center">
+        <span class="p-float-label">
+            <p-password [(ngModel)]="register.password" 
+                        [toggleMask]="true" 
+                        [feedback]="true"
+                        [minlength]="8" [maxLength]="15" 
+                        [required]="true"></p-password>
+            <label for="password">Password</label>
+        </span>
+    </div>
+
+</div>

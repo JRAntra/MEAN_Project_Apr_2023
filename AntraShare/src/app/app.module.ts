@@ -15,14 +15,20 @@ import { LikeListComponent } from './feature/news-feed/like-list/like-list.compo
 import { CommentListComponent } from './feature/news-feed/comment-list/comment-list.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
+import { FormsModule } from '@angular/forms';
+
 import { CardModule } from 'primeng/card';
+import { ImageModule } from 'primeng/image';
+import { InputTextModule } from 'primeng/inputtext';
+import { PasswordModule } from 'primeng/password';
+import { ButtonModule } from 'primeng/button';
+import { CheckboxModule } from 'primeng/checkbox';
 import { AvatarModule } from 'primeng/avatar';
 import { InplaceModule } from 'primeng/inplace';
-import { ButtonModule } from 'primeng/button';
-import { InputTextModule } from 'primeng/inputtext';
 import { DropdownModule } from 'primeng/dropdown';
 import { CalendarModule } from 'primeng/calendar';
 import { BadgeModule } from 'primeng/badge';
+
 
 @NgModule({
   declarations: [
@@ -41,12 +47,16 @@ import { BadgeModule } from 'primeng/badge';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    BrowserAnimationsModule,
     CardModule,
+    ImageModule,
+    FormsModule,
+    InputTextModule,
+    PasswordModule,
+    ButtonModule,
+    CheckboxModule
+    BrowserAnimationsModule,
     AvatarModule,
     InplaceModule,
-    InputTextModule,
-    ButtonModule,
     DropdownModule,
     CalendarModule,
     BadgeModule,
