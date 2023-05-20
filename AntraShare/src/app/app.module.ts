@@ -53,7 +53,7 @@ import { BadgeModule } from 'primeng/badge';
     InputTextModule,
     PasswordModule,
     ButtonModule,
-    CheckboxModule
+    CheckboxModule,
     BrowserAnimationsModule,
     AvatarModule,
     InplaceModule,
