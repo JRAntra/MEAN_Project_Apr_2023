@@ -1,1 +1,35 @@
-<p>login works!</p>
+<div class="card flex justify-content-center">
+    <p-image src="https://antra.com/wp-content/uploads/2023/03/Antra-black.png" alt="Image" width="250"></p-image>
+</div>
+
+<span class="p-float-label">
+    <input pInputText id="username" [(ngModel)]="login.username" />
+    <label htmlFor="username">Username</label>
+</span>
+
+<span class="p-float-label">
+    <p-password [(ngModel)]="login.password" [feedback]="false"></p-password>
+    <label for="password">Password</label>
+</span>
+
+<span>
+    <p-button label="Login" [loading]="loading" (click)="load()"></p-button>
+</span>
+
+<br>
+
+<span>
+    <a href="../../../index.html">No Accounts? Register Now!</a>
+</span>
+
+
+<div class="card flex justify-content-center">
+    <span>
+        <p-checkbox [(ngModel)]="checked" [binary]="true" inputId="binary"></p-checkbox>
+        <span>Agreement</span>
+    </span>
+    <span>
+        <a href="../../../index.html">Need Help?</a>
+    </span>
+    
+</div>

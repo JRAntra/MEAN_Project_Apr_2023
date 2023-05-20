@@ -14,7 +14,14 @@ import { StoryComponent } from './feature/news-feed/story/story.component';
 import { LikeListComponent } from './feature/news-feed/like-list/like-list.component';
 import { CommentListComponent } from './feature/news-feed/comment-list/comment-list.component';
 
+import { FormsModule } from '@angular/forms';
+
 import { CardModule } from 'primeng/card';
+import { ImageModule } from 'primeng/image';
+import { InputTextModule } from 'primeng/inputtext';
+import { PasswordModule } from 'primeng/password';
+import { ButtonModule } from 'primeng/button';
+import { CheckboxModule } from 'primeng/checkbox';
 
 @NgModule({
   declarations: [
@@ -33,7 +40,13 @@ import { CardModule } from 'primeng/card';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    CardModule
+    CardModule,
+    ImageModule,
+    FormsModule,
+    InputTextModule,
+    PasswordModule,
+    ButtonModule,
+    CheckboxModule
   ],
   providers: [],
   bootstrap: [AppComponent]
