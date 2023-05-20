@@ -42,7 +42,7 @@ import { BadgeModule } from 'primeng/badge';
     NavBarComponent,
     StoryComponent,
     LikeListComponent,
-    CommentListComponent
+    CommentListComponent,
   ],
   imports: [
     BrowserModule,
@@ -62,6 +62,6 @@ import { BadgeModule } from 'primeng/badge';
     BadgeModule,
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
 export class AppModule { }
