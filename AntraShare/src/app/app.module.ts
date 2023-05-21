@@ -30,6 +30,8 @@ import { CalendarModule } from 'primeng/calendar';
 import { BadgeModule } from 'primeng/badge';
 import { CommentComponent } from './feature/news-feed/comment-list/comment/comment.component';
 import { DataViewModule } from 'primeng/dataview';
+import { NewCommentComponent } from './feature/news-feed/comment-list/new-comment/new-comment.component';
+import { EditorModule } from 'primeng/editor';
 
 
 @NgModule({
@@ -46,6 +48,7 @@ import { DataViewModule } from 'primeng/dataview';
     LikeListComponent,
     CommentListComponent,
     CommentComponent,
+    NewCommentComponent,
   ],
   imports: [
     BrowserModule,
@@ -64,6 +67,7 @@ import { DataViewModule } from 'primeng/dataview';
     CalendarModule,
     BadgeModule,
     DataViewModule,
+    EditorModule,
   ],
   providers: [],
   bootstrap: [AppComponent],
