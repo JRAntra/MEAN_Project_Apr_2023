@@ -1,0 +1,22 @@
+<p>stories works!</p>
+<div class="container" *ngIf="story">
+    <div class="avatar-field">
+      <img [src]="story.user.avatar" alt="User Avatar">
+    </div>
+  
+    <div class="username-field">{{story.user.username}}</div>
+  
+    <div class="email-field">{{story.user.email}}</div>
+  
+    <div class="video-field">
+      <img [src]="story.content.imageUrl" alt="Video Image">
+    </div>
+  
+    <div class="actions">
+      <button type="button" (click)="commentOnStory()">💬</button>
+      <button type="button" (click)="likeStory()">❤️</button>
+    </div>
+  </div>
+  
+  <app-bottom-menu></app-bottom-menu>
+  

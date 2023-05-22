@@ -1,0 +1,22 @@
+<p>after-user-login works!</p>
+<div class="container">
+    <div class="post-form">
+      <form (ngSubmit)="submitPost()">
+        <label for="post-content">Post Content</label>
+        <textarea id="post-content" [(ngModel)]="postContent" name="postContent"></textarea>
+        <button type="submit">Post</button>
+      </form>
+    </div>
+  
+    <app-stories></app-stories>
+  
+    <div class="likes">
+      <button type="button" (click)="fetchLikes()">Fetch Likes</button>
+      <ul>
+        <li *ngFor="let like of likes">{{like.content}}</li>
+      </ul>
+    </div>
+  </div>
+  
+  <app-bottom-menu></app-bottom-menu>
+  
