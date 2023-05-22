@@ -1,1 +1,10 @@
-<p>comment-list works!</p>
+<div class="comment-list__container">
+    <div class="comment-list__viewer">
+        <p-dataView #dv [value]="commentList" [rows]="5" [paginator]="true">
+            <ng-template let-comment pTemplate="listItem">
+                <app-comment [comment]="comment" class="comment-list__card"></app-comment>
+            </ng-template>
+        </p-dataView>
+    </div>
+    <app-new-comment></app-new-comment>
+</div>

@@ -13,9 +13,12 @@ import { NavBarComponent } from './shared/nav-bar/nav-bar.component';
 import { StoryComponent } from './feature/news-feed/story/story.component';
 import { LikeListComponent } from './feature/news-feed/like-list/like-list.component';
 import { CommentListComponent } from './feature/news-feed/comment-list/comment-list.component';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { CommentComponent } from './feature/news-feed/comment-list/comment/comment.component';
+import { NewCommentComponent } from './feature/news-feed/comment-list/new-comment/new-comment.component';
+import { NewStoryComponent } from './feature/news-feed/story/new-story/new-story.component';
 
 import { FormsModule } from '@angular/forms';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { CardModule } from 'primeng/card';
 import { ImageModule } from 'primeng/image';
@@ -28,6 +31,9 @@ import { InplaceModule } from 'primeng/inplace';
 import { DropdownModule } from 'primeng/dropdown';
 import { CalendarModule } from 'primeng/calendar';
 import { BadgeModule } from 'primeng/badge';
+import { DataViewModule } from 'primeng/dataview';
+import { EditorModule } from 'primeng/editor';
+import { DividerModule } from 'primeng/divider';
 
 
 @NgModule({
@@ -43,6 +49,9 @@ import { BadgeModule } from 'primeng/badge';
     StoryComponent,
     LikeListComponent,
     CommentListComponent,
+    CommentComponent,
+    NewCommentComponent,
+    NewStoryComponent,
   ],
   imports: [
     BrowserModule,
@@ -60,6 +69,9 @@ import { BadgeModule } from 'primeng/badge';
     DropdownModule,
     CalendarModule,
     BadgeModule,
+    DataViewModule,
+    EditorModule,
+    DividerModule,
   ],
   providers: [],
   bootstrap: [AppComponent],
