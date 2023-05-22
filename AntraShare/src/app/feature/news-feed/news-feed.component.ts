@@ -19,6 +19,6 @@ export class NewsFeedComponent {
       },
       content: 'test-story-content',
       post_time: 0,
-    });    
+    });
   }
 }

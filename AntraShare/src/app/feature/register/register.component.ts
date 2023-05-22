@@ -13,11 +13,11 @@ export class RegisterComponent {
     password: '',
     confirmPassword: '',
     validatePassword: (password) => {
-      let result = {
+      const result = {
         valid: false,
         digit: false,
         uppercase: false,
-        lowercase: false
+        lowercase: false,
       };
       // check if password has at least one digit, on uppercase letter, and one lowercase letter
       if (/\d/.test(password)) {
@@ -33,18 +33,18 @@ export class RegisterComponent {
         result.valid = true;
       }
       return result;
-    }
+    },
+  };
+
+  loading = false;
+
+  load() {
+    this.loading = true;
+
+    setTimeout(() => {
+      this.loading = false;
+    }, 2000);
   }
 
-  loading: boolean = false;
-
-    load() {
-        this.loading = true;
-
-        setTimeout(() => {
-            this.loading = false
-        }, 2000);
-    }
-
-    checked: boolean = false;
+  checked = false;
 }

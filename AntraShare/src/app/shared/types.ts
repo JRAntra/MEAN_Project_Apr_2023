@@ -12,7 +12,7 @@ export type Story = {
     id: number;
     post_time: Time;
     content: string;
-    poster: UserInfo;    
+    poster: UserInfo;
 }
 
 export type Comment = {

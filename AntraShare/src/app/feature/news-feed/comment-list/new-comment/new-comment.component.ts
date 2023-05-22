@@ -7,7 +7,7 @@ import { Component } from '@angular/core';
 })
 export class NewCommentComponent {
   text: string;
-  constructor(){
+  constructor() {
     this.text = '';
   }
 }

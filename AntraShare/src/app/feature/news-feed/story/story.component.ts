@@ -15,15 +15,18 @@ export class StoryComponent implements OnInit {
     // convert from unix timestamp to human readable time
     this.timeDisplay = new Date(this.story.post_time * 1000).toLocaleString();
   }
+
   toggleCommentPanel() {
     this.showComment = !this.showComment;
   }
+
   setLike() {
-    this.liked=true;
+    this.liked = true;
     // TODO: call API to set like
   }
+
   resetLike() {
-    this.liked=false;
+    this.liked = false;
     // TODO: call API to reset like
   }
 }
