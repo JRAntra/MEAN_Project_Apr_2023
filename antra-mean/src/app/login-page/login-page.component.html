@@ -1,1 +1,36 @@
-<p>login-page works!</p>
+<div class="container">
+  <form nz-form [formGroup]="myFormGroup" class="login-form">
+    <img class="logo-image" src="https://media.licdn.com/dms/image/C4E0BAQF90WIVLooGKg/company-logo_200_200/0/1519863516422?e=2147483647&v=beta&t=knHuX4jnogWFq6tl3gaT__IEKRVUFuf26T0AuLgle5I" alt="logo"/>
+    <nz-form-item>
+      <nz-form-control nzErrorTip="Please input your username!">
+        <nz-input-group nzPrefixIcon="user">
+          <input type="text" nz-input formControlName="userName" placeholder="Username" />
+        </nz-input-group>
+      </nz-form-control>
+    </nz-form-item>
+    <nz-form-item>
+      <nz-form-control nzErrorTip="Please input your Password!">
+        <nz-input-group nzPrefixIcon="lock">
+          <input type="password" nz-input formControlName="password" placeholder="Password" />
+        </nz-input-group>
+      </nz-form-control>
+    </nz-form-item>
+    <div class="login-form-button">
+      <button nz-button nzBlock class="login-form-button" nzType="primary">Log in</button>
+    </div>
+    <br>
+    <div class="link-to-register">
+      Or
+      <a>No Accounts? Register Now!</a>
+    </div>
+    <br>
+    <span>
+      <label nz-checkbox formControlName="agreement">
+        <span>Agreement</span>
+      </label>
+    </span>
+    <a class="need-help">
+      Need Help?
+    </a>
+  </form>
+</div>

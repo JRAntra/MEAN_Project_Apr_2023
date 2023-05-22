@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { FormGroup, FormControl } from '@angular/forms';
+
 
 @Component({
   selector: 'app-news-feed-page',
@@ -6,8 +8,13 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./news-feed-page.component.sass']
 })
 export class NewsFeedPageComponent implements OnInit {
+  myFormGroup: FormGroup;
 
-  constructor() { }
+  constructor() {
+    this.myFormGroup = new FormGroup({
+      photo: new FormControl(),
+    })
+   }
 
   ngOnInit(): void {
   }
