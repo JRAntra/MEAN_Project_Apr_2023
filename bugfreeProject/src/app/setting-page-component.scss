@@ -1,0 +1,47 @@
+
+.wrapper {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    height: 100vh;
+}
+
+.wrapper__setting-panel {
+    background-color: #d3d3d3;
+    height: 50vh;
+    width: 70vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 3vw;
+    margin-bottom: 30vh;
+}
+
+.wrapper__aux-panel {
+    width: 100vw;
+    display: flex;
+    justify-content: end;
+    margin-top: 5vh;
+}
+
+.wrapper__aux-panel__btn--generic {
+    height: 3vh;
+    width: 7vw;
+    border: none;
+    margin-right: 2vw;
+    color: white;
+    font-size: 1.5vh;
+}
+
+.wrapper__aux-panel__btn--red {
+    background-color: red;
+}
+
+.wrapper__aux-panel__btn--gray {
+    background-color: gray;
+}
+
+
+
