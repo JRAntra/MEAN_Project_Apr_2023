@@ -1,0 +1,35 @@
+<p>profile works!</p>
+<div class="profile-container">
+    <div class="avatar-field">
+        <img src="path_to_avatar_image" alt="User Avatar">
+    </div>
+    <div class="user-field">
+        <label>Username</label>
+        <input type="text" id="username" name="username">
+    </div>
+    <div class="email-field">
+        <label>Email</label>
+        <input type="email" id="email" name="email">
+    </div>
+    <div class="age-field">
+        <label>Age</label>
+        <input type="number" id="age" name="age">
+    </div>
+    <div class="gender-field">
+        <label>Gender</label>
+        <select id="gender" name="gender">
+            <option value="male">Male</option>
+            <option value="female">Female</option>
+            <option value="other">Other</option>
+        </select>
+    </div>
+    <div class="password-field">
+        <label>Password</label>
+        <input type="password" id="password" name="password">
+        <button type="button" onclick="togglePassword()">Reveal</button>
+    </div>
+    <div class="icon-field">
+        <button type="button" onclick="showPosts()">📝</button>
+        <button type="button" onclick="showLikes()">💗</button>
+    </div>
+</div>

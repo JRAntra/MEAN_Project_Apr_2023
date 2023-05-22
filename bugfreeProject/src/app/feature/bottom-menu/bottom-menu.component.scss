@@ -1,0 +1,15 @@
+.bottom-menu {
+    display: flex;
+    justify-content: space-around;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    background-color: #f8f8f8;
+    padding: 10px 0;
+    border-top: 1px solid #ccc;
+}
+
+.bottom-menu a {
+    color: #333;
+    text-decoration: none;
+}
