@@ -1,35 +1,49 @@
-<div class="card flex justify-content-center">
-    <p-image src="https://antra.com/wp-content/uploads/2023/03/Antra-black.png" alt="Image" width="250"></p-image>
+<div class="card--container">
+    <p-card >
+        <form class="form--container">
+            <div class="card flex justify-content-center logo--container container">
+                <p-image src="https://antra.com/wp-content/uploads/2023/03/Antra-black.png" alt="Image" width="250"></p-image>
+            </div>
+            
+            <div class="username--container container">
+                <span class="p-float-label">
+                    <input pInputText id="username" [(ngModel)]="login.username" name="username" />
+                    <label htmlFor="username">Username</label>
+                </span>
+            </div>
+            
+            <div class="password--container container">
+                <span class="p-float-label">
+                    <p-password [(ngModel)]="login.password" [feedback]="false" name="passowrd" [style]="{'width':'100%'}"
+                    [inputStyle]="{'width':'100%'}"></p-password>
+                    <label for="password">Password</label>
+                </span>
+            </div>
+        
+            <div class="loginButton--container container">
+                <p-button label="Login" [loading]="loading" (click)="load()" class="loginButton" [style]="{'width':'100%'}"></p-button>
+            </div>
+            
+            <br>
+            
+            <div class="registerLink--container container">
+                <a href="../../../index.html">No Accounts? Register Now!</a>
+            </div>
+            
+            
+            <div class="card flex justify-content-center agreementAndHelp--container container">
+                <span class="agreement--conatiner">
+                    <p-checkbox [(ngModel)]="checked" [binary]="true" inputId="binary" name="agreement"></p-checkbox>
+                    <span>Agreement</span>
+                </span>
+                <span class="help--container">
+                    <a href="../../../index.html">Need Help?</a>
+                </span>
+                
+            </div>
+        </form>
+        
+    </p-card>
 </div>
 
-<span class="p-float-label">
-    <input pInputText id="username" [(ngModel)]="login.username" />
-    <label htmlFor="username">Username</label>
-</span>
 
-<span class="p-float-label">
-    <p-password [(ngModel)]="login.password" [feedback]="false"></p-password>
-    <label for="password">Password</label>
-</span>
-
-<span>
-    <p-button label="Login" [loading]="loading" (click)="load()"></p-button>
-</span>
-
-<br>
-
-<span>
-    <a href="../../../index.html">No Accounts? Register Now!</a>
-</span>
-
-
-<div class="card flex justify-content-center">
-    <span>
-        <p-checkbox [(ngModel)]="checked" [binary]="true" inputId="binary"></p-checkbox>
-        <span>Agreement</span>
-    </span>
-    <span>
-        <a href="../../../index.html">Need Help?</a>
-    </span>
-    
-</div>

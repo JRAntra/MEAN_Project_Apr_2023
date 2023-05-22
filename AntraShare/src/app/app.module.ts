@@ -28,6 +28,8 @@ import { InplaceModule } from 'primeng/inplace';
 import { DropdownModule } from 'primeng/dropdown';
 import { CalendarModule } from 'primeng/calendar';
 import { BadgeModule } from 'primeng/badge';
+import { TooltipModule } from 'primeng/tooltip';
+import { OverlayPanelModule } from 'primeng/overlaypanel';
 
 
 @NgModule({
@@ -53,13 +55,15 @@ import { BadgeModule } from 'primeng/badge';
     InputTextModule,
     PasswordModule,
     ButtonModule,
-    CheckboxModule
+    CheckboxModule,
     BrowserAnimationsModule,
     AvatarModule,
     InplaceModule,
     DropdownModule,
     CalendarModule,
     BadgeModule,
+    TooltipModule,
+    OverlayPanelModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
