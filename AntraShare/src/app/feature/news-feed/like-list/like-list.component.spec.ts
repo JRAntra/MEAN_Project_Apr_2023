@@ -8,7 +8,7 @@ describe('LikeListComponent', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      declarations: [LikeListComponent]
+      declarations: [LikeListComponent],
     });
     fixture = TestBed.createComponent(LikeListComponent);
     component = fixture.componentInstance;

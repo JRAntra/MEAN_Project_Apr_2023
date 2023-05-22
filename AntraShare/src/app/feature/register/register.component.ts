@@ -4,7 +4,7 @@ import { Register } from './register';
 @Component({
   selector: 'app-register',
   templateUrl: './register.component.html',
-  styleUrls: ['./register.component.sass']
+  styleUrls: ['./register.component.sass'],
 })
 export class RegisterComponent {
   register: Register = {
