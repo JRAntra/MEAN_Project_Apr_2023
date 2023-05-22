@@ -2,8 +2,6 @@
 .login-container {
     display: flex;
     justify-content: center;
-    align-items: center;
-    height: 100vh;
   }
   
   .login-form {
@@ -34,13 +32,18 @@
     border-radius: 4px;
     box-sizing: border-box;
   }
-  
+
+  .register-link{
+    font-size: 15px;
+    color: darkgray;
+  }
+
   .btn {
     display: block;
     width: 100%;
     padding: 8px;
     text-align: center;
-    background-color: #007bff;
+    background-color: #00a2ff;
     color: #fff;
     border: none;
     border-radius: 4px;
@@ -48,6 +51,17 @@
   }
   
   .btn:hover {
-    background-color: #0056b3;
+    background-color: #0092b3;
   }
   
+  .agreement-help{
+    margin-top: 20px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    }
+
+  a{
+    text-decoration: none;
+    color: #00748e;
+  }
