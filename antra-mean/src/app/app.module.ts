@@ -3,14 +3,20 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { NaviBarComponent } from './share/navi-bar/navi-bar.component';
+import { SettingPageComponent } from './setting-page/setting-page.component';
+import { AdminPageComponent } from './admin-page/admin.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    NaviBarComponent,
+    SettingPageComponent,
+    AdminPageComponent
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
