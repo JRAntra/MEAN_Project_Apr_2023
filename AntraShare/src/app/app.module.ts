@@ -36,7 +36,9 @@ import { OverlayPanelModule } from 'primeng/overlaypanel';
 import { DataViewModule } from 'primeng/dataview';
 import { EditorModule } from 'primeng/editor';
 import { DividerModule } from 'primeng/divider';
-
+import { PanelModule } from 'primeng/panel';
+import { AccordionModule } from 'primeng/accordion';
+import { TableModule } from 'primeng/table';
 
 @NgModule({
   declarations: [
@@ -76,6 +78,9 @@ import { DividerModule } from 'primeng/divider';
     DataViewModule,
     EditorModule,
     DividerModule,
+    PanelModule,
+    AccordionModule,
+    TableModule,
   ],
   providers: [],
   bootstrap: [AppComponent],
