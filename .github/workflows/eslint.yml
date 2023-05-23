@@ -1,0 +1,28 @@
+name: code style fix
+on:
+  push:
+    branches:
+      - 'Release_Branch/Axion'
+jobs:
+  lint:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+    - uses: actions/checkout@v3
+    - uses: actions/setup-node@v3
+      with:
+        node-version: 16
+    - name: ESLint
+      run: |
+        cd AntraShare
+        npm install
+        npm run lint -- --fix
+        if [ -z "$(git status --untracked-files=no --porcelain)" ]; then
+          echo "already linted"
+        else 
+          git config --global user.email "github-actions[bot]@users.noreply.github.com"
+          git config --global user.name "github-actions[bot]"
+          git commit -a -m "auto lint"
+          git push
+        fi

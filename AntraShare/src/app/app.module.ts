@@ -12,9 +12,12 @@ import { NavBarComponent } from './shared/nav-bar/nav-bar.component';
 import { StoryComponent } from './feature/news-feed/story/story.component';
 import { LikeListComponent } from './feature/news-feed/like-list/like-list.component';
 import { CommentListComponent } from './feature/news-feed/comment-list/comment-list.component';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { CommentComponent } from './feature/news-feed/comment-list/comment/comment.component';
+import { NewCommentComponent } from './feature/news-feed/comment-list/new-comment/new-comment.component';
+import { NewStoryComponent } from './feature/news-feed/story/new-story/new-story.component';
 
 import { FormsModule } from '@angular/forms';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { CardModule } from 'primeng/card';
 import { ImageModule } from 'primeng/image';
@@ -29,7 +32,12 @@ import { CalendarModule } from 'primeng/calendar';
 import { BadgeModule } from 'primeng/badge';
 import { TooltipModule } from 'primeng/tooltip';
 import { OverlayPanelModule } from 'primeng/overlaypanel';
-
+import { DataViewModule } from 'primeng/dataview';
+import { EditorModule } from 'primeng/editor';
+import { DividerModule } from 'primeng/divider';
+import { PanelModule } from 'primeng/panel';
+import { AccordionModule } from 'primeng/accordion';
+import { TableModule } from 'primeng/table';
 
 @NgModule({
   declarations: [
@@ -41,7 +49,10 @@ import { OverlayPanelModule } from 'primeng/overlaypanel';
     NavBarComponent,
     StoryComponent,
     LikeListComponent,
-    CommentListComponent
+    CommentListComponent,
+    CommentComponent,
+    NewCommentComponent,
+    NewStoryComponent,
   ],
   imports: [
     BrowserModule,
@@ -62,8 +73,14 @@ import { OverlayPanelModule } from 'primeng/overlaypanel';
     BadgeModule,
     TooltipModule,
     OverlayPanelModule,
+    DataViewModule,
+    EditorModule,
+    DividerModule,
+    PanelModule,
+    AccordionModule,
+    TableModule,
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
 export class AppModule { }
