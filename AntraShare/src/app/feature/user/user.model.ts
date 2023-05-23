@@ -1,9 +1,9 @@
 export class PasswordStatus {
-    valid: boolean = false;
-    length: boolean = false;
-    digit: boolean = false;
-    uppercase: boolean = false;
-    lowercase: boolean = false;
+  valid = false;
+  length = false;
+  digit = false;
+  uppercase = false;
+  lowercase = false;
 }
 
 export interface UserInfo {
