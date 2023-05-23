@@ -7,7 +7,7 @@ import { Component } from '@angular/core';
 })
 export class ProfileComponent {
   genderOptions: string[];
-  selectedGender = "";
+  selectedGender = '';
   constructor() {
     this.genderOptions = ['Male', 'Female', 'Other'];
   }

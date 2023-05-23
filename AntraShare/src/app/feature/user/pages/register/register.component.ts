@@ -4,7 +4,7 @@ import { PasswordStatus, UserInfo } from '../../user.model';
 @Component({
   selector: 'app-register',
   templateUrl: './register.component.html',
-  styleUrls: ['./register.component.sass']
+  styleUrls: ['./register.component.sass'],
 })
 export class RegisterComponent {
   register_info: UserInfo = {
@@ -13,7 +13,7 @@ export class RegisterComponent {
     password: '',
     confirmPassword: '',
     validatePassword(password): PasswordStatus {
-      const result = new PasswordStatus;
+      const result = new PasswordStatus();
       if (password.length > 5 && password.length < 16) {
         result.length = true;
       }
@@ -31,18 +31,16 @@ export class RegisterComponent {
         result.valid = true;
       }
       return result;
-    }
+    },
+  };
+
+  submitLoading_icon = false;
+
+  onSubmit() {
+    this.submitLoading_icon = true;
+
+    setTimeout(() => {
+      this.submitLoading_icon = false;
+    }, 2000);
   }
-
-  loading = false;
-
-  load() {
-      this.loading = true;
-
-      setTimeout(() => {
-          this.loading = false
-      }, 2000);
-  }
-
-  checked = false;
 }

@@ -33,6 +33,6 @@ import { OverlayPanelModule } from 'primeng/overlaypanel';
   exports: [
     LoginComponent,
     RegisterComponent,
-  ]
+  ],
 })
 export class UserModule { }
