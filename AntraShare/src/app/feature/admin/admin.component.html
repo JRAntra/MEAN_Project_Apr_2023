@@ -1,73 +1,16 @@
 <div class="card panel--container">
     <p-splitter [panelSizes]="[25, 75]" [style]="{'height':'100%'}">
         <ng-template pTemplate>
-            
-            <div class="card userList--container">
-                <div class="userListTable--container">
-                    <p-table 
-                         [value]="userList" 
-                         [scrollable]="true" 
-                         scrollHeight="flex" 
-                         [virtualScroll]="true" 
-                         [virtualScrollItemSize]="46"
-                         [style]="{'min-width':'30vw', 'width':'flex'}"
-                         selectionMode="single" 
-                         [(selection)]="selectedUser">
-                        <ng-template pTemplate="header" let-columns>
-                            <tr>
-                                <th> </th>
-                                <th>Username</th>
-                                <th>Email</th>
-                            </tr>
-                        </ng-template>
-                        <ng-template pTemplate="body" let-user>
-                            <tr [pSelectableRow]="user" style="height:46px">
-                                <td>
-                                    <p-avatar icon="pi pi-user" styleClass="mr-2" size="large" shape="circle"></p-avatar>
-                                </td>
-                                <td>
-                                    {{ user.username }}
-                                </td>
-                                <td>
-                                    {{ user.email }}
-                                </td>
-                            </tr>
-                        </ng-template>
-                    </p-table>
-                </div>
-                
-
-                <div class="addUserButton--container">
-                    <p-button label="Add User" [style]="{'width':'100%'}"></p-button>
-                </div>
+            <div class="userList--container">
+                <app-user-list [(selected)]="selectedUser"></app-user-list>
             </div>
+            
         </ng-template>
 
         <ng-template pTemplate>
-            <div class="col flex align-items-center justify-content-center">
-                <header>User Info</header>
-                <div>
-                    <p>
-                        <span>Username: </span>
-                        <span>{{selectedUser?.username}}</span>
-                    </p>
-                    <p>
-                        <span>Email: </span>
-                        <span>{{selectedUser?.email}}</span>
-                    </p>
-                    <p>
-                        <span>Gender: </span>
-                        <span>{{selectedUser?.gender}}</span>
-                    </p>
-                    <p>
-                        <span>Birthday: </span>
-                        <span>{{selectedUser?.birthday}}</span>
-                    </p>
-                </div>
+            <div class="userDetail--container">
+                <app-user-detail [selectedUser]="selectedUser"></app-user-detail>
             </div>
         </ng-template>
     </p-splitter>
 </div>
-
-<!-- [style]="{'width': '25vw'}" 
-                                   scrollHeight="90vh" -->
