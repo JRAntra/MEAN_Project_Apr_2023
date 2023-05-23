@@ -3,13 +3,13 @@ $grey: #C4C4C4
 
 
 .container
-  height: 100vh
+  height: 98vh
   width: 100%
   display: flex
   justify-content: center
   align-items: center
 
-  .container__header
+  .container--header
     position: absolute
     top: 0
     left: 0
@@ -19,24 +19,21 @@ $grey: #C4C4C4
     display: flex
     justify-content: flex-end
 
-  .container__body
+  .container--body
     width: 800px
 
-    .container__row
+    .container--row
 
       outline: 1px solid $grey
       display: flex
       align-items: center
       margin-bottom: 20px
 
-      .info-avatar
+      nz-avatar
         position: relative
         left: -80px
-        height: 160px
-        width: 160px
-        border-radius: 50%
-        background-color: $grey
         margin-right: 50px
+
       .container__info
         position: relative
         left: -80px
@@ -54,7 +51,7 @@ $grey: #C4C4C4
       .info-posts, .info-likes
         display: flex
         align-items: center
-        outline: 1px solid red
+
         flex-basis: 100%
 
 

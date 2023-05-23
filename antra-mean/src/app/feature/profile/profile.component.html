@@ -1,31 +1,32 @@
 <div class="container">
-	<div class="container__header">
+	<header class="container--header">
 		<button>Like List</button>
-	</div>
-	<div class="container__body">
-		<div class="container__row">
-			<div class="info-avatar"></div>
+		<span nz-icon nzType="heart" nzTheme="outline"></span>
+	</header>
+	<div class="container--body">
+		<div class="container--row">
+			<nz-avatar [nzSize]="160" nzIcon="user"></nz-avatar>
 			<div class="container__info">
 				<div>Username</div>
 				<div>example@email</div>
 			</div>
 		</div>
-		<div class="container__row">
+		<div class="container--row">
 			<p class="password">Password</p>
 		</div>
-		<div class="container__row">
+		<div class="container--row">
 			<p class="gender">Gender</p>
 		</div>
-		<div class="container__row">
+		<div class="container--row">
 			<p class="age">Age</p>
 		</div>
-		<div class="container__row">
+		<div class="container--row">
 			<p class="email">Email</p>
 		</div>
-		<div class="container__row">
+		<div class="container--row">
 			<p class="phone">Phone</p>
 		</div>
-		<div class="container__row">
+		<div class="container--row">
 			<div class="info-posts">
 				<div class="info-icon">Icon</div>
 				<div class="posts-amount">Amount of Posts</div>
