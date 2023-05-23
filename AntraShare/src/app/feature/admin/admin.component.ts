@@ -17,12 +17,18 @@ export class AdminComponent {
     { field: 'email', header: 'Email' },
   ];
 
-  // generateUser(id:number): UserInfo {
-  //   return new UserInfo()
-  // }
+  generateUser(id:number): UserInfo {
+    const user: UserInfo = {
+      username: id.toString(),
+      email: id + '@gmail.com',
+      avatar: '',
+    };
 
-  // ngOnInit() {
-  //     this.cars = Array.from({ length: 10000 }).map((_, i) => this.carService.generateCar(i + 1));
-  //     this.virtualCars = Array.from({ length: 10000 });
-  // }
+    return user;
+  }
+
+  ngOnInit() {
+    this.userList = Array.from({ length: 10000 }).map((_, i) => this.generateUser(i + 1));
+    this.virtualUserList = Array.from({ length: 10000 });
+  }
 }

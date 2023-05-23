@@ -4,6 +4,7 @@ import { AdminComponent } from './admin.component';
 
 import { SplitterModule } from 'primeng/splitter';
 import { TableModule } from 'primeng/table';
+import { AvatarModule } from 'primeng/avatar';
 
 @NgModule({
   declarations: [
@@ -13,6 +14,7 @@ import { TableModule } from 'primeng/table';
     CommonModule,
     SplitterModule,
     TableModule,
+    AvatarModule,
   ],
   exports: [
     AdminComponent,
