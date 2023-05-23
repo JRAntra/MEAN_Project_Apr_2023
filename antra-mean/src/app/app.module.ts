@@ -3,8 +3,8 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { LoginPageComponent } from './login-page/login-page.component';
-import { NewsFeedPageComponent } from './news-feed-page/news-feed-page.component';
+import { LoginPageComponent } from './feature/login-page/login-page.component';
+import { NewsFeedPageComponent } from './feature/news-feed-page/news-feed-page.component';
 import { NZ_I18N } from 'ng-zorro-antd/i18n';
 import { en_US } from 'ng-zorro-antd/i18n';
 import { registerLocaleData } from '@angular/common';

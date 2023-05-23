@@ -38,7 +38,6 @@
             "styles": [
               "node_modules/ng-zorro-antd/ng-zorro-antd.min.css",
               "src/styles.sass"
-
             ],
             "scripts": []
           },
@@ -110,8 +109,22 @@
             ],
             "scripts": []
           }
+        },
+        "lint": {
+          "builder": "@angular-eslint/builder:lint",
+          "options": {
+            "lintFilePatterns": [
+              "src/**/*.ts",
+              "src/**/*.html"
+            ]
+          }
         }
       }
     }
+  },
+  "cli": {
+    "schematicCollections": [
+      "@angular-eslint/schematics"
+    ]
   }
 }
