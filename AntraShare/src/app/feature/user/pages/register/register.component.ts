@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { PasswordStatus, UserInfo } from '../../user.model';
+import { PasswordStatus, UserInfo } from '../../../../shared/types';
 
 @Component({
   selector: 'app-register',

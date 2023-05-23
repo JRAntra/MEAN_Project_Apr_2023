@@ -37,26 +37,26 @@
                             <i class="pi pi-check-circle"></i>
                         </ng-template>
     
-                        <div *ngIf="register_info.password !== '' && register_info.validatePassword!(register_info.password).valid === false; else passwordRequirement" class="validatePassword--overlay">
+                        <div *ngIf="register_info.password !== '' && register_info.validatePassword!(register_info.password!).valid === false; else passwordRequirement" class="validatePassword--overlay">
                             Please Enter a valid passowrd
                         </div>
 
                         <div class="validatePassword--overlay">
-                            <i *ngIf="register_info.validatePassword!(register_info.password).length === false; else checkmark" class="pi pi-times-circle"></i>
+                            <i *ngIf="register_info.validatePassword!(register_info.password!).length === false; else checkmark" class="pi pi-times-circle"></i>
                             <span class="passwordRequirement">6-15 characters long</span>
                         </div>
                         <div class="validatePassword--overlay">
-                            <i *ngIf="register_info.validatePassword!(register_info.password).digit === false; else checkmark" class="pi pi-times-circle"></i>
+                            <i *ngIf="register_info.validatePassword!(register_info.password!).digit === false; else checkmark" class="pi pi-times-circle"></i>
                             <span class="passwordRequirement">0-9</span>
                         </div>
                         
                         <div class="validatePassword--overlay">
-                            <i *ngIf="register_info.validatePassword!(register_info.password).uppercase === false; else checkmark" class="pi pi-times-circle"></i>
+                            <i *ngIf="register_info.validatePassword!(register_info.password!).uppercase === false; else checkmark" class="pi pi-times-circle"></i>
                             <span class="passwordRequirement">A-Z</span>
                         </div>
     
                         <div class="validatePassword--overlay">
-                            <i *ngIf="register_info.validatePassword!(register_info.password).lowercase === false; else checkmark" class="pi pi-times-circle"></i>
+                            <i *ngIf="register_info.validatePassword!(register_info.password!).lowercase === false; else checkmark" class="pi pi-times-circle"></i>
                             <span class="passwordRequirement">a-z</span>
                         </div>
                     </div>
