@@ -1,20 +1,15 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { Story } from 'src/app/shared/types';
 
 @Component({
-  selector: 'app-story',
+  selector: 'app-story[story]',
   templateUrl: './story.component.html',
   styleUrls: ['./story.component.sass'],
 })
-export class StoryComponent implements OnInit {
+export class StoryComponent {
   @Input() story!: Story;
-  timeDisplay = '';
   showComment = false;
   liked = false;
-  ngOnInit() {
-    // convert from unix timestamp to human readable time
-    this.timeDisplay = new Date(this.story.post_time * 1000).toLocaleString();
-  }
 
   toggleCommentPanel() {
     this.showComment = !this.showComment;
