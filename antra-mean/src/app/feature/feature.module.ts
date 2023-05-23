@@ -5,6 +5,11 @@ import { LoginPageComponent } from './login-page/login-page.component'
 
 @NgModule({
   declarations: [],
-	imports: [CommonModule, NewsFeedPageComponent, LoginPageComponent]
+	imports: [
+    CommonModule,
+    NewsFeedPageComponent,
+    LoginPageComponent,
+  ],
+  exports: [RouterModule]
 })
 export class FeatureModule {}
