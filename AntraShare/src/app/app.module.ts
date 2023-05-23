@@ -2,9 +2,8 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
+import { UserModule } from './feature/user/user.module';
 import { AppComponent } from './app.component';
-import { LoginComponent } from './feature/login/login.component';
-import { RegisterComponent } from './feature/register/register.component';
 import { NewsFeedComponent } from './feature/news-feed/news-feed.component';
 import { ProfileComponent } from './feature/profile/profile.component';
 import { SettingComponent } from './feature/setting/setting.component';
@@ -35,8 +34,6 @@ import { OverlayPanelModule } from 'primeng/overlaypanel';
 @NgModule({
   declarations: [
     AppComponent,
-    LoginComponent,
-    RegisterComponent,
     NewsFeedComponent,
     ProfileComponent,
     SettingComponent,
@@ -49,6 +46,7 @@ import { OverlayPanelModule } from 'primeng/overlaypanel';
   imports: [
     BrowserModule,
     AppRoutingModule,
+    UserModule,
     CardModule,
     ImageModule,
     FormsModule,
