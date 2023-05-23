@@ -4,17 +4,11 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { SettingModule } from './feature/setting/setting.module';
 import { UserModule } from './feature/user/user.module';
+import { NewsFeedModule } from './feature/news-feed/news-feed.module';
 import { AppComponent } from './app.component';
-import { NewsFeedComponent } from './feature/news-feed/news-feed.component';
 import { ProfileComponent } from './feature/profile/profile.component';
 import { AdminComponent } from './feature/admin/admin.component';
 import { NavBarComponent } from './shared/nav-bar/nav-bar.component';
-import { StoryComponent } from './feature/news-feed/story/story.component';
-import { LikeListComponent } from './feature/news-feed/like-list/like-list.component';
-import { CommentListComponent } from './feature/news-feed/comment-list/comment-list.component';
-import { CommentComponent } from './feature/news-feed/comment-list/comment/comment.component';
-import { NewCommentComponent } from './feature/news-feed/comment-list/new-comment/new-comment.component';
-import { NewStoryComponent } from './feature/news-feed/story/new-story/new-story.component';
 
 import { FormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -42,22 +36,16 @@ import { TableModule } from 'primeng/table';
 @NgModule({
   declarations: [
     AppComponent,
-    NewsFeedComponent,
     ProfileComponent,
     AdminComponent,
     NavBarComponent,
-    StoryComponent,
-    LikeListComponent,
-    CommentListComponent,
-    CommentComponent,
-    NewCommentComponent,
-    NewStoryComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     SettingModule,
     UserModule,
+    NewsFeedModule,
     CardModule,
     ImageModule,
     FormsModule,
