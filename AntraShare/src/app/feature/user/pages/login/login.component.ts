@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { UserInfo } from '../../user.model';
+import { UserInfo } from 'src/app/shared/types';
 
 @Component({
   selector: 'app-login',

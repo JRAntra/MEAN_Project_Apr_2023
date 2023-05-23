@@ -1,11 +1,22 @@
 /** unix timestamp */
 export type Time = number;
 
-export type UserInfo = {
-    id: number;
-    name: string;
-    email: string;
-    avatar: string | null;
+export class PasswordStatus {
+  valid = false;
+  length = false;
+  digit = false;
+  uppercase = false;
+  lowercase = false;
+}
+
+export interface UserInfo {
+    username: string;
+    name?: string;
+    email?: string;
+    password?: string;
+    confirmPassword?: string,
+    avatar?: string | null;
+    validatePassword?(password: string): PasswordStatus;
 }
 
 export type Story = {

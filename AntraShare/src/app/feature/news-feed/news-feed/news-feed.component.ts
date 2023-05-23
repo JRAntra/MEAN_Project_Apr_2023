@@ -14,7 +14,7 @@ export class NewsFeedComponent {
       poster: {
         name: 'test-user',
         avatar: null,
-        id: 0,
+        username: '0',
         email: 'test-email',
       },
       content: 'test-story-content',
