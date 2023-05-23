@@ -10,18 +10,18 @@ import en from '@angular/common/locales/en'
 import { FormsModule } from '@angular/forms'
 import { HttpClientModule } from '@angular/common/http'
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations'
-import { RegisterComponent } from './pages/register/register.component'
-
+import { FeatureModule } from './feature/feature.module'
 registerLocaleData(en)
 
 @NgModule({
-	declarations: [AppComponent, RegisterComponent],
+	declarations: [AppComponent],
 	imports: [
 		BrowserModule,
 		AppRoutingModule,
 		FormsModule,
 		HttpClientModule,
-		BrowserAnimationsModule
+		BrowserAnimationsModule,
+    FeatureModule
 	],
 	providers: [{ provide: NZ_I18N, useValue: en_US }],
 	bootstrap: [AppComponent]
