@@ -9,10 +9,14 @@ export class PasswordStatus {
   lowercase = false;
 }
 
+export type Genders = 'Male' | 'Female' | 'Other'
+
 export interface UserInfo {
     username: string;
     name?: string;
     email?: string;
+    gender?: Genders;
+    birthday?: Date;
     password?: string;
     confirmPassword?: string,
     avatar?: string | null;
