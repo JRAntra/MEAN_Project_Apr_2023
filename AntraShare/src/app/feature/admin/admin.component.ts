@@ -11,6 +11,8 @@ export class AdminComponent {
 
   virtualUserList: UserInfo[] = [];
 
+  selectedUser?: UserInfo;
+
   cols = [
     { field: 'avatar', header: 'Avatar' },
     { field: 'username', header: 'Username' },
@@ -22,6 +24,9 @@ export class AdminComponent {
       username: id.toString(),
       email: id + '@gmail.com',
       avatar: '',
+      name: 'John Doe',
+      gender: 'Male',
+      birthday: new Date(2000, 1, 1),
     };
 
     return user;
