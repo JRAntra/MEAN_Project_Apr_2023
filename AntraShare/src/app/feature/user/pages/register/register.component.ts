@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { Register } from './register';
+import { PasswordStatus, UserInfo } from '../../user.model';
 
 @Component({
   selector: 'app-register',
@@ -7,18 +7,16 @@ import { Register } from './register';
   styleUrls: ['./register.component.sass'],
 })
 export class RegisterComponent {
-  register: Register = {
+  register_info: UserInfo = {
     username: '',
     email: '',
     password: '',
     confirmPassword: '',
-    validatePassword: (password) => {
-      const result = {
-        valid: false,
-        digit: false,
-        uppercase: false,
-        lowercase: false,
-      };
+    validatePassword(password): PasswordStatus {
+      const result = new PasswordStatus();
+      if (password.length > 5 && password.length < 16) {
+        result.length = true;
+      }
       // check if password has at least one digit, on uppercase letter, and one lowercase letter
       if (/\d/.test(password)) {
         result.digit = true;
@@ -36,15 +34,13 @@ export class RegisterComponent {
     },
   };
 
-  loading = false;
+  submitLoading_icon = false;
 
-  load() {
-    this.loading = true;
+  onSubmit() {
+    this.submitLoading_icon = true;
 
     setTimeout(() => {
-      this.loading = false;
+      this.submitLoading_icon = false;
     }, 2000);
   }
-
-  checked = false;
 }

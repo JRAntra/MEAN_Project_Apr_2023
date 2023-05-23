@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { Login } from './login';
+import { UserInfo } from '../../user.model';
 
 @Component({
   selector: 'app-login',
@@ -7,20 +7,20 @@ import { Login } from './login';
   styleUrls: ['./login.component.sass'],
 })
 export class LoginComponent {
-  login: Login = {
+  login_info: UserInfo = {
     username: '',
     password: '',
   };
 
-  loading = false;
+  loginLoading_icon = false;
 
-  load() {
-    this.loading = true;
+  onLogin() {
+    this.loginLoading_icon = true;
 
     setTimeout(() => {
-      this.loading = false;
+      this.loginLoading_icon = false;
     }, 2000);
   }
 
-  checked = false;
+  agreement_checked = false;
 }

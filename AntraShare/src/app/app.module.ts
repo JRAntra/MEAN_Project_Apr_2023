@@ -2,20 +2,13 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
+import { SettingModule } from './feature/setting/setting.module';
+import { UserModule } from './feature/user/user.module';
+import { NewsFeedModule } from './feature/news-feed/news-feed.module';
 import { AdminModule } from './feature/admin/admin.module';
 import { AppComponent } from './app.component';
-import { LoginComponent } from './feature/login/login.component';
-import { RegisterComponent } from './feature/register/register.component';
-import { NewsFeedComponent } from './feature/news-feed/news-feed.component';
 import { ProfileComponent } from './feature/profile/profile.component';
-import { SettingComponent } from './feature/setting/setting.component';
 import { NavBarComponent } from './shared/nav-bar/nav-bar.component';
-import { StoryComponent } from './feature/news-feed/story/story.component';
-import { LikeListComponent } from './feature/news-feed/like-list/like-list.component';
-import { CommentListComponent } from './feature/news-feed/comment-list/comment-list.component';
-import { CommentComponent } from './feature/news-feed/comment-list/comment/comment.component';
-import { NewCommentComponent } from './feature/news-feed/comment-list/new-comment/new-comment.component';
-import { NewStoryComponent } from './feature/news-feed/story/new-story/new-story.component';
 
 import { FormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -43,22 +36,15 @@ import { TableModule } from 'primeng/table';
 @NgModule({
   declarations: [
     AppComponent,
-    LoginComponent,
-    RegisterComponent,
-    NewsFeedComponent,
     ProfileComponent,
-    SettingComponent,
     NavBarComponent,
-    StoryComponent,
-    LikeListComponent,
-    CommentListComponent,
-    CommentComponent,
-    NewCommentComponent,
-    NewStoryComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
+    SettingModule,
+    UserModule,
+    NewsFeedModule,
     AdminModule,
     CardModule,
     ImageModule,
