@@ -80,17 +80,17 @@
 			<nz-input-group>
 				<ng-template #addOnBeforeTemplate> </ng-template>
 				<input
+					nz-input
 					formControlName="phoneNumber"
 					id="'phoneNumber'"
-					nz-input
 				/>
 			</nz-input-group>
 		</nz-form-control>
 	</nz-form-item>
 	<nz-form-item nz-row class="register-area">
 		<nz-form-control [nzSpan]="14" [nzOffset]="6">
-			<label nz-checkbox
-				><span>
+			<label nz-checkbox formControlName="agree">
+				<span>
 					I have read the
 					<a>agreement</a>
 				</span>
