@@ -6,8 +6,8 @@ import { SettingModule } from './feature/setting/setting.module';
 import { UserModule } from './feature/user/user.module';
 import { NewsFeedModule } from './feature/news-feed/news-feed.module';
 import { AdminModule } from './feature/admin/admin.module';
+import { NavigatorModule } from './cores/nav-bar/navigator.module';
 import { AppComponent } from './app.component';
-import { NavBarComponent } from './shared/nav-bar/nav-bar.component';
 
 import { FormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -16,7 +16,6 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 @NgModule({
   declarations: [
     AppComponent,
-    NavBarComponent,
   ],
   imports: [
     BrowserModule,
@@ -27,6 +26,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     NewsFeedModule,
     AdminModule,
     FormsModule,
+    NavigatorModule,
   ],
   providers: [],
   bootstrap: [AppComponent],
