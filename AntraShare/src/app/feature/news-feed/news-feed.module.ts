@@ -16,6 +16,7 @@ import { InplaceModule } from 'primeng/inplace';
 import { EditorModule } from 'primeng/editor';
 import { DividerModule } from 'primeng/divider';
 import { DataViewModule } from 'primeng/dataview';
+import { HeadPipe } from './news-feed/story/head.pipe';
 
 @NgModule({
   declarations: [
@@ -26,6 +27,7 @@ import { DataViewModule } from 'primeng/dataview';
     CommentComponent,
     NewCommentComponent,
     NewStoryComponent,
+    HeadPipe,
   ],
   imports: [
     FormsModule,
