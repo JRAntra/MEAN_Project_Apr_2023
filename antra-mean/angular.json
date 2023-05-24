@@ -28,9 +28,15 @@
             "inlineStyleLanguage": "sass",
             "assets": [
               "src/favicon.ico",
-              "src/assets"
+              "src/assets",
+              {
+                "glob": "**/*",
+                "input": "./node_modules/@ant-design/icons-angular/src/inline-svg/",
+                "output": "/assets/"
+              }
             ],
             "styles": [
+              "node_modules/ng-zorro-antd/ng-zorro-antd.min.css",
               "src/styles.sass"
             ],
             "scripts": []
@@ -103,8 +109,23 @@
             ],
             "scripts": []
           }
+        },
+        "lint": {
+          "builder": "@angular-eslint/builder:lint",
+          "options": {
+            "lintFilePatterns": [
+              "src/**/*.ts",
+              "src/**/*.html"
+            ]
+          }
         }
       }
     }
+  },
+  "cli": {
+    "analytics": "bbaec22f-7005-44e5-9b83-b6ea0a8286fe",
+    "schematicCollections": [
+      "@angular-eslint/schematics"
+    ]
   }
 }
