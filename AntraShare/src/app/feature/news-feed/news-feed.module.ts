@@ -2,7 +2,6 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { NewsFeedComponent } from './news-feed/news-feed.component';
 import { StoryComponent } from './news-feed/story/story.component';
-import { LikeListComponent } from './news-feed/like-list/like-list.component';
 import { CommentListComponent } from './news-feed/comment-list/comment-list.component';
 import { CommentComponent } from './news-feed/comment-list/comment/comment.component';
 import { NewCommentComponent } from './news-feed/comment-list/new-comment/new-comment.component';
@@ -16,16 +15,17 @@ import { InplaceModule } from 'primeng/inplace';
 import { EditorModule } from 'primeng/editor';
 import { DividerModule } from 'primeng/divider';
 import { DataViewModule } from 'primeng/dataview';
+import { StoryListComponent } from './news-feed/story-list/story-list.component';
 
 @NgModule({
   declarations: [
     NewsFeedComponent,
     StoryComponent,
-    LikeListComponent,
     CommentListComponent,
     CommentComponent,
     NewCommentComponent,
     NewStoryComponent,
+    StoryListComponent,
   ],
   imports: [
     FormsModule,
