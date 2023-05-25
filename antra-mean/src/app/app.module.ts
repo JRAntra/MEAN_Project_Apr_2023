@@ -30,6 +30,10 @@ import { NzResizableModule } from 'ng-zorro-antd/resizable'
 import { LikeListComponent } from './feature/news-feed/like-list/like-list.component'
 import { NzPaginationModule } from 'ng-zorro-antd/pagination';
 
+import { NaviBarComponent } from './core/navi-bar/navi-bar.component'
+import { SettingPageComponent } from './feature/setting-page/setting-page.component'
+import { AdminPageComponent } from './feature/admin-page/admin.component'
+
 registerLocaleData(en)
 
 @NgModule({
@@ -37,7 +41,10 @@ registerLocaleData(en)
     AppComponent,
     LoginPageComponent,
     NewsFeedPageComponent,
-    LikeListComponent
+    LikeListComponent,
+		NaviBarComponent,
+		SettingPageComponent,
+		AdminPageComponent,
   ],
   imports: [
     BrowserModule,
@@ -61,11 +68,17 @@ registerLocaleData(en)
     NzLayoutModule,
     NzMenuModule,
     NzResizableModule,
-    NzPaginationModule
+    NzPaginationModule,
+    BrowserModule,
+		AppRoutingModule,
+		FormsModule,
+		HttpClientModule,
+		BrowserAnimationsModule,
+		NzLayoutModule,
+		NzMenuModule,
+		NzIconModule,
   ],
-  providers: [
-    { provide: NZ_I18N, useValue: en_US }
-  ],
-  bootstrap: [AppComponent]
+	providers: [{ provide: NZ_I18N, useValue: en_US }],
+	bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {}
