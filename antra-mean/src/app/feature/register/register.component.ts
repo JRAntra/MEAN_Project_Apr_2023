@@ -1,11 +1,5 @@
 import { Component } from '@angular/core'
 import { NzFormTooltipIcon } from 'ng-zorro-antd/form'
-import {
-	UntypedFormBuilder,
-	UntypedFormControl,
-	UntypedFormGroup,
-	Validators
-} from '@angular/forms'
 @Component({
 	selector: 'app-register',
 	templateUrl: 'register.component.html',
