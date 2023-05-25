@@ -10,7 +10,7 @@
       ],
       "parserOptions": {
         "project": [
-          "antra-mean/tsconfig.json"
+          "MEAN_Project_Apr_2023/antra-mean/tsconfig.json"
         ],
         "createDefaultProgram": true
       },
@@ -46,6 +46,14 @@
         "plugin:@angular-eslint/template/recommended"
       ],
       "rules": {}
+    },
+    {
+      "files": ["*.html"],
+      "excludedFiles": ["*inline-template-*.component.html"],
+      "extends": ["plugin:prettier/recommended"],
+      "rules": {
+        "prettier/prettier": ["error", { "parser": "angular" }]
+      }
     }
   ]
 }
