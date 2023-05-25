@@ -9,6 +9,10 @@ import { NzInputModule } from 'ng-zorro-antd/input'
 import { FormsModule } from '@angular/forms'
 import { NzIconModule } from 'ng-zorro-antd/icon'
 
+import { RegisterComponent } from './register/register.component'
+import { NzButtonModule } from 'ng-zorro-antd/button'
+import { NzFormModule } from 'ng-zorro-antd/form'
+import { NzCheckboxModule } from 'ng-zorro-antd/checkbox'
 @NgModule({
 	imports: [
 		CommonModule,
@@ -17,7 +21,8 @@ import { NzIconModule } from 'ng-zorro-antd/icon'
 		NzDividerModule,
 		NzInputModule,
 		FormsModule,
-		NzIconModule
+		NzIconModule,
+		NzCheckboxModule
 	],
 	declarations: [FeatureComponent, ProfileComponent],
 	exports: [FeatureComponent, ProfileComponent]

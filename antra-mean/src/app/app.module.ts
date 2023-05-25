@@ -13,6 +13,7 @@ import { NzIconModule } from 'ng-zorro-antd/icon'
 import { FeatureModule } from './feature/feature.module'
 
 registerLocaleData(en)
+registerLocaleData(en)
 
 @NgModule({
 	declarations: [AppComponent],
@@ -28,4 +29,5 @@ registerLocaleData(en)
 	providers: [{ provide: NZ_I18N, useValue: en_US }],
 	bootstrap: [AppComponent]
 })
+export class AppModule {}
 export class AppModule {}
