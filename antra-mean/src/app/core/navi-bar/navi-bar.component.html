@@ -1,0 +1,22 @@
+<div class = "navigation-bar">
+  <ul nz-menu nzMode="horizontal">
+    <li nz-menu-item nzSelected>
+      <span nz-icon nzType="user"></span>
+      My Profile
+    </li>
+    <li nz-menu-item>
+      <span nz-icon nzType="smile"></span>
+      News Feed
+    </li>
+    <li nz-menu-item [routerLink]="['/settings']" >
+      <span nz-icon nzType="setting"></span>
+      Settings
+    </li>
+    <li nz-menu-item [routerLink]="['/admin']" >
+      <span nz-icon nzType="team" nzTheme="outline"></span>
+      Admin
+    </li>
+  </ul>
+
+</div>
+
