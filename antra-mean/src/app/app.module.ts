@@ -3,7 +3,7 @@ import { BrowserModule } from '@angular/platform-browser'
 import { AppRoutingModule } from './app-routing.module'
 import { AppComponent } from './app.component'
 import { LoginPageComponent } from './feature/login-page/login-page.component'
-import { NewsFeedPageComponent } from './feature/news-feed-page/news-feed-page.component'
+import { NewsFeedPageComponent } from './feature/news-feed/news-feed-page/news-feed-page.component'
 import { NZ_I18N } from 'ng-zorro-antd/i18n'
 import { en_US } from 'ng-zorro-antd/i18n'
 import { registerLocaleData } from '@angular/common'
@@ -27,7 +27,8 @@ import { NzGridModule } from 'ng-zorro-antd/grid'
 import { NzLayoutModule } from 'ng-zorro-antd/layout'
 import { NzMenuModule } from 'ng-zorro-antd/menu'
 import { NzResizableModule } from 'ng-zorro-antd/resizable'
-
+import { LikeListComponent } from './feature/news-feed/like-list/like-list.component'
+import { NzPaginationModule } from 'ng-zorro-antd/pagination';
 
 registerLocaleData(en)
 
@@ -35,7 +36,8 @@ registerLocaleData(en)
   declarations: [
     AppComponent,
     LoginPageComponent,
-    NewsFeedPageComponent
+    NewsFeedPageComponent,
+    LikeListComponent
   ],
   imports: [
     BrowserModule,
@@ -59,7 +61,7 @@ registerLocaleData(en)
     NzLayoutModule,
     NzMenuModule,
     NzResizableModule,
-
+    NzPaginationModule
   ],
   providers: [
     { provide: NZ_I18N, useValue: en_US }
