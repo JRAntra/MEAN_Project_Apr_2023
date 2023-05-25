@@ -1,0 +1,68 @@
+$mint-green: #C2DBD9
+$grey: #C4C4C4
+
+
+.container
+  height: 98vh
+  width: 100%
+  display: flex
+  justify-content: center
+  align-items: center
+
+  .container--header
+    position: absolute
+    top: 0
+    left: 0
+    width: 100%
+    height: 80px
+    background-color: $mint-green
+    display: flex
+    justify-content: flex-end
+
+  .container--body
+    width: 800px
+
+    .container--row
+      display: flex
+      align-items: center
+      justify-content: flex-start
+      margin-bottom: 20px
+
+      .avatar
+        position: relative
+        height: 160px
+        width: 160px
+        border-radius: 50%
+        left: -80px
+        margin-right: 50px
+
+      .container__info
+        position: relative
+        left: -80px
+        display: flex
+        align-items: center
+        justify-content: space-around
+        height: 100px
+        width: 600px
+
+
+      .info-icon
+          height: 120px
+          width: 120px
+          background-color: $grey
+      .info-posts, .info-likes
+        display: flex
+        align-items: center
+        flex-basis: 100%
+
+
+
+.borderless-input
+  width: 200px
+.borderless-input-group
+  display: flex
+  outline: none
+  border: none
+.edit-icon
+  margin-left: -550px
+  z-index: 1

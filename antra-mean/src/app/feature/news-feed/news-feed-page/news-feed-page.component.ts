@@ -1,23 +1,19 @@
-import { Component, OnInit } from '@angular/core'
+import { Component } from '@angular/core'
 import { FormGroup, FormControl } from '@angular/forms'
 
 @Component({
-  selector: 'app-news-feed-page',
-  templateUrl: './news-feed-page.component.html',
-  styleUrls: ['./news-feed-page.component.sass']
+	selector: 'app-news-feed-page',
+	templateUrl: './news-feed-page.component.html',
+	styleUrls: ['./news-feed-page.component.sass']
 })
-export class NewsFeedPageComponent implements OnInit {
-  inputValue?: string;
+export class NewsFeedPageComponent {
+	inputValue?: string
 
-  myFormGroup: FormGroup;
+	myFormGroup: FormGroup
 
-  constructor() {
-    this.myFormGroup = new FormGroup({
-      photo: new FormControl(),
-    })
-   }
-
-  ngOnInit(): void {
-  }
-
+	constructor() {
+		this.myFormGroup = new FormGroup({
+			photo: new FormControl()
+		})
+	}
 }

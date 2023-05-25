@@ -1,36 +1,55 @@
 <div class="container">
-  <form nz-form [formGroup]="myFormGroup" class="login-form">
-    <img class="logo-image" src="https://i.pinimg.com/originals/f1/5e/a7/f15ea7d9de04d55d59afe92843a5e037.jpg" alt="logo"/>
-    <nz-form-item>
-      <nz-form-control nzErrorTip="Please input your username!">
-        <nz-input-group nzPrefixIcon="user">
-          <input type="text" nz-input formControlName="userName" placeholder="Username" />
-        </nz-input-group>
-      </nz-form-control>
-    </nz-form-item>
-    <nz-form-item>
-      <nz-form-control nzErrorTip="Please input your Password!">
-        <nz-input-group nzPrefixIcon="lock">
-          <input type="password" nz-input formControlName="password" placeholder="Password" />
-        </nz-input-group>
-      </nz-form-control>
-    </nz-form-item>
-    <div class="login-form-button">
-      <button nz-button nzBlock class="login-form-button" nzType="primary">Log in</button>
-    </div>
-    <br>
-    <div class="link-to-register">
-      Or
-      <a>No Accounts? Register Now!</a>
-    </div>
-    <br>
-    <span>
-      <label nz-checkbox formControlName="agreement">
-        <span>Agreement</span>
-      </label>
-    </span>
-    <a class="need-help">
-      Need Help?
-    </a>
-  </form>
+	<form nz-form [formGroup]="myFormGroup" class="login-form">
+		<img
+			class="logo-image"
+			src="https://i.pinimg.com/originals/f1/5e/a7/f15ea7d9de04d55d59afe92843a5e037.jpg"
+			alt="logo"
+		/>
+		<nz-form-item>
+			<nz-form-control nzErrorTip="Please input your username!">
+				<nz-input-group nzPrefixIcon="user">
+					<input
+						type="text"
+						nz-input
+						formControlName="userName"
+						placeholder="Username"
+					/>
+				</nz-input-group>
+			</nz-form-control>
+		</nz-form-item>
+		<nz-form-item>
+			<nz-form-control nzErrorTip="Please input your Password!">
+				<nz-input-group nzPrefixIcon="lock">
+					<input
+						type="password"
+						nz-input
+						formControlName="password"
+						placeholder="Password"
+					/>
+				</nz-input-group>
+			</nz-form-control>
+		</nz-form-item>
+		<div class="login-form-button">
+			<button
+				nz-button
+				nzBlock
+				class="login-form-button"
+				nzType="primary"
+			>
+				Log in
+			</button>
+		</div>
+		<br />
+		<div class="link-to-register">
+			Or
+			<a>No Accounts? Register Now!</a>
+		</div>
+		<br />
+		<span>
+			<label nz-checkbox formControlName="agreement">
+				<span>Agreement</span>
+			</label>
+		</span>
+		<a class="need-help"> Need Help? </a>
+	</form>
 </div>
