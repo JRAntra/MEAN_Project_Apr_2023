@@ -1,12 +1,10 @@
-import { Component } from '@angular/core';
-
+import { Component } from '@angular/core'
 @Component({
-  selector: 'app-profile',
-  templateUrl: './profile.component.html',
-  styleUrls: ['./profile.component.sass']
+	selector: 'app-profile',
+	templateUrl: './profile.component.html',
+	styleUrls: ['./profile.component.sass']
 })
-export class ProfileComponent{
-  
-
-
+export class ProfileComponent {
+	passwordVisible = false
+	password?: string
 }

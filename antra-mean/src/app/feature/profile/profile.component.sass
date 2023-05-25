@@ -23,14 +23,16 @@ $grey: #C4C4C4
     width: 800px
 
     .container--row
-
-      outline: 1px solid $grey
       display: flex
       align-items: center
+      justify-content: flex-start
       margin-bottom: 20px
 
-      nz-avatar
+      .avatar
         position: relative
+        height: 160px
+        width: 160px
+        border-radius: 50%
         left: -80px
         margin-right: 50px
 
@@ -42,7 +44,7 @@ $grey: #C4C4C4
         justify-content: space-around
         height: 100px
         width: 600px
-        outline: 1px solid $grey
+
 
       .info-icon
           height: 120px
@@ -51,8 +53,16 @@ $grey: #C4C4C4
       .info-posts, .info-likes
         display: flex
         align-items: center
-
         flex-basis: 100%
 
 
 
+.borderless-input
+  width: 200px
+.borderless-input-group
+  display: flex
+  outline: none
+  border: none
+.edit-icon
+  margin-left: -550px
+  z-index: 1

@@ -1,30 +1,67 @@
 <div class="container">
 	<header class="container--header">
 		<button>Like List</button>
-		<span nz-icon nzType="heart" nzTheme="outline"></span>
 	</header>
 	<div class="container--body">
 		<div class="container--row">
-			<nz-avatar [nzSize]="160" nzIcon="user"></nz-avatar>
+			<img
+				class="avatar"
+				src="../../assets/profile-image/profile.jpg"
+				alt=""
+			/>
 			<div class="container__info">
-				<div>Username</div>
+				<div>
+					Username<span
+						nz-icon
+						nzType="edit"
+						nzTheme="outline"
+					></span>
+				</div>
 				<div>example@email</div>
 			</div>
 		</div>
 		<div class="container--row">
-			<p class="password">Password</p>
+			<nz-input-group
+				[nzSuffix]="suffixTemplate"
+				class="borderless-input-group"
+			>
+				<input
+					[type]="passwordVisible ? 'text' : 'password'"
+					nz-input
+					placeholder="input password"
+					[(ngModel)]="password"
+					nzBorderless
+					class="borderless-input"
+				/>
+			</nz-input-group>
+			<ng-template #suffixTemplate>
+				<span
+					nz-icon
+					[nzType]="passwordVisible ? 'eye-invisible' : 'eye'"
+					(click)="passwordVisible = !passwordVisible"
+				></span>
+			</ng-template>
+			<span
+				nz-icon
+				nzType="edit"
+				nzTheme="outline"
+				class="edit-icon"
+			></span>
 		</div>
 		<div class="container--row">
 			<p class="gender">Gender</p>
+			<span nz-icon nzType="edit" nzTheme="outline"></span>
 		</div>
 		<div class="container--row">
 			<p class="age">Age</p>
+			<span nz-icon nzType="edit" nzTheme="outline"></span>
 		</div>
 		<div class="container--row">
 			<p class="email">Email</p>
 		</div>
 		<div class="container--row">
 			<p class="phone">Phone</p>
+			<span nz-icon nzType="edit" nzTheme="outline"></span>
 		</div>
 		<div class="container--row">
 			<div class="info-posts">
