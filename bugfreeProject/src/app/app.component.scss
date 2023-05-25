@@ -1,0 +1,26 @@
+.home-button {
+    position: fixed;
+    top: 10px;
+    left: 10px;
+  }
+  
+  .home-button a {
+    text-decoration: none;
+    color: black;
+  }
+  
+  .home-button a:hover {
+    color: blue;
+  }
+  
+.navigation-bar {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+    background-color: #f8f8f8;
+    border-top: 1px solid #e7e7e7;
+    padding: 10px 0;
+  }
+  

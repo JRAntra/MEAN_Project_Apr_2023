@@ -1,0 +1,46 @@
+.top-bar {
+    border-bottom: 1px solid black;
+    display: flex;
+    justify-content: flex-end;
+    position: fixed;
+    top: 0;
+    right: 0;
+    left: 0;
+  }
+  
+  .admin-btn {
+    margin: 10px;
+  }
+  
+  .admin-page-container {
+    display: flex;
+  }
+  
+  .user-list {
+    border: 1px solid black;
+    margin: 10px;
+    padding: 10px;
+    position: fixed;
+    top: 60px; /* adjust based on the height of your top bar */
+    left: 0;
+    width: 30%; /* half the width of the viewport */
+    box-sizing: border-box; /* include padding and border in element's total width */
+  }
+  
+  .user-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  .user-detail {
+    border: 1px solid black;
+    margin: 10px;
+    padding: 10px;
+    position: fixed;
+    top: 60px; /* adjust based on the height of your top bar */
+    right: 0;
+    width: 60%; /* half the width of the viewport */
+    box-sizing: border-box; /* include padding and border in element's total width */
+  }
+  

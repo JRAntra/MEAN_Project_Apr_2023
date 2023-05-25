@@ -14,16 +14,16 @@ describe('AppComponent', () => {
     expect(app).toBeTruthy();
   });
 
-  it(`should have as title 'bugfreeProject'`, () => {
+  it(`should have as title 'Antra-share'`, () => {
     const fixture = TestBed.createComponent(AppComponent);
     const app = fixture.componentInstance;
-    expect(app.title).toEqual('bugfreeProject');
+    expect(app.title).toEqual('Antra-share');
   });
 
   it('should render title', () => {
     const fixture = TestBed.createComponent(AppComponent);
     fixture.detectChanges();
     const compiled = fixture.nativeElement as HTMLElement;
-    expect(compiled.querySelector('.content span')?.textContent).toContain('bugfreeProject app is running!');
+    expect(compiled.querySelector('.content span')?.textContent).toContain('Antra-share app is running!');
   });
 });

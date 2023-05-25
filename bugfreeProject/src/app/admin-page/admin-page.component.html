@@ -1,0 +1,22 @@
+<div class="top-bar">
+    <button class="admin-btn">Admin</button>
+  </div>
+  
+  <div class="admin-page-container">
+    <div class="user-list">
+      <div *ngFor="let user of users" class="user-item" (mouseover)="selectUser(user)">
+        <p>{{ user.name }}</p>
+        <button (click)="deleteUser(user)">Delete</button>
+      </div>
+      <button (click)="addUser()">Add User</button>
+    </div>
+  
+    <div class="user-detail">
+      <p>User Name: {{selectedUser?.name}}</p>
+      <p>Password: {{selectedUser?.password}}</p>
+      <p>User Email: {{selectedUser?.email}}</p>
+      <p>Gender: {{selectedUser?.gender}}</p>
+      <p>Age: {{selectedUser?.age}}</p>
+    </div>
+  </div>
+  
