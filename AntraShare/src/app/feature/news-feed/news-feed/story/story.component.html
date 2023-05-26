@@ -9,7 +9,7 @@
         {{ story.content.text }}
     </div>
     <div *ngIf="showComment" class="story__comment-list">
-        <app-comment-list></app-comment-list>
+        <app-comment-list [commentList]="story.comment"></app-comment-list>
     </div>
     <ng-template pTemplate="footer">
         <div class="story__footer">

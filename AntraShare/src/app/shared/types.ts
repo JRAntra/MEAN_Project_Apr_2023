@@ -41,5 +41,5 @@ export type Story = {
     video: string;
     text: string;
   };
-  comments: Comment[];
+  comment: Comment[];
 };
