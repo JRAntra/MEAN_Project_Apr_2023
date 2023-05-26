@@ -1,5 +1,5 @@
-import { Component } from '@angular/core';
-import { PasswordStatus, UserInfo } from '../../../../shared/types';
+import { Component, Input } from '@angular/core';
+import { PasswordStatus, UserProfile } from '../../../../shared/types';
 
 @Component({
   selector: 'app-register',
@@ -7,31 +7,33 @@ import { PasswordStatus, UserInfo } from '../../../../shared/types';
   styleUrls: ['./register.component.sass'],
 })
 export class RegisterComponent {
-  register_info: UserInfo = {
-    username: '',
-    email: '',
+  confirmPassword?: '';
+
+  validatePassword(password:string): PasswordStatus {
+    const result = new PasswordStatus();
+    if (password.length > 5 && password.length < 16) {
+      result.length = true;
+    }
+    // check if password has at least one digit, on uppercase letter, and one lowercase letter
+    if (/\d/.test(password)) {
+      result.digit = true;
+    }
+    if (/[A-Z]/.test(password)) {
+      result.uppercase = true;
+    }
+    if (/[a-z]/.test(password)) {
+      result.lowercase = true;
+    }
+    if (result.digit && result.uppercase && result.lowercase && password.length > 5 && password.length < 16) {
+      result.valid = true;
+    }
+    return result;
+  }
+
+  register_info: UserProfile = {
+    userName: '',
+    userEmail: '',
     password: '',
-    confirmPassword: '',
-    validatePassword(password): PasswordStatus {
-      const result = new PasswordStatus();
-      if (password.length > 5 && password.length < 16) {
-        result.length = true;
-      }
-      // check if password has at least one digit, on uppercase letter, and one lowercase letter
-      if (/\d/.test(password)) {
-        result.digit = true;
-      }
-      if (/[A-Z]/.test(password)) {
-        result.uppercase = true;
-      }
-      if (/[a-z]/.test(password)) {
-        result.lowercase = true;
-      }
-      if (result.digit && result.uppercase && result.lowercase && password.length > 5 && password.length < 16) {
-        result.valid = true;
-      }
-      return result;
-    },
   };
 
   submitLoading_icon = false;

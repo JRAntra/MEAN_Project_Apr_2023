@@ -13,14 +13,14 @@ export class PasswordStatus {
 export type Genders = 'Male' | 'Female' | 'Other';
 
 export type UserProfile = {
-    name: string,
-    userName: string,
-    userEmail: string,
-    password: string,
-    userRole: string,
-    age: number,
-    gender: string,
-    phone: number,
+    name?: string,
+    userName?: string,
+    userEmail?: string,
+    password?: string,
+    userRole?: string,
+    age?: number,
+    gender?: string,
+    phone?: number,
 }
 
 export type Comment = {

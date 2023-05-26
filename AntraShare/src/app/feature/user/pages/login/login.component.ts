@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { UserInfo } from 'src/app/shared/types';
+import { UserProfile } from 'src/app/shared/types';
 
 @Component({
   selector: 'app-login',
@@ -7,8 +7,8 @@ import { UserInfo } from 'src/app/shared/types';
   styleUrls: ['./login.component.sass'],
 })
 export class LoginComponent {
-  login_info: UserInfo = {
-    username: '',
+  login_info: UserProfile = {
+    userEmail: '',
     password: '',
   };
 
