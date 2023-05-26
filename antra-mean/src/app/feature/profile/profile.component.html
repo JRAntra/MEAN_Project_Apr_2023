@@ -4,34 +4,37 @@
 	</header>
 	<div class="container--body">
 		<div class="container--row">
-			<img
-				class="avatar"
-				src="../../assets/profile-image/profile.jpg"
-				alt=""
-			/>
+			<img class="avatar" src="{{ user.avatar }}" alt="" />
 			<div class="container__info">
-				<div>
-					Username<span
-						nz-icon
-						nzType="edit"
-						nzTheme="outline"
-					></span>
-				</div>
-				<div>example@email</div>
+				<h2 nz-typography nzEditable [(nzContent)]="user.username"></h2>
 			</div>
 		</div>
+		<!-- Password -->
 		<div class="container--row">
+			<label for="password-filed">Password: </label>
 			<nz-input-group
 				[nzSuffix]="suffixTemplate"
-				class="borderless-input-group"
+				[ngClass]="
+					passwordIsEditing
+						? 'borderless-input-group-edit'
+						: 'borderless-input-group'
+				"
 			>
 				<input
 					[type]="passwordVisible ? 'text' : 'password'"
 					nz-input
 					placeholder="input password"
-					[(ngModel)]="password"
+					[(ngModel)]="user.password"
 					nzBorderless
-					class="borderless-input"
+					[readonly]="!passwordIsEditing"
+					(keyup.enter)="updatePassword(passwordInput.value)"
+					(blur)="updatePassword(passwordInput.value)"
+					[ngClass]="
+						passwordIsEditing
+							? 'borderless-input-group-edit'
+							: 'borderless-input-group'
+					"
+					#passwordInput
 				/>
 			</nz-input-group>
 			<ng-template #suffixTemplate>
@@ -39,39 +42,100 @@
 					nz-icon
 					[nzType]="passwordVisible ? 'eye-invisible' : 'eye'"
 					(click)="passwordVisible = !passwordVisible"
+					class="icon-color"
+				></span>
+				<span
+					nz-icon
+					nzType="edit"
+					nzTheme="outline"
+					class="edit-icon"
+					(click)="toggleEdit()"
+					class="icon-color"
 				></span>
 			</ng-template>
+		</div>
+		<!-- Gender  -->
+		<div class="container--row">
+			<label class="gender">Gender:</label>
+			<span> {{ user.gender }}</span>
+			<a nz-dropdown nzTrigger="click" [nzDropdownMenu]="menu">
+				<span nz-icon nzType="edit" nzTheme="outline"></span>
+				<span nz-icon nzType="down"></span>
+			</a>
+			<nz-dropdown-menu #menu="nzDropdownMenu">
+				<ul nz-menu (click)="selectGender($event)">
+					<li nz-menu-item data-gender="Male">Male</li>
+					<li nz-menu-item data-gender="Female">Female</li>
+					<li nz-menu-item data-gender="Other">Other</li>
+				</ul>
+			</nz-dropdown-menu>
+		</div>
+		<!-- Age -->
+		<div class="container--row">
+			<label class="age">Age: </label>
+			<ng-container *ngIf="!ageIseEditing">
+				<span>{{ user.age }}</span>
+			</ng-container>
+
+			<ng-container *ngIf="ageIseEditing">
+				<nz-input-number
+					(keyup.enter)="updateAge()"
+					(nzBlur)="updateAge()"
+					(nzFocus)="(ageIseEditing)"
+					[(ngModel)]="editeAge"
+					[nzMin]="1"
+					[nzMax]="150"
+					[nzStep]="1"
+					#ageInput
+				></nz-input-number>
+			</ng-container>
 			<span
 				nz-icon
 				nzType="edit"
 				nzTheme="outline"
-				class="edit-icon"
+				(click)="toggleEditAge()"
+				class="icon-color"
 			></span>
 		</div>
+		<!-- Email -->
 		<div class="container--row">
-			<p class="gender">Gender</p>
-			<span nz-icon nzType="edit" nzTheme="outline"></span>
+			<label class="email">Email: </label>
+			<span
+				nz-typography
+				nzEditable
+				[(nzContent)]="user.userEmail"
+			></span>
 		</div>
+		<!-- Phone -->
 		<div class="container--row">
-			<p class="age">Age</p>
-			<span nz-icon nzType="edit" nzTheme="outline"></span>
+			<label class="phone">Phone</label>
+			<span nz-typography nzEditable [(nzContent)]="user.phone"></span>
 		</div>
-		<div class="container--row">
-			<p class="email">Email</p>
-		</div>
-		<div class="container--row">
-			<p class="phone">Phone</p>
-			<span nz-icon nzType="edit" nzTheme="outline"></span>
-		</div>
+		<!--Posts and likes -->
 		<div class="container--row">
 			<div class="info-posts">
-				<div class="info-icon">Icon</div>
+				<span
+					nz-icon
+					nzType="smile"
+					nzTheme="twotone"
+					class="post-icon"
+					appIconHoover
+				></span>
 				<div class="posts-amount">Amount of Posts</div>
 			</div>
 			<div class="info-likes">
-				<div class="info-icon">Icon</div>
+				<span
+					nz-icon
+					nzType="heart"
+					nzTheme="twotone"
+					[nzTwotoneColor]="'#eb2f96'"
+					class="post-icon"
+					appIconHoover
+				></span>
 				<div class="likes-amount">Amount of Likes</div>
 			</div>
 		</div>
 	</div>
 </div>
+
+<button (click)="printout()">print</button>
