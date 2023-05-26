@@ -1,9 +1,9 @@
 <p-card class="story__container">
     <div class="story__poster">
         <p-avatar label="P" styleClass="mr-2" shape="circle"></p-avatar>
-        {{ story.poster.name }}
+        {{ story.publisherName }}
         posted at
-        {{ story.post_time * 1000 | date: 'short' }}
+        {{ story.publishedTime | date: 'short' }}
     </div>
     <div class="story__content">
         {{ story.content }}

@@ -387,7 +387,6 @@
         ],
         "no-useless-call": "warn",
         "no-useless-computed-key": "warn",
-        "no-useless-constructor": "warn",
         "no-useless-escape": "warn",
         "no-useless-rename": "warn",
         "no-useless-return": "warn",

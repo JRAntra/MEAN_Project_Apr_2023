@@ -1,15 +1,16 @@
-import { Component } from '@angular/core';
-import { Story } from 'src/app/shared/types';
+import { Injectable, OnInit } from '@angular/core';
+import { Story, Comment } from 'src/app/shared/types';
+import { HttpClient } from '@angular/common/http';
 
-@Component({
-  selector: 'app-news-feed',
-  templateUrl: './news-feed.component.html',
-  styleUrls: ['./news-feed.component.sass'],
+@Injectable({
+  providedIn: 'root',
 })
-export class NewsFeedComponent {
-  storyList: Story[];
-  constructor() {
-    this.storyList = Array<Story>(3).fill({
+export class NewsFeedService implements OnInit {
+  news_feed: Story[] = [];
+  constructor(private http: HttpClient) {}
+
+  ngOnInit() {
+    this.news_feed = Array<Story>(3).fill({
       publisherName: 'test-user',
       publishedTime: new Date().toString(),
       content: {
