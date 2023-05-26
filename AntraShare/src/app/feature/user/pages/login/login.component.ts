@@ -1,4 +1,6 @@
+import { HttpClient } from '@angular/common/http';
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 import { UserProfile } from 'src/app/shared/types';
 
 @Component({
@@ -7,6 +9,7 @@ import { UserProfile } from 'src/app/shared/types';
   styleUrls: ['./login.component.sass'],
 })
 export class LoginComponent {
+  constructor(private http:HttpClient, private router:Router) { }
   login_info: UserProfile = {
     userEmail: '',
     password: '',
@@ -20,6 +23,12 @@ export class LoginComponent {
     setTimeout(() => {
       this.loginLoading_icon = false;
     }, 2000);
+
+    const headers = { "Content-Type": "application/json" };
+    const body = JSON.stringify({
+      userEmail: this.login_info.userEmail,
+      password: this.login_info.password,
+    });
   }
 
   agreement_checked = false;
