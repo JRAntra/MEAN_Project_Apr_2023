@@ -3,7 +3,7 @@
         <p-avatar label="P" styleClass="mr-2" shape="circle"></p-avatar>
         {{ story.publisherName }}
         posted at
-        {{ story.publishedTime }}
+        {{ story.publishedTime | date: 'short' }}
     </div>
     <div class="story__content">
         {{ story.content }}
