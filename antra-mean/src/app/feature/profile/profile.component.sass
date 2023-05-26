@@ -1,6 +1,6 @@
 $mint-green: #C2DBD9
 $grey: #C4C4C4
-
+$primary-blue: #08c
 
 .container
   height: 98vh
@@ -27,13 +27,14 @@ $grey: #C4C4C4
       align-items: center
       justify-content: flex-start
       margin-bottom: 20px
+      gap: 10px
 
       .avatar
         position: relative
-        height: 160px
-        width: 160px
+        height: 200px
+        width: 200px
         border-radius: 50%
-        left: -80px
+        left: -100px
         margin-right: 50px
 
       .container__info
@@ -41,7 +42,7 @@ $grey: #C4C4C4
         left: -80px
         display: flex
         align-items: center
-        justify-content: space-around
+        justify-content: flex-start
         height: 100px
         width: 600px
 
@@ -54,15 +55,37 @@ $grey: #C4C4C4
         display: flex
         align-items: center
         flex-basis: 100%
+        gap: 20px
 
 
 
-.borderless-input
-  width: 200px
 .borderless-input-group
   display: flex
   outline: none
   border: none
-.edit-icon
-  margin-left: -550px
-  z-index: 1
+  box-shadow: none
+  width: 200px
+
+.borderless-input-group-edit
+  width: 400px
+
+.icon-color
+  color: $primary-blue
+  cursor: pointer
+.post-icon
+  font-size: 80px
+
+.icon-hover:hover
+  animation: scaleAnimation 1s
+
+@keyframes scaleAnimation
+  0%
+    transform: scale(1)
+
+  50%
+    transform: scale(1.5)
+
+  100%
+    transform: scale(1)
+
+
