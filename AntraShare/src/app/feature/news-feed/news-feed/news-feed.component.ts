@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Story } from 'src/app/shared/types';
 import { NewsFeedService } from '../news-feed.service';
+import { catchError } from 'rxjs';
 
 @Component({
   selector: 'app-news-feed',
@@ -14,8 +15,16 @@ export class NewsFeedComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.newsFeedService.getNewsFeed().subscribe((data) => {
-      this.storyList = data;
-    });
+    this.newsFeedService
+      .getNewsFeed()
+      .pipe(
+        catchError((err) => {
+          alert(err);
+          return [];
+        }),
+      )
+      .subscribe((data) => {
+        this.storyList = data;
+      });
   }
 }

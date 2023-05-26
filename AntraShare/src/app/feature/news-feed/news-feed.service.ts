@@ -1,25 +1,21 @@
-import { Injectable, OnInit } from '@angular/core';
-import { Story, Comment } from 'src/app/shared/types';
-import { HttpClient } from '@angular/common/http';
+import { Injectable } from '@angular/core';
+import { HttpClient, HttpErrorResponse } from '@angular/common/http';
+import { Observable, catchError, throwError } from 'rxjs';
+import { Story } from 'src/app/shared/types';
 import { environment } from 'src/environments/environment';
-import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
 })
-export class NewsFeedService implements OnInit {
+export class NewsFeedService {
   news_feed_cache: Story[] = [];
   constructor(private http: HttpClient) {}
 
-  ngOnInit() {
-    //TODO
-  }
-
   _fetchNewsFeed() {
-    // TODO: error handling
     return new Observable<Story[]>((subscriber) => {
       this.http
         .get<Story[]>(`${environment.apiUrl}/api/news`)
+        .pipe(catchError(this.handleError))
         .subscribe((data: Story[]) => {
           this.news_feed_cache = data;
           subscriber.next(data);
@@ -35,5 +31,16 @@ export class NewsFeedService implements OnInit {
         subscriber.next(this.news_feed_cache);
       });
     }
+  }
+
+  private handleError(error: HttpErrorResponse) {
+    if (error.status === 0) {
+      // A client-side or network error occurred
+      console.error('An error occurred:', error.error);
+    } else {
+      // The backend returned an unsuccessful response code.
+      console.error(`Backend returned code ${error.status}, body was: `, error.error);
+    }
+    return throwError(() => new Error('Something bad happened; please try again later.'));
   }
 }
