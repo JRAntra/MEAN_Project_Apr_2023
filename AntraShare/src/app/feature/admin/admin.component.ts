@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { UserInfo } from 'src/app/shared/types';
+import { UserProfile } from 'src/app/shared/types';
 
 @Component({
   selector: 'app-admin',
@@ -7,5 +7,5 @@ import { UserInfo } from 'src/app/shared/types';
   styleUrls: ['./admin.component.sass'],
 })
 export class AdminComponent {
-  selectedUser?: UserInfo;
+  selectedUser?: UserProfile;
 }

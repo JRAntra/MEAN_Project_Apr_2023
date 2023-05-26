@@ -4,13 +4,17 @@ import { NewsFeedComponent } from './feature/news-feed/news-feed/news-feed.compo
 import { ProfileComponent } from './feature/user/pages/profile/profile.component';
 import { SettingComponent } from './feature/setting/setting.component';
 import { NotFoundComponent } from './feature/not-found/not-found.component';
+import { LoginComponent } from './feature/user/pages/login/login.component';
+import { RegisterComponent } from './feature/user/pages/register/register.component';
 
 
 const routes: Routes = [
-  { path: '', redirectTo: 'news-feed', pathMatch: 'full' },
+  { path: 'login', component: LoginComponent },
+  { path: 'register', component: RegisterComponent },
   { path: 'news-feed', component: NewsFeedComponent },
   { path: 'profile', component: ProfileComponent },
   { path: 'setting', component: SettingComponent },
+  { path: '', redirectTo: '/login', pathMatch: 'full' },
   { path: '**', component: NotFoundComponent },
 ];
 

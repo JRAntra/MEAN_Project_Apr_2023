@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
-import { UserInfo } from 'src/app/shared/types';
+import { UserProfile } from 'src/app/shared/types';
 
 @Component({
   selector: 'app-user-list',
@@ -7,26 +7,26 @@ import { UserInfo } from 'src/app/shared/types';
   styleUrls: ['./user-list.component.sass'],
 })
 export class UserListComponent {
-  @Input() selected?: UserInfo;
+  @Input() selected?: UserProfile;
 
-  @Output() selectedChange: EventEmitter<UserInfo> = new EventEmitter();
+  @Output() selectedChange: EventEmitter<UserProfile> = new EventEmitter();
 
-  emitSelectedUser(selectedUser: UserInfo) {
+  emitSelectedUser(selectedUser: UserProfile) {
     this.selectedChange.emit(selectedUser);
   }
 
-  userList: UserInfo[] = [];
+  userList: UserProfile[] = [];
 
-  virtualUserList: UserInfo[] = [];
+  virtualUserList: UserProfile[] = [];
 
-  generateUser(id:number): UserInfo {
-    const user: UserInfo = {
-      username: id.toString(),
-      email: id + '@gmail.com',
-      avatar: '',
+  generateUser(id:number): UserProfile {
+    const user: UserProfile = {
+      userName: id.toString(),
+      userEmail: id + '@gmail.com',
       name: 'John Doe',
       gender: 'Male',
-      birthday: new Date(2000, 0, 1),
+      age: 23,
+      userRole: 'user',
     };
 
     return user;

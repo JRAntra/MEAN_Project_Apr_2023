@@ -10,15 +10,15 @@ export class NewsFeedComponent {
   storyList: Story[];
   constructor() {
     this.storyList = Array<Story>(3).fill({
-      id: 0,
-      poster: {
-        name: 'test-user',
-        avatar: null,
-        username: '0',
-        email: 'test-email',
+      // id: 0,
+      publisherName: 'string',
+      publishedTime: Date.now().toString(),
+      content: {
+        image: 'string',
+        video: 'string',
+        text: 'string',
       },
-      content: 'test-story-content',
-      post_time: 0,
+      comments: [],
     });
   }
 }

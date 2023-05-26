@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core';
-import { UserInfo } from 'src/app/shared/types';
+import { UserProfile } from 'src/app/shared/types';
 
 @Component({
   selector: 'app-user-detail',
@@ -7,5 +7,5 @@ import { UserInfo } from 'src/app/shared/types';
   styleUrls: ['./user-detail.component.sass'],
 })
 export class UserDetailComponent {
-  @Input() selectedUser?: UserInfo;
+  @Input() selectedUser?: UserProfile;
 }
