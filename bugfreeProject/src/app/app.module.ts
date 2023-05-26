@@ -3,18 +3,18 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { SettingPageComponent } from './setting-page-component';
 import { AdminModule } from './admin/admin.module';
+import { SettingModule } from './setting/setting.module';
 
 @NgModule({
   declarations: [
     AppComponent,
-    SettingPageComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     AdminModule,
+    SettingModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
