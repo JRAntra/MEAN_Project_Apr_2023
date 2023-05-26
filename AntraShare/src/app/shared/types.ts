@@ -1,5 +1,6 @@
 /** unix timestamp */
 export type Time = number;
+export type ISOTime = string;
 
 export class PasswordStatus {
   valid = false;
@@ -9,31 +10,36 @@ export class PasswordStatus {
   lowercase = false;
 }
 
-export type Genders = 'Male' | 'Female' | 'Other'
+export type Genders = 'Male' | 'Female' | 'Other';
 
-export interface UserInfo {
-    username: string;
-    name?: string;
-    email?: string;
-    gender?: Genders;
-    birthday?: Date;
-    password?: string;
-    confirmPassword?: string,
-    avatar?: string | null;
-    validatePassword?(password: string): PasswordStatus;
-}
-
-export type Story = {
-    id: number;
-    post_time: Time;
-    content: string;
-    poster: UserInfo;
+export type UserProfile = {
+    name: string,
+    userName: string,
+    userEmail: string,
+    password: string,
+    userRole: string,
+    age: number,
+    gender: string,
+    phone: number,
 }
 
 export type Comment = {
-    id: number;
-    story_id: number;
-    post_time: Time;
-    content: string;
-    poster: UserInfo;
-}
+  publisherName: string;
+  publishedTime: ISOTime;
+  content: {
+    image: string;
+    video: string;
+    text: string;
+  };
+};
+
+export type Story = {
+  publisherName: string;
+  publishedTime: ISOTime;
+  content: {
+    image: string;
+    video: string;
+    text: string;
+  };
+  comments: Comment[];
+};
