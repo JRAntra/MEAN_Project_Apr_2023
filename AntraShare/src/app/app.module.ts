@@ -13,6 +13,8 @@ import { FormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientModule } from '@angular/common/http';
 
+import { ToastModule } from 'primeng/toast';
+
 import { httpInterceptorProviders } from './http-interceptors';
 
 
@@ -30,6 +32,7 @@ import { httpInterceptorProviders } from './http-interceptors';
     AdminModule,
     FormsModule,
     NavigatorModule,
+    ToastModule,
     HttpClientModule,
   ],
   providers: [httpInterceptorProviders],
