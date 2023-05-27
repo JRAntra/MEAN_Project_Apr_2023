@@ -5,7 +5,6 @@ import { AccountService } from './../account.service';
 import { Component } from '@angular/core';
 import { PasswordStatus, UserProfile } from '../../../shared/types';
 import { Router } from '@angular/router';
-import { catchError } from 'rxjs';
 
 @Component({
   selector: 'app-register',

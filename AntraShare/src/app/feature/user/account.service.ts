@@ -1,10 +1,9 @@
 /* eslint-disable @typescript-eslint/no-non-null-assertion */
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
-import { HttpClient, HttpErrorResponse } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { UserProfile } from 'src/app/shared/types';
 import { environment } from 'src/environments/environment';
-import { throwError } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
