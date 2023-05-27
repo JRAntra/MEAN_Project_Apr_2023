@@ -5,11 +5,13 @@ import { NzInputModule } from 'ng-zorro-antd/input'
 import { FormsModule } from '@angular/forms'
 import { NzFormModule } from 'ng-zorro-antd/form'
 import { NzIconModule } from 'ng-zorro-antd/icon'
-import { IconHooverDirective } from './icon-hoover.directive'
 import { NzDropDownModule } from 'ng-zorro-antd/dropdown'
 import { NzSpaceModule } from 'ng-zorro-antd/space'
 import { NzTypographyModule } from 'ng-zorro-antd/typography'
 import { NzInputNumberModule } from 'ng-zorro-antd/input-number'
+//import directive and must be declared in the declarations array
+import { IconHooverDirective } from './icon-hoover.directive'
+import { AutoHideDirective } from 'src/app/shared/autoHide.directive'
 @NgModule({
 	imports: [
 		CommonModule,
@@ -22,7 +24,7 @@ import { NzInputNumberModule } from 'ng-zorro-antd/input-number'
 		NzTypographyModule,
 		NzInputNumberModule
 	],
-	declarations: [ProfileComponent, IconHooverDirective],
+	declarations: [ProfileComponent, IconHooverDirective, AutoHideDirective],
 	exports: [ProfileComponent]
 })
 export class ProfileModule {}

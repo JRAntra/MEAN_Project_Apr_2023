@@ -1,5 +1,6 @@
 import { Component, ViewChild, ElementRef } from '@angular/core'
 import { UserInfo } from 'src/app/shared/types'
+
 @Component({
 	selector: 'app-profile',
 	templateUrl: './profile.component.html',
@@ -21,10 +22,10 @@ export class ProfileComponent {
 	//condition for the input field
 	inputActive: boolean = false
 	passwordVisible: boolean = false
-	passwordIsEditing = false
-	ageIseEditing = false
+	passwordIsEditing: boolean = false
+	ageIseEditing: boolean = false
 	editeAge: number = this.user.age ?? 0
-	emailIsEditing = false
+	emailIsEditing: boolean = false
 
 	// get a reference to the input element
 	@ViewChild('passwordInput', { static: false })
