@@ -79,7 +79,13 @@
         ],
         "comma-dangle": [
             "warn",
-            "always-multiline"
+            {
+                "arrays": "always-multiline",
+                "objects": "always-multiline",
+                "imports": "always-multiline",
+                "exports": "always-multiline",
+                "functions": "never"
+            }
         ],
         "comma-spacing": [
             "warn",
@@ -102,7 +108,7 @@
         "constructor-super": "warn",
         "curly": [
             "warn",
-            "multi-line"
+            "always"
         ],
         "default-case-last": "warn",
         "dot-location": [
