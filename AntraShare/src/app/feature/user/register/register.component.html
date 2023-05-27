@@ -4,7 +4,7 @@
             <span class="p-float-label">
                 <input pInputText id="username" 
                        [(ngModel)]="register_info.userName"
-                       (keyup)="validateUsername()"
+                       (change)="validateUsername()"
                        [pTooltip]="usernameTooltip()"
                        tooltipPosition="bottom"
                        tooltipEvent="focus"
@@ -25,7 +25,7 @@
                     #email="ngModel" 
                     [required] = "true" 
                     [minlength]= "6"
-                    (keyup)="validateEmail()"
+                    (change)="validateEmail()"
                     [pTooltip]="emailTooltip()"
                     tooltipPosition="bottom"
                     tooltipEvent="focus"
@@ -83,7 +83,7 @@
                             (onBlur)="overlayPassword.toggle($event)"
                             [style]="{'width':'100%'}"
                             [inputStyle]="{'width':'100%'}"
-                            (keyup)="validatePassword()">
+                            (input)="validatePassword()">
                 </p-password>
                 <label for="password">Password</label>
             </span>
