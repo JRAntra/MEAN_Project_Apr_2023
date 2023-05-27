@@ -20,6 +20,9 @@ import { CalendarModule } from 'primeng/calendar';
 
 import { OverlayPanelModule } from 'primeng/overlaypanel';
 import { TooltipModule } from 'primeng/tooltip';
+import { DialogModule } from 'primeng/dialog';
+import { DynamicDialogModule } from 'primeng/dynamicdialog';
+import { AlertComponent } from './alert/alert.component';
 
 
 @NgModule({
@@ -27,6 +30,7 @@ import { TooltipModule } from 'primeng/tooltip';
     LoginComponent,
     RegisterComponent,
     ProfileComponent,
+    AlertComponent,
   ],
   imports: [
     CommonModule,
@@ -44,6 +48,8 @@ import { TooltipModule } from 'primeng/tooltip';
     DropdownModule,
     CalendarModule,
     TooltipModule,
+    DialogModule,
+    DynamicDialogModule,
   ],
   exports: [
     LoginComponent,

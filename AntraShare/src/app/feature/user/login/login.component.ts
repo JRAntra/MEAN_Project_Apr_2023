@@ -1,22 +1,56 @@
-import { HttpClient } from '@angular/common/http';
+/* eslint-disable @typescript-eslint/no-non-null-assertion */
+import { AccountService } from './../account.service';
+import { AuthService } from 'src/app/auth.service';
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
-import { firstValueFrom } from 'rxjs';
+import { first } from 'rxjs';
 import { UserProfile } from 'src/app/shared/types';
+import { DialogService, DynamicDialogRef } from 'primeng/dynamicdialog';
+import { AlertComponent } from '../alert/alert.component';
 
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.sass'],
+  providers: [DialogService],
 })
 export class LoginComponent {
-  constructor(private http:HttpClient, private router:Router) { }
+  constructor(private accountService: AccountService,
+              private router:Router,
+              public dialogService: DialogService,
+              private authService: AuthService) { }
+
   login_info: UserProfile = {
     userEmail: '',
     password: '',
   };
 
   loginLoading_icon = false;
+  agreement_checked = false;
+
+  error_message = '';
+  alertDialogRef!: DynamicDialogRef;
+
+  validateEmail() {
+    // only perform an API call for a valid email address
+    if (this.login_info.userEmail !== '' &&
+    /^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/.test(this.login_info.userEmail!)) {
+      return true;
+    }
+    return false;
+  }
+
+  showAlert() {
+    this.alertDialogRef = this.dialogService.open(AlertComponent, {
+      data: {
+        err_msg: this.error_message,
+      },
+      header: 'Alert',
+      width: '70%',
+      contentStyle: { overflow: 'auto' },
+      baseZIndex: 10000,
+    });
+  }
 
   onLogin() {
     this.loginLoading_icon = true;
@@ -25,18 +59,36 @@ export class LoginComponent {
       this.loginLoading_icon = false;
     }, 2000);
 
-    // const headers = { 'Content-Type': 'application/json' };
-    // const body = JSON.stringify({
-    //   userEmail: this.login_info.userEmail,
-    //   password: this.login_info.password,
-    // });
-    // firstValueFrom(this.http.post<any>('http://localhost:4567/login', body, { headers, observe: 'response' }))
-    //   .then((response) => {
-    //     console.log(response);
-    //   });
+    if (this.validateEmail() && this.agreement_checked) {
+      this.accountService.login(this.login_info)
+        .pipe(first())
+        .subscribe({
+          next: (response) => {
+            if (response.status === 200) {
+              const resBody: UserProfile = response.body!;
+              this.authService.setToken(resBody.bearerToken!);
+              this.router.navigate(['news-feed']);
+            }
+          },
+          error: error => {
+            this.error_message = error.error;
+            this.showAlert();
+          },
+        });
+    } else if (!this.validateEmail()) {
+      this.error_message = 'Please enter a valid email!';
+      this.showAlert();
+    } else if (!this.agreement_checked) {
+      this.error_message = 'Please agree to our terms and conditions!';
+      this.showAlert();
+    }
   }
 
-  agreement_checked = false;
+  ngOnDestroy() {
+    if (this.alertDialogRef) {
+      this.alertDialogRef.close();
+    }
+  }
 }
 
 /*

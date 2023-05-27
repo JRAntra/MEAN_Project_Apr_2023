@@ -5,6 +5,7 @@ import { AccountService } from './../account.service';
 import { Component } from '@angular/core';
 import { PasswordStatus, UserProfile } from '../../../shared/types';
 import { Router } from '@angular/router';
+import { catchError } from 'rxjs';
 
 @Component({
   selector: 'app-register',
@@ -145,6 +146,7 @@ export class RegisterComponent {
         this.passwordOK.valid === true &&
         this.confirmPassword === this.register_info.password) {
       this.accountService.register(this.register_info)
+        .pipe()
         .subscribe((response) => {
           console.log(response);
           if (response.status === 200) {

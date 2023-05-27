@@ -5,10 +5,10 @@
                 <p-image src="https://antra.com/wp-content/uploads/2023/03/Antra-black.png" alt="Image" width="250"></p-image>
             </div>
             
-            <div class="username--container container">
-                <span class="p-float-label username--wrapper">
-                    <input pInputText id="username" [(ngModel)]="login_info.userEmail" name="username" />
-                    <label htmlFor="username">Username</label>
+            <div class="email--container container">
+                <span class="p-float-label email--wrapper">
+                    <input pInputText id="email" [(ngModel)]="login_info.userEmail" name="email" [email]="true" />
+                    <label htmlFor="username">Email</label>
                 </span>
             </div>
             

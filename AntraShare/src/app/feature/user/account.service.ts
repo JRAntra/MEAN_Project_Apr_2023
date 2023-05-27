@@ -1,9 +1,10 @@
 /* eslint-disable @typescript-eslint/no-non-null-assertion */
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { UserProfile } from 'src/app/shared/types';
 import { environment } from 'src/environments/environment';
+import { throwError } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
@@ -33,6 +34,6 @@ export class AccountService {
       userEmail: user.userEmail,
       password: user.password,
     };
-    return this.http.post(`${environment.apiUrl}/api/login/`, body);
+    return this.http.post(`${environment.apiUrl}/api/login/`, body, { observe: 'response' });
   }
 }
