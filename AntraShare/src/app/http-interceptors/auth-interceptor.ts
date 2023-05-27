@@ -19,7 +19,7 @@ export class AuthInterceptor implements HttpInterceptor {
     }
 
     const authToken = this.auth.getToken();
-    if (authToken === null) {
+    if (authToken === undefined) {
       return next.handle(req);
     }
     const authReq = req.clone({

@@ -22,25 +22,26 @@ export type UserProfile = {
     age?: number,
     gender?: string,
     phone?: number,
-}
+};
+
+export type Content = {
+  _id?: string,
+  image?: string,
+  video?: string,
+  text?: string,
+};
 
 export type Comment = {
+  _id?: string;
   publisherName: string;
   publishedTime: ISOTime;
-  content: {
-    image: string;
-    video: string;
-    text: string;
-  };
+  content: Content;
 };
 
 export type Story = {
+  _id?: string;
   publisherName: string;
   publishedTime: ISOTime;
-  content: {
-    image: string;
-    video: string;
-    text: string;
-  };
+  content: Content;
   comment: Comment[];
 };
