@@ -25,7 +25,6 @@ export class AdminComponent implements OnInit {
         next: (response) => {
           this.userList = response;
           console.log(response);
-          
         },
         error: error => {
           console.log(error);
