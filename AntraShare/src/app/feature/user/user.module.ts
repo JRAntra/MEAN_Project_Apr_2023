@@ -3,9 +3,9 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 
-import { LoginComponent } from './pages/login/login.component';
-import { RegisterComponent } from './pages/register/register.component';
-import { ProfileComponent } from './pages/profile/profile.component';
+import { LoginComponent } from './login/login.component';
+import { RegisterComponent } from './register/register.component';
+import { ProfileComponent } from './profile/profile.component';
 
 import { CardModule } from 'primeng/card';
 import { ImageModule } from 'primeng/image';
@@ -19,6 +19,7 @@ import { DropdownModule } from 'primeng/dropdown';
 import { CalendarModule } from 'primeng/calendar';
 
 import { OverlayPanelModule } from 'primeng/overlaypanel';
+import { TooltipModule } from 'primeng/tooltip';
 
 
 @NgModule({
@@ -42,6 +43,7 @@ import { OverlayPanelModule } from 'primeng/overlaypanel';
     InplaceModule,
     DropdownModule,
     CalendarModule,
+    TooltipModule,
   ],
   exports: [
     LoginComponent,
