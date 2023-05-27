@@ -6,10 +6,10 @@
         {{ story.publishedTime | date: 'short' }}
     </div>
     <div class="story__content">
-        {{ story.content }}
+        {{ story.content.text }}
     </div>
     <div *ngIf="showComment" class="story__comment-list">
-        <app-comment-list></app-comment-list>
+        <app-comment-list [commentList]="story.comment"></app-comment-list>
     </div>
     <ng-template pTemplate="footer">
         <div class="story__footer">
