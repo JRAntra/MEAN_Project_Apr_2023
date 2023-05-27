@@ -13,6 +13,7 @@ export class PasswordStatus {
 export type Genders = 'Male' | 'Female' | 'Other';
 
 export type UserProfile = {
+    bearerToken?: string,
     name?: string,
     userName?: string,
     userEmail?: string,

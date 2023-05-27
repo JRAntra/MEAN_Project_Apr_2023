@@ -15,7 +15,7 @@ export class UserListComponent {
     this.selectedChange.emit(selectedUser);
   }
 
-  userList: UserProfile[] = [];
+  @Input() userList!: UserProfile[];
 
   virtualUserList: UserProfile[] = [];
 

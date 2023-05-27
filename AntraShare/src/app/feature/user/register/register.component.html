@@ -2,7 +2,13 @@
     <div class="form--container">
         <div class="username--container">
             <span class="p-float-label">
-                <input pInputText id="username" [(ngModel)]="register_info.userName" />
+                <input pInputText id="username" 
+                       [(ngModel)]="register_info.userName"
+                       (keyup)="validateUsername()"
+                       [pTooltip]="usernameTooltip()"
+                       tooltipPosition="bottom"
+                       tooltipEvent="focus"
+                       [escape]="false"/>
                 <label htmlFor="username" >Username</label>
             </span>
         </div>
@@ -19,11 +25,15 @@
                     #email="ngModel" 
                     [required] = "true" 
                     [minlength]= "6"
-                    (focus)="emailOverlay.show($event)"
-                    (blur)="emailOverlay.hide()"
+                    (keyup)="validateEmail()"
+                    [pTooltip]="emailTooltip()"
+                    tooltipPosition="bottom"
+                    tooltipEvent="focus"
+                    [escape]="false"
                     />
                 <label htmlFor="email">Email</label>
             </span>
+            
         </div>
         
         <div class="password--container">
@@ -37,26 +47,26 @@
                             <i class="pi pi-check-circle"></i>
                         </ng-template>
     
-                        <div *ngIf="register_info.password !== '' && validatePassword!(register_info.password!).valid === false; else passwordRequirement" class="validatePassword--overlay">
+                        <div *ngIf="register_info.password !== '' && passwordOK.valid === false; else passwordRequirement" class="validatePassword--overlay">
                             Please Enter a valid passowrd
                         </div>
 
                         <div class="validatePassword--overlay">
-                            <i *ngIf="validatePassword!(register_info.password!).length === false; else checkmark" class="pi pi-times-circle"></i>
+                            <i *ngIf="passwordOK.length === false; else checkmark" class="pi pi-times-circle"></i>
                             <span class="passwordRequirement">6-15 characters long</span>
                         </div>
                         <div class="validatePassword--overlay">
-                            <i *ngIf="validatePassword!(register_info.password!).digit === false; else checkmark" class="pi pi-times-circle"></i>
+                            <i *ngIf="passwordOK.digit === false; else checkmark" class="pi pi-times-circle"></i>
                             <span class="passwordRequirement">0-9</span>
                         </div>
                         
                         <div class="validatePassword--overlay">
-                            <i *ngIf="validatePassword!(register_info.password!).uppercase === false; else checkmark" class="pi pi-times-circle"></i>
+                            <i *ngIf="passwordOK.uppercase === false; else checkmark" class="pi pi-times-circle"></i>
                             <span class="passwordRequirement">A-Z</span>
                         </div>
     
                         <div class="validatePassword--overlay">
-                            <i *ngIf="validatePassword!(register_info.password!).lowercase === false; else checkmark" class="pi pi-times-circle"></i>
+                            <i *ngIf="passwordOK.lowercase === false; else checkmark" class="pi pi-times-circle"></i>
                             <span class="passwordRequirement">a-z</span>
                         </div>
                     </div>
@@ -70,10 +80,10 @@
                             [maxLength]="15" 
                             [required]="true"
                             (onFocus)="overlayPassword.toggle($event)"
-                            
+                            (onBlur)="overlayPassword.toggle($event)"
                             [style]="{'width':'100%'}"
                             [inputStyle]="{'width':'100%'}"
-                            #passwordStatus="ngModel">
+                            (keyup)="validatePassword()">
                 </p-password>
                 <label for="password">Password</label>
             </span>
