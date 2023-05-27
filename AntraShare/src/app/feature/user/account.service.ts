@@ -12,11 +12,11 @@ export class AccountService {
   constructor(private http: HttpClient, private router: Router) { }
 
   checkExistEmail(email: string) {
-    return this.http.get(`${environment.apiUrl}/api/register/checkExistByEmail/` + email);
+    return this.http.get<boolean>(`${environment.apiUrl}/api/register/checkExistByEmail/` + email);
   }
 
   checkExistUsername(username: string) {
-    return this.http.get(`${environment.apiUrl}/api/register/checkExistByUsername/` + username);
+    return this.http.get<boolean>(`${environment.apiUrl}/api/register/checkExistByUsername/` + username);
   }
 
   register(user: UserProfile) {
@@ -25,7 +25,7 @@ export class AccountService {
       userEmail: user.userEmail,
       password: user.password,
     };
-    return this.http.post(`${environment.apiUrl}/api/register/createNewAccount`, body, { observe: 'response' });
+    return this.http.post<UserProfile>(`${environment.apiUrl}/api/register/createNewAccount`, body, { observe: 'response' });
   }
 
   login(user: UserProfile) {
@@ -33,6 +33,6 @@ export class AccountService {
       userEmail: user.userEmail,
       password: user.password,
     };
-    return this.http.post(`${environment.apiUrl}/api/login/`, body, { observe: 'response' });
+    return this.http.post<UserProfile>(`${environment.apiUrl}/api/login/`, body, { observe: 'response' });
   }
 }
