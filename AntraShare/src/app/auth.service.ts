@@ -1,26 +1,34 @@
 import { Injectable } from '@angular/core';
+import { UserProfile } from './shared/types';
 
 @Injectable({
   providedIn: 'root',
 })
 export class AuthService {
-  token: string | null = null;
+  userProfile: UserProfile | null = null;
 
   constructor() {
-    this.token = localStorage.getItem('token');
+    const storage = localStorage.getItem('userProfile');
+    if (storage) {
+      this.userProfile = JSON.parse(storage);
+    }
   }
 
-  setToken(token: string) {
-    this.token = token;
-    localStorage.setItem('token', token);
+  setUserProfile(userProfile: UserProfile) {
+    this.userProfile = userProfile;
+    localStorage.setItem('userProfile', JSON.stringify(userProfile));
   }
 
   getToken() {
-    return this.token;
+    return this.userProfile?.bearerToken;
   }
 
-  clearToken() {
-    this.token = null;
-    localStorage.removeItem('token');
+  getUser() {
+    return this.userProfile;
+  }
+
+  clear() {
+    this.userProfile = null;
+    localStorage.removeItem('userProfile');
   }
 }

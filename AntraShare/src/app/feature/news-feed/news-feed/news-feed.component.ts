@@ -21,7 +21,7 @@ export class NewsFeedComponent implements OnInit {
         catchError((err) => {
           alert(err);
           return [];
-        }),
+        })
       )
       .subscribe((data) => {
         this.storyList = data;

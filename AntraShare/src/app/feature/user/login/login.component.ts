@@ -66,7 +66,7 @@ export class LoginComponent {
           next: (response) => {
             if (response.status === 200) {
               const resBody: UserProfile = response.body!;
-              this.authService.setToken(resBody.bearerToken!);
+              this.authService.setUserProfile(resBody);
               this.router.navigate(['news-feed']);
             }
           },
