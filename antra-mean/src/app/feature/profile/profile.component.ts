@@ -9,6 +9,7 @@ import { UserInfoService } from 'src/app/shared/userInfoSerivce.service'
 })
 export class ProfileComponent implements OnInit {
 	user: UserInfo = {}
+	userFromDB: any
 	constructor(private userInfoService: UserInfoService) {}
 
 	ngOnInit(): void {
@@ -17,6 +18,15 @@ export class ProfileComponent implements OnInit {
 			'🚀 ~ file: profile.component.ts:27 ~ ProfileComponent ~ ngOnInit ~ user:',
 			this.user
 		)
+		this.userInfoService.getUserInfoFromDB().subscribe((data) => {
+			this.userFromDB = data.users.map((user: any) => {
+				return user.firstName
+			}) // Update this line to get the user from the database
+			console.log(
+				'🚀 ~ file: profile.component.ts:27 ~ ProfileComponent ~ ngOnInit ~ userFromDB:',
+				this.userFromDB
+			)
+		})
 	}
 
 	//condition for the input field
