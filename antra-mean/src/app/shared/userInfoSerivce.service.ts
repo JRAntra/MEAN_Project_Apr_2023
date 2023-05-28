@@ -1,3 +1,7 @@
+// This file is used to get the user information from the database
+// To use this file, you need to update the code in profile.component.ts
+//! Because "@Injectable providedIn: 'root'" is used,
+//! you don't need to import this service in the app module, but you need to import it in the component
 import { Injectable } from '@angular/core'
 import { UserInfo } from './userInfo.model'
 import { HttpClient } from '@angular/common/http'
