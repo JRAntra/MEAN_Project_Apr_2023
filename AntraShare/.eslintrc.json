@@ -106,10 +106,10 @@
             }
         ],
         "constructor-super": "warn",
-        "curly": [
-            "warn",
-            "always"
-        ],
+        // "curly": [
+        //     "warn",
+        //     "always"
+        // ],
         "default-case-last": "warn",
         "dot-location": [
             "warn",
