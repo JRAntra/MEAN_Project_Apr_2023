@@ -15,7 +15,7 @@ export class AdminService {
       .pipe(
         map((response) => {
           return (<UserProfile[]>response.body);
-        }),
+        })
       );
   }
 }
