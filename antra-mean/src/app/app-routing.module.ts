@@ -14,7 +14,8 @@ const routes: Routes = [
 	{ path: 'news-feed', component: NewsFeedPageComponent },
 	{ path: 'like-list', component: LikeListComponent },
 	{ path: 'profile', component: ProfileComponent },
-	{ path: 'register', component: RegisterComponent }
+	{ path: 'register', component: RegisterComponent },
+	{ path: '', component: LoginPageComponent },
 ]
 @NgModule({
 	imports: [RouterModule.forRoot(routes)],
