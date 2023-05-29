@@ -1,69 +1,65 @@
-<div class="container">
-	<ul nz-menu nzMode="horizontal" class="like-list-button">
-		<li nz-menu-item [routerLink]="['/like-list']">
-			<span nz-icon nzType="heart"></span>
-			<span nz-typography> Like list </span>
-		</li>
-	</ul>
-
-	<form nz-form [formGroup]="myFormGroup" class="post-form">
-		<div class="post-news-feed-form">
-			<nz-card>
-				<textarea rows="4" nz-input [(ngModel)]="inputValue"></textarea>
-			</nz-card>
-			<div class="post-button">
-				<button nz-button nzBlock class="post-button" nzType="primary">
-					Post
-				</button>
+<nz-list nzItemLayout="vertical" class="news-feeds">
+		<nz-list-item *ngFor="let newsItem of newsFeed" class="news-item">
+			<div class="avatar">
+				<nz-avatar
+					[nzSrc]="newsItem.avatar"
+					[nzSize]="64"
+					nzIcon="user"
+				></nz-avatar>
 			</div>
-		</div>
-	</form>
 
-	<div class="cards">
-		<nz-card
-			[nzCover]="textTemplate"
-			nzSize="default"
-			[nzActions]="[actionComment, actionLike]"
-		>
-			<nz-card-meta
-				nzTitle="User Name"
-				nzDescription="Publish Time"
-				[nzAvatar]="avatarTemplate"
-			></nz-card-meta>
-		</nz-card>
-		<ng-template #avatarTemplate>
-			<nz-avatar
-				nzSrc="https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png"
-			></nz-avatar>
-		</ng-template>
-		<ng-template #textTemplate>
-			<span nz-typography class="text-posted">
-				Lorem Ipsum is simply dummy text of the printing and typesetting
-				industry. Lorem Ipsum has been the industry's standard dummy
-				text ever since the 1500s, when an unknown printer took a galley
-				of type and scrambled it to make a type specimen book. It has
-				survived not only five centuries, but also the leap into
-				electronic typesetting, remaining essentially unchanged. It was
-				popularised in the 1960s with the release of Letraset sheets
-				containing
-			</span>
-		</ng-template>
-		<ng-template #actionComment class="comment-box">
-			<span nz-icon nzType="comment" class="comment-icon"></span>
-			<span nz-typography nzType="secondary">10</span>
-		</ng-template>
-		<ng-template #actionLike class="like-box">
-			<span nz-icon nzType="like" class="like-icon"></span>
-			<span nz-typography nzType="secondary">110</span>
-		</ng-template>
-	</div>
-	<div class="pagination-container">
-		<nz-pagination
-			[nzPageIndex]="1"
-			[nzTotal]="500"
-			class="pagination"
-			[nzResponsive]="true"
-			[nzHideOnSinglePage]="true"
-		></nz-pagination>
-	</div>
-</div>
+			<div class="content">
+				<p class="publisher-name">{{ newsItem.publisherName }}</p>
+
+				<div *ngIf="newsItem.content.imageUrl">
+					<img nz-image [nzSrc]="newsItem.content.imageUrl" width="200px" height="200px" alt="News feed" class="news-feed-image" />
+				</div>
+
+				<div *ngIf="newsItem.content.videoUrl">
+					<video [src]="newsItem.content.videoUrl" controls></video>
+				</div>
+
+				<div *ngIf="newsItem.content.textUrl">
+					<p>{{ newsItem.content.textUrl }}</p>
+				</div>
+
+				<div class="like-comment-counts">
+					<p class="like-count">
+						Likes: {{ newsItem.likedIdList.length }}
+					</p>
+					<p class="comment-count">
+						Comments: {{ newsItem.comments.length }}
+					</p>
+				</div>
+
+				<!-- Comment  -->
+				<!-- <div *ngFor="let comment of newsItem.comments" class="comment">
+					<div class="avatar">
+						<img [src]="comment.avatar" alt="Commenter Avatar" />
+					</div>
+					<div class="content">
+						<p class="publisher-name">{{ comment.publisherName }}</p>
+
+						<div *ngIf="comment.content.imageUrl">
+							<img
+								[src]="comment.content.imageUrl"
+								alt="Comment Image"
+							/>
+						</div> -->
+
+				<!-- <div *ngIf="comment.content.videoUrl">
+							<video
+								[src]="comment.content.videoUrl"
+								controls
+							></video>
+						</div> -->
+
+				<!-- <div *ngIf="comment.content.textUrl">
+							<p>{{ comment.content.textUrl }}</p>
+						</div>
+					</div>
+				</div>
+					-->
+		</div>
+	</nz-list-item>
+</nz-list>

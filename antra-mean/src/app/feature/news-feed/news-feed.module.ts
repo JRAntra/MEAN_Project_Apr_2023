@@ -9,6 +9,11 @@ import { NzAvatarModule } from 'ng-zorro-antd/avatar'
 import { NzFormModule } from 'ng-zorro-antd/form'
 import { ReactiveFormsModule } from '@angular/forms'
 import { FormsModule } from '@angular/forms'
+import { NewsFeedService } from './news-feed.service'
+import { NgForOf } from '@angular/common';
+import { NzImageModule } from 'ng-zorro-antd/image';
+import { NzListModule } from 'ng-zorro-antd/list';
+
 @NgModule({
 	declarations: [LikeListComponent, NewsFeedPageComponent],
 	imports: [
@@ -19,8 +24,12 @@ import { FormsModule } from '@angular/forms'
 		NzAvatarModule,
 		NzFormModule,
 		ReactiveFormsModule,
-		FormsModule
+		FormsModule,
+		NzImageModule,
+		NzListModule
 	],
-	exports: [NewsFeedPageComponent]
+	exports: [NewsFeedPageComponent],
+	providers: [NewsFeedService]
+
 })
 export class NewsFeedModule {}
