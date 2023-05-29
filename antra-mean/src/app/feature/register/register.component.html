@@ -1,26 +1,56 @@
 <div class="container">
-	<form #userForm="ngForm">
-		{{ userForm.value | json }}
+	<form>
 		<div class="form-group">
-			<label class="label-name"> User Name: </label>
+			<label class="label-name">
+				<span class="required">*</span>User Name:
+			</label>
 			<input
 				nz-input
 				type="text"
 				class="form-control"
 				name="username"
-				ngModel
+				[(ngModel)]="username"
+				(keyup)="checkFormCompleted()"
+				[nzStatus]="
+					!registerInfoCheckService.isValidName(username) &&
+					name.touched
+						? 'error'
+						: ''
+				"
 				required
+				#name="ngModel"
 			/>
+			<ng-container
+				*ngIf="
+					!registerInfoCheckService.isValidName(username) &&
+					name.touched
+				"
+			>
+				<small nz-typography nzType="danger" class="error-message"
+					>Please enter a valid name (letters and spaces only)</small
+				></ng-container
+			>
 		</div>
 		<div class="form-group">
-			<label class="label-name"> Password: </label>
+			<label class="label-name">
+				<span class="required">*</span>Password:
+			</label>
 			<div class="form-control password-form-control">
 				<input
 					[type]="passwordVisible ? 'text' : 'password'"
 					nz-input
+					class="password-input"
 					type="password"
 					name="password"
 					[(ngModel)]="password"
+					#passwordInput="ngModel"
+					(keyup)="checkFormCompleted()"
+					[nzStatus]="
+						!registerInfoCheckService.isValidPassword(password) &&
+						passwordInput.touched
+							? 'error'
+							: ''
+					"
 					required
 				/>
 				<span
@@ -29,16 +59,38 @@
 					(click)="passwordVisible = !passwordVisible"
 					class="password-icon"
 				></span>
+				<ng-container
+					*ngIf="
+						!registerInfoCheckService.isValidPassword(password) &&
+						passwordInput.touched
+					"
+				>
+					<small nz-typography nzType="danger" class="error-message"
+						>Please enter a password with at least 8 characters,
+						including at least one letter and one digit</small
+					></ng-container
+				>
 			</div>
 		</div>
 		<div class="form-group">
-			<label class="label-name"> Confrim Passowrd: </label>
+			<label class="label-name">
+				<span class="required">*</span>Confrim Passowrd:
+			</label>
 			<div class="form-control password-form-control">
 				<input
 					[type]="passwordVisible ? 'text' : 'password'"
 					nz-input
 					type="password"
 					name="confirm-password"
+					class="password-input"
+					#confirmedPasswordInput="ngModel"
+					(keyup)="checkFormCompleted()"
+					[nzStatus]="
+						password !== confirmPassword &&
+						confirmedPasswordInput.touched
+							? 'error'
+							: ''
+					"
 					[(ngModel)]="confirmPassword"
 					required
 				/>
@@ -48,46 +100,156 @@
 					(click)="passwordVisible = !passwordVisible"
 					class="password-icon"
 				></span>
+				<ng-container
+					*ngIf="
+						password !== confirmPassword &&
+						confirmedPasswordInput.touched
+					"
+				>
+					<small nz-typography nzType="danger" class="error-message"
+						>Passwords don't match</small
+					></ng-container
+				>
 			</div>
 		</div>
 		<div class="form-group">
-			<label class="label-name"> Email: </label>
+			<label class="label-name">
+				<span class="required">*</span>Email:
+			</label>
 			<input
 				nz-input
 				type="email"
 				class="form-control"
 				name="email"
-				ngModel
+				#emailInput="ngModel"
+				[(ngModel)]="email"
+				(keyup)="checkFormCompleted()"
+				[nzStatus]="
+					!registerInfoCheckService.isValidEmail(email) &&
+					emailInput.touched
+						? 'error'
+						: ''
+				"
 				required
 			/>
+			<ng-container
+				*ngIf="
+					!registerInfoCheckService.isValidEmail(email) &&
+					emailInput.touched
+				"
+			>
+				<small nz-typography nzType="danger" class="error-message"
+					>Please enter a valid email address (e.g.,
+					example@example.com)</small
+				></ng-container
+			>
 		</div>
 		<div class="form-group">
-			<label class="label-name"> Phone Number: </label>
+			<label class="label-name">
+				<span class="required">*</span>Phone Number:
+			</label>
 			<input
 				nz-input
 				type="text"
 				class="form-control"
 				name="phoneNumber"
-				ngModel
+				#phoneNumberInput="ngModel"
+				(keyup)="checkFormCompleted()"
+				[(ngModel)]="phoneNumber"
+				[nzStatus]="
+					!registerInfoCheckService.isValidPhone(phoneNumber) &&
+					phoneNumberInput.touched
+						? 'error'
+						: ''
+				"
 				required
 			/>
+			<ng-container
+				*ngIf="
+					!registerInfoCheckService.isValidPhone(phoneNumber) &&
+					phoneNumberInput.touched
+				"
+			>
+				<small nz-typography nzType="danger" class="error-message"
+					>Please enter a valid phone number (10 digits without the
+					area code)</small
+				></ng-container
+			>
 		</div>
 		<div class="form-group">
-			<label class="label-name"> Gender: </label>
-			<nz-select class="gender-select" name="Gender" ngModel>
+			<label class="label-name">
+				<span class="required">*</span>Gender:
+			</label>
+			<nz-select
+				class="gender-select"
+				#genderInput="ngModel"
+				name="Gender"
+				(keyup)="checkFormCompleted()"
+				[(ngModel)]="gender"
+				[nzStatus]="
+					!registerInfoCheckService.isValidGender(gender) &&
+					genderInput.touched
+						? 'error'
+						: ''
+				"
+			>
 				<nz-option nzValue="Male" nzLabel="Male"></nz-option>
 				<nz-option nzValue="Female" nzLabel="Female"></nz-option>
 				<nz-option nzValue="Other" nzLabel="Other"></nz-option>
 			</nz-select>
+			<ng-container
+				*ngIf="
+					!registerInfoCheckService.isValidGender(gender) &&
+					genderInput.touched
+				"
+			>
+				<small nz-typography nzType="danger" class="error-message"
+					>Please choose gender</small
+				></ng-container
+			>
+		</div>
+		<div class="form-group">
+			<label class="label-name">
+				<span class="required">*</span>Age:
+			</label>
+			<input
+				nz-input
+				type="number"
+				class="form-control"
+				name="age"
+				[(ngModel)]="age"
+				#ageInput="ngModel"
+				(keyup)="checkFormCompleted()"
+				[nzStatus]="
+					!registerInfoCheckService.isValidAge(age) &&
+					ageInput.touched
+						? 'error'
+						: ''
+				"
+				required
+			/>
+			<ng-container
+				*ngIf="
+					!registerInfoCheckService.isValidAge(age) &&
+					ageInput.touched
+				"
+			>
+				<small nz-typography nzType="danger" class="error-message"
+					>Please enter age</small
+				></ng-container
+			>
 		</div>
 		<div class="form-group">
 			<div class="spacer"></div>
 			<div class="checkbox-group">
+				<span class="required">* </span>
 				<label
 					nz-checkbox
 					class="agree-checkbox"
 					name="agree"
+					#checkBoxInput="ngModel"
 					[(ngModel)]="checked"
+					(ngModelChange)="checkFormCompleted()"
 				></label>
 				<label>
 					<span>
@@ -99,7 +261,12 @@
 		</div>
 		<div class="form-group">
 			<div class="spacer"></div>
-			<button nz-button nzType="primary" (click)="print()">
+			<button
+				[disabled]="formCompleted === false"
+				nz-button
+				nzType="primary"
+				(click)="submit()"
+			>
 				Register
 			</button>
 		</div>

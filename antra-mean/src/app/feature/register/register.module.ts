@@ -9,6 +9,8 @@ import { ReactiveFormsModule } from '@angular/forms'
 import { NzSelectModule } from 'ng-zorro-antd/select'
 import { NzIconModule } from 'ng-zorro-antd/icon'
 import { FormsModule } from '@angular/forms'
+import { NzTypographyModule } from 'ng-zorro-antd/typography'
+
 @NgModule({
 	imports: [
 		CommonModule,
@@ -19,7 +21,8 @@ import { FormsModule } from '@angular/forms'
 		ReactiveFormsModule,
 		NzSelectModule,
 		NzIconModule,
-		FormsModule
+		FormsModule,
+		NzTypographyModule
 	],
 	declarations: [RegisterComponent],
 	exports: [RegisterComponent]

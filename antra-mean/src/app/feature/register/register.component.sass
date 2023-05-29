@@ -3,7 +3,7 @@ $container-width: 600px
 
 .container
   position: absolute
-  left: 50%
+  left: 43%
   top: 50%
   transform: translate(-50%, -50%)
   width: $container-width
@@ -26,9 +26,12 @@ $container-width: 600px
       width: 400px
       min-width: 400px
     .label-name
+      position: relative
       width: 190px
       min-width: 190px
       text-align: right
+
+
     .checkbox-group
       display: inline-block
       align-items: center
@@ -56,3 +59,15 @@ $container-width: 600px
   right: 10px
   cursor: pointer
   z-index: 1
+.required
+  color: red
+  margin-left: 4px
+
+
+.error-message
+  white-space: nowrap
+
+
+.password-input
+  min-width: 400px
+  margin-right: 10px
