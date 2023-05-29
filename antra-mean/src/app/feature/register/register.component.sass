@@ -1,10 +1,58 @@
 $container-width: 600px
 
 
-.form-container
+.container
   position: absolute
   left: 50%
   top: 50%
   transform: translate(-50%, -50%)
   width: $container-width
 
+  form
+    width: 100%
+    display: flex
+    flex-direction: column
+    gap: 20px
+
+    .form-group
+      width: $container-width
+      display: flex
+      align-items: center
+      gap: 10px
+      button
+        width: 400px
+        margin-top: 20px
+    .form-control, .gender-select
+      width: 400px
+      min-width: 400px
+    .label-name
+      width: 190px
+      min-width: 190px
+      text-align: right
+    .checkbox-group
+      display: inline-block
+      align-items: center
+      justify-content: center
+    .spacer
+      width: 190px
+      min-width: 190px
+    .checkbox-group
+      width: 400px
+      min-width: 400px
+      label
+        margin-right: 10px
+
+
+.password-form-control
+      position: relative
+      display: flex
+      align-items: center
+      justify-content: space-between
+      width: 400px
+      min-width: 400px
+
+.password-icon
+  position: absolute
+  right: 10px
+  cursor: pointer
+  z-index: 1
