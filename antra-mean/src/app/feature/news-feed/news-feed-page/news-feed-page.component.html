@@ -1,65 +1,103 @@
-<nz-list nzItemLayout="vertical" class="news-feeds">
-		<nz-list-item *ngFor="let newsItem of newsFeed" class="news-item">
-			<div class="avatar">
-				<nz-avatar
-					[nzSrc]="newsItem.avatar"
-					[nzSize]="64"
-					nzIcon="user"
-				></nz-avatar>
+<div class="news-feed-page">
+	<nz-page-header>
+		<nz-page-header-title>News Feeds</nz-page-header-title>
+		<nz-page-header-subtitle> Explore! </nz-page-header-subtitle>
+		<nz-page-header-extra class="header-extra">
+			<nz-space>
+				<div class="spacer"></div>
+				<button
+					*nzSpaceItem
+					routerLink="/like-list"
+					nz-button
+					nzType="primary"
+				>
+					<span nz-icon nzType="like" class="like-icon"></span>
+					Go to Like List
+				</button>
+			</nz-space>
+		</nz-page-header-extra>
+	</nz-page-header>
+
+	<!-- Post Form -->
+	<div class="post-form">
+		<nz-form [formGroup]="postForm" (ngSubmit)="submitPostForm()">
+			<nz-form-item>
+				<nz-form-control>
+					<textarea
+						nz-input
+						formControlName="content"
+						rows="4"
+						placeholder="Write your post here"
+						nz-input
+						[(ngModel)]="inputValue"
+					></textarea>
+				</nz-form-control>
+			</nz-form-item>
+			<nz-form-item class="post-button">
+				<button
+					nz-button
+					nzType="primary"
+					[disabled]="postForm.invalid"
+					style="width: 100%"
+				>
+					Post
+				</button>
+			</nz-form-item>
+		</nz-form>
+	</div>
+
+	<!-- news feeds -->
+	<div class="news-feed" *ngFor="let newsItem of news">
+		<nz-card
+			[nzCover]="body"
+			nzSize="default"
+			[nzActions]="[actionComment, actionLike]"
+		>
+			<nz-card-meta
+				[nzTitle]="newsItem.userID"
+				nzDescription="Publish Time"
+				[nzAvatar]="avatarTemplate"
+			></nz-card-meta>
+		</nz-card>
+
+		<ng-template #avatarTemplate>
+			<nz-avatar
+				nzSize="large"
+				nzSrc="https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png"
+			></nz-avatar>
+		</ng-template>
+		<ng-template #body>
+			<span nz-typography class="post-body">
+				{{ newsItem.body }}
+			</span>
+		</ng-template>
+		<ng-template #actionComment class="comment-box">
+			<div class="icon-with-count">
+				<span nz-icon nzType="comment" class="comment-icon"></span>
+				<span nz-typography nzType="secondary">{{
+					newsItem.comments ? newsItem.comments : 0
+				}}</span>
 			</div>
+		</ng-template>
 
-			<div class="content">
-				<p class="publisher-name">{{ newsItem.publisherName }}</p>
+		<ng-template #actionLike class="like-box">
+			<div class="icon-with-count">
+				<span nz-icon nzType="like" class="like-icon"></span>
+				<span nz-typography nzType="secondary">{{
+					newsItem.likes ? newsItem.likes : 0
+				}}</span>
+			</div>
+		</ng-template>
+	</div>
 
-				<div *ngIf="newsItem.content.imageUrl">
-					<img nz-image [nzSrc]="newsItem.content.imageUrl" width="200px" height="200px" alt="News feed" class="news-feed-image" />
-				</div>
-
-				<div *ngIf="newsItem.content.videoUrl">
-					<video [src]="newsItem.content.videoUrl" controls></video>
-				</div>
-
-				<div *ngIf="newsItem.content.textUrl">
-					<p>{{ newsItem.content.textUrl }}</p>
-				</div>
-
-				<div class="like-comment-counts">
-					<p class="like-count">
-						Likes: {{ newsItem.likedIdList.length }}
-					</p>
-					<p class="comment-count">
-						Comments: {{ newsItem.comments.length }}
-					</p>
-				</div>
-
-				<!-- Comment  -->
-				<!-- <div *ngFor="let comment of newsItem.comments" class="comment">
-					<div class="avatar">
-						<img [src]="comment.avatar" alt="Commenter Avatar" />
-					</div>
-					<div class="content">
-						<p class="publisher-name">{{ comment.publisherName }}</p>
-
-						<div *ngIf="comment.content.imageUrl">
-							<img
-								[src]="comment.content.imageUrl"
-								alt="Comment Image"
-							/>
-						</div> -->
-
-				<!-- <div *ngIf="comment.content.videoUrl">
-							<video
-								[src]="comment.content.videoUrl"
-								controls
-							></video>
-						</div> -->
-
-				<!-- <div *ngIf="comment.content.textUrl">
-							<p>{{ comment.content.textUrl }}</p>
-						</div>
-					</div>
-				</div>
-					-->
+	<div class="pagination-container">
+		<div class="pagination-center">
+			<nz-pagination
+				[nzTotal]="500"
+				class="pagination"
+				[nzResponsive]="true"
+				[nzHideOnSinglePage]="false"
+			></nz-pagination>
 		</div>
-	</nz-list-item>
-</nz-list>
+	</div>
+</div>
