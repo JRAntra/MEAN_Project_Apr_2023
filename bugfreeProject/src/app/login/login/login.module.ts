@@ -6,14 +6,15 @@ import { LoginComponent } from './login.component';
 import { LoginCheckService } from '../login-check.service';
 import { FormsModule, ReactiveFormsModule }   from '@angular/forms';
 
-@NgModule({
+@NgModule({ 
   declarations: [
-    LoginComponent
+    LoginComponent,
+
   ],
   imports: [
     CommonModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
   ],
   providers: [
     LoginCheckService

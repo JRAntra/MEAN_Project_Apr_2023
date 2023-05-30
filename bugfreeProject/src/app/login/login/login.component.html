@@ -1,6 +1,10 @@
 
 <div class="login-container">
+  
     <form #testForm="ngForm" (ngSubmit)="submit(testForm)" class="login-form">
+      <div class="avatar-container">
+        <img src="assets/company-avatar.png" alt="Company Avatar" class="avatar">
+      </div>
       <h2>Login</h2>
       <div class="form-group">
         <label for="userEmail">UserEmail</label>
@@ -27,3 +31,5 @@
 
 <p>userEmail: "bugfree@123.com"</p>
 <p>password: "bugfree"</p>
+
+

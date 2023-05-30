@@ -1,6 +1,6 @@
 import { Component} from '@angular/core';
 import { LoginCheckService } from '../login-check.service';
-// import { Router } from '@angular/router';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -14,7 +14,8 @@ export class LoginComponent{
     agree: false,
   };
 
-  constructor(private loginCheckService : LoginCheckService) { }
+  constructor(private loginCheckService : LoginCheckService,
+              private router:Router) { }
 
   submit(testForm: any){
     console.log(testForm.value);
@@ -23,7 +24,7 @@ export class LoginComponent{
       this.loginCheckService.login(this.login_info).subscribe({
           next:(res) => { if (res.status === 200) {
               console.log("200!!");
-              // this.router.navigate(['news-feed']);
+              this.router.navigate(['register']);
             }},
           error:(error) => {alert(error.error)},
       });
