@@ -1,14 +1,20 @@
 
 <div class="login-container">
-    <form class="login-form">
+  <!-- <form #testForm="ngForm" (ngSubmit)="submit(testForm)">
+    {{testForm.value | json}}
+    <input type="text" name="test" ngModel>
+    <input type="text" name="test2" ngModel>
+    <button type="submit">Submit</button>
+</form> -->
+    <form #testForm="ngForm" (ngSubmit)="submit(testForm)" class="login-form">
       <h2>Login</h2>
       <div class="form-group">
-        <label for="username">UserEmail</label>
-        <input type="text" id="username" class="form-control" placeholder="Email">
+        <label for="userEmail">UserEmail</label>
+        <input type="text" name="userEmail" class="form-control" placeholder="Email" ngModel>
       </div>
       <div class="form-group">
         <label for="password">Password</label>
-        <input type="password" id="password" class="form-control" placeholder="Password">
+        <input type="password" name="password" class="form-control" placeholder="Password" ngModel>
       </div>
       <button type="submit" class="btn btn-primary">Login</button>
       <div class="form-group">
@@ -16,7 +22,7 @@
       </div>
       <div class="form-group agreement-help">
         <div class="checkbox-agreement">
-          <input type="checkbox" id="agreement">
+          <input type="checkbox" id="agreement" name="agree" ngModel>
         <label for="agreement"><a href="#" class="agreement">Agreement</a></label>
         </div> 
         <a href="#">Need Help?</a> 
