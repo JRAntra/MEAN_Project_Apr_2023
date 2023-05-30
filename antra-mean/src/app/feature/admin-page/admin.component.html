@@ -3,49 +3,19 @@
 		nzCollapsible
 		nzBreakpoint="lg"
 		[nzCollapsedWidth]="0"
-		[nzWidth]="240"
+		[nzWidth]="250"
 	>
 		<div class="logo">Admin</div>
 		<ul nz-menu nzTheme="dark" nzMode="inline">
-			<li nz-menu-item>
+			<li
+				nz-menu-item
+				*ngFor="let user of userList"
+				(click)="selectUser(user)"
+			>
 				<span nz-icon nzType="user"></span>
-				<span>User Tag 1</span>
-				<button
-					class="delete"
-					nz-button
-					nzSize="small"
-					nzType="default"
-				>
-					Delete
-				</button>
-			</li>
-			<li nz-menu-item>
-				<span nz-icon nzType="user"></span>
-				<span>User Tag 2</span>
-				<button
-					class="delete"
-					nz-button
-					nzSize="small"
-					nzType="default"
-				>
-					Delete
-				</button>
-			</li>
-			<li nz-menu-item>
-				<span nz-icon nzType="user"></span>
-				<span>User Tag 3</span>
-				<button
-					class="delete"
-					nz-button
-					nzSize="small"
-					nzType="default"
-				>
-					Delete
-				</button>
-			</li>
-			<li nz-menu-item>
-				<span nz-icon nzType="user"></span>
-				<span>User Tag 4</span>
+				<span>
+					{{ user.userName ? (user.userName | truncate : 10) : '' }}
+				</span>
 				<button
 					class="delete"
 					nz-button
@@ -57,10 +27,41 @@
 			</li>
 		</ul>
 	</nz-sider>
-	<nz-layout>
+	<nz-layout class="right-layout">
 		<nz-content>
-			<div class="inner-content">
-				<app-user-info> </app-user-info>
+			<div class="inner-content" *ngIf="selectedUser">
+				<p>
+					<span>Username: </span>
+					<span>{{
+						selectedUser.userName
+							? (selectedUser.userName | truncate : 20)
+							: ''
+					}}</span>
+				</p>
+				<p>
+					<span>Password: </span>
+					<span>{{
+						selectedUser.password
+							? (selectedUser.password | truncate : 20)
+							: ''
+					}}</span>
+				</p>
+				<p>
+					<span>User Email: </span>
+					<span>{{
+						selectedUser.userEmail
+							? (selectedUser.userEmail | truncate : 20)
+							: ''
+					}}</span>
+				</p>
+				<p>
+					<span>Gender: </span>
+					<span>{{ selectedUser.gender }}</span>
+				</p>
+				<p>
+					<span>Age: </span>
+					<span>{{ selectedUser.age }}</span>
+				</p>
 			</div>
 		</nz-content>
 	</nz-layout>
