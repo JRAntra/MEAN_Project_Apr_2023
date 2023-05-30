@@ -35,6 +35,7 @@
 				nzBlock
 				class="login-form-button"
 				nzType="primary"
+				[routerLink]="['/news-feed']"
 			>
 				Log in
 			</button>
@@ -42,7 +43,7 @@
 		<br />
 		<div class="link-to-register">
 			Or
-			<a>No Accounts? Register Now!</a>
+			<a [routerLink]="['/register']">No Accounts? Register Now!</a>
 		</div>
 		<br />
 		<span>
