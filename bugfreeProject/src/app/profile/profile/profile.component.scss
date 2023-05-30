@@ -1,0 +1,78 @@
+.profile-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 1rem;
+  
+    h2 {
+      margin-bottom: 1rem;
+    }
+  
+    .avatar-container {
+      margin-bottom: 1.5rem;
+  
+      .avatar {
+        width: 100px;
+        height: 100px;
+        border-radius: 50%;
+        object-fit: cover;
+      }
+    }
+  
+    .profile-details {
+      display: flex;
+      flex-direction: column;
+  
+      .form-group {
+        margin-bottom: 1rem;
+  
+        label {
+          display: block;
+          font-weight: bold;
+        }
+  
+        p {
+          margin: 0;
+        }
+      }
+  
+      .rectangle {
+        padding: 1rem;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+      }
+  
+      .password-input {
+        display: flex;
+        align-items: center;
+  
+        input[type="password"] {
+          flex: 1;
+          padding: 0.5rem;
+          border: 1px solid #ccc;
+          border-radius: 4px;
+        }
+  
+        .reveal-button {
+          padding: 0.3rem 0.5rem;
+          border-radius: 4px;
+          cursor: pointer;
+          min-width: 70px;
+          box-sizing: content-box; /* Add this line */
+        }
+      }
+  
+      .icon-container {
+        display: flex;
+        justify-content: center;
+        margin-top: 1.5rem;
+  
+        .icon {
+          font-size: 24px;
+          margin: 0 0.5rem;
+          cursor: pointer;
+        }
+      }
+    }
+  }
+  

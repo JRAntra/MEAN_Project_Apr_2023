@@ -1,0 +1,43 @@
+<div class="profile-container">
+    <h2>Profile</h2>
+  
+    <div class="avatar-container">
+      <img src="assets/avatar.jpeg" alt="User Avatar" class="avatar">
+    </div>
+  
+    <div class="profile-details">
+      <div class="form-group rectangle">
+        <label for="username">Username:</label>
+        <p>{{ username }}</p>
+      </div>
+  
+      <div class="form-group rectangle">
+        <label for="email">Email:</label>
+        <p>{{ email }}</p>
+      </div>
+  
+      <div class="form-group rectangle">
+        <label for="age">Age:</label>
+        <p>{{ age }}</p>
+      </div>
+  
+      <div class="form-group rectangle">
+        <label for="gender">Gender:</label>
+        <p>{{ gender }}</p>
+      </div>
+  
+      <div class="form-group rectangle">
+        <label for="password">Password:</label>
+        <div class="password-input">
+          <input type="password" id="password" name="password" [(ngModel)]="password" [type]="showPassword ? 'text' : 'password'" required>
+          <button class="reveal-button" (click)="togglePasswordVisibility()">{{ showPassword ? 'Hide' : 'Reveal' }}</button>
+        </div>
+      </div>
+  
+      <div class="icon-container">
+        <span class="icon" (click)="showPosts()">📝</span>
+        <span class="icon" (click)="showLikedStories()">👍</span>
+      </div>
+    </div>
+  </div>
+<app-navbar></app-navbar> 
