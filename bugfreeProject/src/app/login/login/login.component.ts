@@ -40,6 +40,14 @@ export class LoginComponent{
       return false;
     }
   }
+  // register(){
+  //   this.loginCheckService.register().subscribe({next:(res) => { if (res.status === 200) {
+  //     console.log("200!!");
+  //       }},
+  //     error:(error) => {alert(error.error)}
+  //   });
+  // }
 }
+
 
 

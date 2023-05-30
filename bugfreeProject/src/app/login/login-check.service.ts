@@ -24,4 +24,18 @@ export class LoginCheckService {
     };
     return this.http.post('http://localhost:4231/api/login/', body, { observe: 'response' });
   }
+
+  // register() {
+  //   const body = {
+  //     name: "req.body.name",
+  //       userName: "bugfree",
+  //       userEmail: "bugfree@123.com",
+  //       password: "bugfree",
+  //       userRole: 'user',
+  //       age: 12,
+  //       gender: "req.body.gender",
+  //       phone: 1234567890,
+  //   };
+  //   return this.http.post('http://localhost:4231/api/register/createNewAccount/', body, { observe: 'response' });
+  // }
 }
