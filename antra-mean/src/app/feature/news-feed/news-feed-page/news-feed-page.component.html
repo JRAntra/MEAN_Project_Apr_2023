@@ -55,7 +55,7 @@
 		>
 			<nz-card-meta
 				[nzTitle]="newsItem.userID"
-				nzDescription="Publish Time"
+				nzDescription="2023-05-29 17:21:08"
 				[nzAvatar]="avatarTemplate"
 			></nz-card-meta>
 		</nz-card>
@@ -68,7 +68,7 @@
 		</ng-template>
 		<ng-template #body>
 			<span nz-typography class="post-body">
-				{{ newsItem.body }}
+				{{ newsItem.body | firstTwentyChars }}
 			</span>
 		</ng-template>
 
