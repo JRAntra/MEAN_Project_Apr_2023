@@ -1,29 +1,6 @@
 import { User } from './User';
 
 export const USERS: User[] = [
-    { name: 'hot sauce'},
-    { name: 'hello'},
-    { name: 'hot sauce'},
-    { name: 'hot sauce'},
-    { name: 'hot sauce'},
-    { name: 'hot sauce'},
-    { name: 'hot sauce'},
-    { name: 'hot sauce'},
-    { name: 'hot sauce'},
-    { name: 'hot sauce'},
-    { name: 'hot sauce'},
-    { name: 'hot sauce'},
-    { name: 'hot sauce'},
-    { name: 'hot sauce'},
-    { name: 'hot sauce'},
-    { name: 'hot sauce'},
-    { name: 'hot sauce'},
-    { name: 'hot sauce'},
-    { name: 'hot sauce'},
-    { name: 'hot sauce'},
-    { name: 'hot sauce'},
-    { name: 'hot sauce'},
-    { name: 'hot sauce'},
-    { name: 'hot sauce'},
-    { name: 'hot sauce'},
+    // maybe phone should be string?? 
+    {_id: 'abc', name: 'hot sauce', userName: 'hot sauce', userEmail: 'test@gmail.com', password: '123', userRole: 'admin', age: 20, gender: 'Male', phone: 456},
 ]

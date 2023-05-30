@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { AdminPageComponent } from './components/admin/admin-page-component';
 import { UserListComponent } from './components/user-list/user-list.component';
-
+import { HttpClientModule } from '@angular/common/http';
 
 
 @NgModule({
@@ -11,7 +11,8 @@ import { UserListComponent } from './components/user-list/user-list.component';
         UserListComponent,
     ],
     imports: [
-        CommonModule
+        CommonModule,
+        HttpClientModule,
     ],
 
     exports: [
