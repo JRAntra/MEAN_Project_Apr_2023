@@ -3,11 +3,13 @@ import { CommonModule } from '@angular/common';
 import { DisappearDirective } from './disappear.directive';
 import { RegisterComponent } from './register/register.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { TruncatePipe } from './truncate.pipe';
 
 @NgModule({
   declarations: [
     RegisterComponent,
     DisappearDirective,
+    TruncatePipe,
   ],
   imports: [
     CommonModule,

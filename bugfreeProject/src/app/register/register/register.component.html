@@ -21,5 +21,11 @@
     </form>
   </div>
 
+  <p>Custom directive:</p>
   <div appDisappear>This sentence will disappear in 5 seconds</div>
+
+  <p>Custom pipe:</p>
+  <label>Input:</label>
+  <input type="text" [(ngModel)]="inputText" (input)="updateLongText(inputText)">
+  <div>Output: {{ inputText | truncate }}</div>
   

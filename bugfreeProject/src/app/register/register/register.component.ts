@@ -6,5 +6,9 @@ import { Component } from '@angular/core';
   styleUrls: ['./register.component.scss']
 })
 export class RegisterComponent {
+  inputText: string = '';
+  updateLongText(inputText: string) {
+    this.inputText = inputText;
+  }
 
 }
