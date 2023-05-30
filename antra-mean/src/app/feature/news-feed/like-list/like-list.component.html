@@ -17,8 +17,8 @@
 		</nz-page-header-extra>
 	</nz-page-header>
 
-	<!-- news feeds -->
-	<div class="news-feed" *ngFor="let likedItem of likedNews">
+	<!-- news feeds with Auto hide directive implemented for practice-->
+	<div class="news-feed" appAutoHide *ngFor="let likedItem of likedNews" >
 		<nz-card
 			[nzCover]="body"
 			nzSize="default"

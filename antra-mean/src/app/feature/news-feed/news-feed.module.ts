@@ -15,15 +15,16 @@ import { NzInputModule } from 'ng-zorro-antd/input';
 import { NzButtonModule } from 'ng-zorro-antd/button';
 import { NzPageHeaderModule } from 'ng-zorro-antd/page-header';
 import { NzSpaceModule } from 'ng-zorro-antd/space';
-import { DatePipe } from '@angular/common';
+import { DatePipe } from '@angular/common'
 import { FirstTwentyCharsPipe } from './first-twenty-chars.pipe'
 import { LikeListComponent } from './like-list/like-list.component'
 import { NewsFeedPageComponent } from './news-feed-page/news-feed-page.component'
 
-import { NewsFeedService } from './news-feed.service';
+import { NewsFeedService } from './news-feed.service'
+import { AutoHideDirective } from './auto-hide.directive'
 
 @NgModule({
-	declarations: [LikeListComponent, NewsFeedPageComponent, FirstTwentyCharsPipe],
+	declarations: [LikeListComponent, NewsFeedPageComponent, FirstTwentyCharsPipe, AutoHideDirective],
 	imports: [
 		CommonModule,
 		NzPaginationModule,
