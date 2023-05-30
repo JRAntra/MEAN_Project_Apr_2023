@@ -33,15 +33,15 @@ export type Content = {
 
 export type Comment = {
   _id?: string;
-  publisherName: string;
-  publishedTime: ISOTime;
-  content: Content;
+  publisherName?: string;
+  publishedTime?: ISOTime;
+  content?: Content;
 };
 
 export type Story = {
   _id?: string;
-  publisherName: string;
-  publishedTime: ISOTime;
-  content: Content;
-  comment: Comment[];
+  publisherName?: string;
+  publishedTime?: ISOTime;
+  content?: Content;
+  comment?: Comment[];
 };

@@ -59,7 +59,7 @@ export class NewsFeedService {
             (story) => story._id === storyId
           );
           if (story) {
-            story.comment.unshift(data);
+            story.comment?.unshift(data);
             subscriber.next(data);
           }
         });
