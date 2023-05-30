@@ -7,7 +7,7 @@ import { Observable } from 'rxjs'
   providedIn: 'root'
 })
 export class NewsFeedService {
-  private apiUrl = 'https://dummyjson.com/posts'
+  private apiUrl = 'http://localhost:4231/api/news'
 
   constructor(private http: HttpClient) { }
 

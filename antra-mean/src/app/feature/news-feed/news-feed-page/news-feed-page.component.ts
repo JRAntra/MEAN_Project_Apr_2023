@@ -1,14 +1,17 @@
 import { Component, OnInit } from '@angular/core'
 import { NewsFeedService } from '../news-feed.service'
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { DatePipe } from '@angular/common';
 
 export interface Post {
-  imageUrl: string
-  title: string
-  body: string
-  reactions: number
-  userId: number
-  id: number
+  image: string
+  video: string
+  text: string
+  publisherName: string
+  publishedTime: string
+  content: object
+  comment: object
+  likedIdList: any
 }
 
 @Component({
@@ -22,14 +25,14 @@ export class NewsFeedPageComponent implements OnInit {
   postForm!: FormGroup
   inputValue?: string
 
-  constructor(private newsFeedService: NewsFeedService, private fb: FormBuilder) { }
+  constructor(private datePipe: DatePipe, private newsFeedService: NewsFeedService, private fb: FormBuilder) { }
 
   ngOnInit(): void {
     this.getNews()
 
     // Initialize the postForm
     this.postForm = this.fb.group({
-      content: ['', [Validators.required, Validators.maxLength(200)]]
+      content: ['', [Validators.required, Validators.maxLength(400)]]
     })
 
   }
@@ -50,14 +53,14 @@ export class NewsFeedPageComponent implements OnInit {
   getNews(): void {
     this.newsFeedService.getNewsFeed()
       .subscribe((response: any) => {
-        const newsFeedArray = response.posts;
+        const newsFeedArray = response;
+        console.log(newsFeedArray)
         this.news = newsFeedArray.map((post: Post) => ({
-          imageUrl: post.imageUrl,
-          title: post.title,
-          body: post.body,
-          likes: post.reactions,
-          userID: post.userId,
-          id: post.id,
+          content: post.content,
+          comments: post.comment,
+          likes: post.likedIdList,
+          publisherName: post.publisherName,
+          publishedTime: this.datePipe.transform(post.publishedTime, 'yyyy-MM-dd HH:mm:ss'),
         }));
         console.log(this.news)
       });

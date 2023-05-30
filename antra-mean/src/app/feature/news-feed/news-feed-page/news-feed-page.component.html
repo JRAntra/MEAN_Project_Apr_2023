@@ -54,8 +54,8 @@
 			[nzActions]="[actionComment, actionLike]"
 		>
 			<nz-card-meta
-				[nzTitle]="newsItem.userID"
-				nzDescription="2023-05-29 17:21:08"
+				[nzTitle]="newsItem.publisherName"
+				[nzDescription]="newsItem.publishedTime"
 				[nzAvatar]="avatarTemplate"
 			></nz-card-meta>
 		</nz-card>
@@ -66,9 +66,24 @@
 				nzSrc="https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png"
 			></nz-avatar>
 		</ng-template>
+
 		<ng-template #body>
+			<div class="body-container">
+				<img
+					*ngIf="newsItem.content?.image"
+					[src]="newsItem.content?.image"
+					alt="Image"
+					class="news-feed-image"
+				/>
+				<video
+					*ngIf="newsItem.content?.video"
+					[src]="newsItem.content?.video"
+					controls
+					class="news-feed-video"
+				></video>
+			</div>
 			<span nz-typography class="post-body">
-				{{ newsItem.body | firstTwentyChars }}
+				{{ newsItem.content?.text }}
 			</span>
 		</ng-template>
 
@@ -76,7 +91,7 @@
 			<div class="icon-with-count">
 				<span nz-icon nzType="comment" class="comment-icon"></span>
 				<span nz-typography nzType="secondary">{{
-					newsItem.comments ? newsItem.comments : 0
+					newsItem.comments ? newsItem.comments.length : 0
 				}}</span>
 			</div>
 		</ng-template>
@@ -85,7 +100,7 @@
 			<div class="icon-with-count">
 				<span nz-icon nzType="like" class="like-icon"></span>
 				<span nz-typography nzType="secondary">{{
-					newsItem.likes ? newsItem.likes : 0
+					newsItem.likes ? newsItem.likes.length : 0
 				}}</span>
 			</div>
 		</ng-template>

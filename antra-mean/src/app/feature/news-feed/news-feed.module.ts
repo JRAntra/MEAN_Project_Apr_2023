@@ -16,14 +16,14 @@ import { NzButtonModule } from 'ng-zorro-antd/button';
 import { NzPageHeaderModule } from 'ng-zorro-antd/page-header';
 import { NzSpaceModule } from 'ng-zorro-antd/space';
 import { DatePipe } from '@angular/common';
-import { FirstTwentyCharsPipe } from './first-twenty-chars.pipe'
 import { LikeListComponent } from './like-list/like-list.component'
 import { NewsFeedPageComponent } from './news-feed-page/news-feed-page.component'
+import { NzCarouselModule } from 'ng-zorro-antd/carousel';
 
 import { NewsFeedService } from './news-feed.service';
 
 @NgModule({
-	declarations: [LikeListComponent, NewsFeedPageComponent, FirstTwentyCharsPipe],
+	declarations: [LikeListComponent, NewsFeedPageComponent],
 	imports: [
 		CommonModule,
 		NzPaginationModule,
@@ -39,7 +39,8 @@ import { NewsFeedService } from './news-feed.service';
 		NzInputModule,
 		NzButtonModule,
 		NzPageHeaderModule,
-		NzSpaceModule
+		NzSpaceModule,
+		NzCarouselModule
 	],
 	exports: [],
 	providers: [NewsFeedService, DatePipe]
