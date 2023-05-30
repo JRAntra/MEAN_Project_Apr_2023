@@ -5,6 +5,7 @@ import { NzLayoutModule } from 'ng-zorro-antd/layout'
 import { NzButtonModule } from 'ng-zorro-antd/button'
 import { NzMenuModule } from 'ng-zorro-antd/menu'
 import { NzIconModule } from 'ng-zorro-antd/icon'
+import {UserDetailComponent} from './user-info/user.component'
 
 @NgModule({
 	imports: [
@@ -14,7 +15,7 @@ import { NzIconModule } from 'ng-zorro-antd/icon'
 		NzMenuModule,
 		NzIconModule
 	],
-	declarations: [AdminPageComponent],
+	declarations: [AdminPageComponent, UserDetailComponent],
 	exports: [AdminPageComponent]
 })
 export class AdminModule {}
