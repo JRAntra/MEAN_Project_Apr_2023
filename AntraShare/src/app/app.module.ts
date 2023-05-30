@@ -15,7 +15,7 @@ import { HttpClientModule } from '@angular/common/http';
 
 import { ToastModule } from 'primeng/toast';
 
-import { httpInterceptorProviders } from './http-interceptors';
+import { httpInterceptorProviders } from './cores/http-interceptors';
 
 
 @NgModule({
