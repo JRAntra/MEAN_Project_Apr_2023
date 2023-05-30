@@ -99,7 +99,14 @@
 	</nz-form-item>
 	<nz-form-item nz-row class="register-area">
 		<nz-form-control [nzSpan]="14" [nzOffset]="6">
-			<button nz-button nzType="primary" nzBlock>Register</button>
+			<button
+				nz-button
+				nzType="primary"
+				nzBlock
+				[routerLink]="['/login']"
+			>
+				Register
+			</button>
 		</nz-form-control>
 	</nz-form-item>
 </form>
