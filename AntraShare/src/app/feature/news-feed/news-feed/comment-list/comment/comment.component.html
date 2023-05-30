@@ -4,6 +4,6 @@
         {{ comment.publisherName }}
     </div>
     <div class="comment__content">
-        {{ comment.content.text }}
+        {{ comment.content?.text ?? 'no content' }}
     </div>
 </p-card>
