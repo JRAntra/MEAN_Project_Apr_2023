@@ -35,7 +35,7 @@ export class NewStoryComponent {
         publisherName: postUser?.name ?? 'guest',
         publishedTime: new Date().toISOString(),
         content: {
-          text: this.text,
+          text: this.text.substring(3, this.text.length - 4),
         },
         comment: [],
       })
