@@ -12,3 +12,7 @@ export class TruncatePipe implements PipeTransform {
     }
   }
 }
+
+// The custom pipe should take string as input, and output only the first 20 characters.
+// If the input is more than 20 characters, display "..." at the end of the converted string
+// import as: import { TruncatePipe } from '../../shared/truncate.pipe'
