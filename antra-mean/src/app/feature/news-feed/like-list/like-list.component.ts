@@ -6,7 +6,21 @@ import { Component, OnInit } from '@angular/core'
 	styleUrls: ['./like-list.component.sass']
 })
 export class LikeListComponent implements OnInit {
-	constructor() {}
+	likedNews: any[] = []
+	constructor() {
+		this.generateFakeData();
+	}
+	generateFakeData(): void {
+    // Generate fake data for the likedNews array
+    for (let i = 1; i <= 15; i++) {
+      this.likedNews.push({
+        userID: `User ${i}`,
+        body: `This is the body of liked item ${i}`,
+        comments: Math.floor(Math.random() * 100),
+        likes: Math.floor(Math.random() * 100),
+      });
+    }
+  }
 
 	ngOnInit(): void {}
 }
