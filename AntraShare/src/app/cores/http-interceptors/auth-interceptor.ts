@@ -5,8 +5,8 @@ import {
   HttpRequest,
 } from '@angular/common/http';
 
-import { AuthService } from '../auth.service';
-import { environment } from 'src/environments/environment.development';
+import { AuthService } from 'src/app/auth.service';
+import { environment } from 'src/environments/environment';
 
 @Injectable()
 export class AuthInterceptor implements HttpInterceptor {
