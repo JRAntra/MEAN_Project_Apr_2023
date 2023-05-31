@@ -1,4 +1,9 @@
 <p-card class="story__container">
+    <ng-template *ngIf="story.content?.image" pTemplate="header">
+        <div class="story__image">
+            <p-image alt="Card" [preview]="true" [src]="story.content!.image" />
+        </div>
+    </ng-template>
     <div class="story__poster">
         <p-avatar label="P" styleClass="mr-2" shape="circle"></p-avatar>
         {{ story.publisherName }}

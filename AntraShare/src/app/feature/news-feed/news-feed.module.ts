@@ -15,6 +15,7 @@ import { InplaceModule } from 'primeng/inplace';
 import { EditorModule } from 'primeng/editor';
 import { DividerModule } from 'primeng/divider';
 import { DataViewModule } from 'primeng/dataview';
+import { ImageModule } from 'primeng/image';
 import { StoryListComponent } from './news-feed/story-list/story-list.component';
 
 @NgModule({
@@ -37,6 +38,7 @@ import { StoryListComponent } from './news-feed/story-list/story-list.component'
     EditorModule,
     DividerModule,
     DataViewModule,
+    ImageModule,
   ],
   exports: [NewsFeedComponent],
 })
