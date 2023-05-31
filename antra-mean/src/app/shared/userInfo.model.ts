@@ -3,7 +3,7 @@ export interface UserInfo {
 	userEmail?: string
 	userRole?: string
 	username?: string
-	userName?:string
+	userName?: string
 	password?: string
 	name?: string
 	gender?: string
