@@ -7,17 +7,16 @@ import { catchError, map } from 'rxjs/operators';
   providedIn: 'root'
 })
 export class LoginService {
-  private apiUrl = 'https://dummyjson.com/users'
+  private apiUrl = 'http://localhost:4231/api/users/getallusers'
 
   constructor(private http: HttpClient) {}
 
   loginUser(username: string, password: string): Observable<boolean> {
-    return this.http.get<any>(this.apiUrl).pipe(
+    return this.http.get<any[]>(this.apiUrl).pipe(
       map(response => {
-        console.log(username)
-        const user = response.users.find(
+        const user = response.find(
           // try to find the login match
-          (user: any) => user.username === username && user.password === password
+          (user: any) => user.userName === username && user.password === password
         );
         if (user) {
           // User login successful
@@ -30,4 +29,5 @@ export class LoginService {
       catchError(() => of(false))
     );
   }
+
 }
