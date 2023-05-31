@@ -18,7 +18,7 @@ import { ProfileModule } from './feature/profile/profile.module'
 import { SettingModule } from './feature/setting-page/setting.module'
 import { LoginPageModule } from './feature/login-page/login-page.module'
 import { NaviBarModule } from './core/navi-bar.module'
-
+import { ErrorModule } from './feature/error/error.module'
 registerLocaleData(en)
 
 @NgModule({
@@ -36,7 +36,8 @@ registerLocaleData(en)
 		ProfileModule,
 		SettingModule,
 		LoginPageModule,
-		NaviBarModule
+		NaviBarModule,
+		ErrorModule
 	],
 	providers: [{ provide: NZ_I18N, useValue: en_US }],
 	bootstrap: [AppComponent]

@@ -1,24 +1,34 @@
-import { Component, ViewChild, ElementRef } from '@angular/core'
-import { UserInfo } from 'src/app/shared/types'
-
+import { Component, ViewChild, ElementRef, OnInit } from '@angular/core'
+import { UserInfo } from 'src/app/shared/userInfo.model'
+//import service in the component
+import { UserInfoService } from 'src/app/shared/userInfoSerivce.service'
 @Component({
 	selector: 'app-profile',
 	templateUrl: './profile.component.html',
 	styleUrls: ['./profile.component.sass']
 })
-export class ProfileComponent {
-	user: UserInfo = {
-		id: 'some-id1234567',
-		userEmail: 'example@example.com',
-		username: 'Username1234567',
-		password: 'Password1234567',
-		gender: 'Male',
-		age: 20,
-		phone: '1234567890',
-		LikeList: [],
-		avatar: '../../assets/profile-image/profile.jpg'
-		// Add other properties as needed
+export class ProfileComponent implements OnInit {
+	user: UserInfo = {}
+	userFromDB: any
+	constructor(private userInfoService: UserInfoService) {}
+
+	ngOnInit(): void {
+		this.user = this.userInfoService.getUserInfo()
+		console.log(
+			'🚀 ~ file: profile.component.ts:27 ~ ProfileComponent ~ ngOnInit ~ user:',
+			this.user
+		)
+		this.userInfoService.getUserInfoFromDB().subscribe((data) => {
+			this.userFromDB = data.users.map((user: any) => {
+				return user.firstName
+			}) // Update this line to get the user from the database
+			console.log(
+				'🚀 ~ file: profile.component.ts:27 ~ ProfileComponent ~ ngOnInit ~ userFromDB:',
+				this.userFromDB
+			)
+		})
 	}
+
 	//condition for the input field
 	inputActive: boolean = false
 	passwordVisible: boolean = false
