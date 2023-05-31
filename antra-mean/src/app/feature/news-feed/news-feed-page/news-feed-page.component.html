@@ -55,7 +55,7 @@
 		>
 			<nz-card-meta
 				[nzTitle]="newsItem.publisherName"
-				[nzDescription]="newsItem.publishedTime"
+				[nzDescription]="newsItem.publishedTime | date : 'medium'"
 				[nzAvatar]="avatarTemplate"
 			></nz-card-meta>
 		</nz-card>

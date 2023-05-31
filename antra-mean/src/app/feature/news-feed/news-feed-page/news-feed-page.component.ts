@@ -60,9 +60,10 @@ export class NewsFeedPageComponent implements OnInit {
           comments: post.comment,
           likes: post.likedIdList,
           publisherName: post.publisherName,
-          publishedTime: this.datePipe.transform(post.publishedTime, 'yyyy-MM-dd HH:mm:ss'),
-        }));
+          // publishedTime: this.datePipe.transform(post.publishedTime),
+          publishedTime: post.publishedTime
+        }))
         console.log(this.news)
-      });
+      })
   }
 }
