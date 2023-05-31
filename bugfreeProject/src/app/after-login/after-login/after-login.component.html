@@ -2,6 +2,15 @@
     <div class="top-bar">
       <button class="like-list-button">Like List</button>
     </div>
+    
+    <input type="text" [(ngModel)]="searchText" placeholder="Search..." />
+    <div class="button-container">
+      <button class="button button-primary" (click)="onSearch()">Search</button>
+    </div>
+    
+    <p>Your search text is limited to 20 characters: {{ searchText | truncate }}</p>
+    
+
   
     <div class="body">
       <div class="rectangle">

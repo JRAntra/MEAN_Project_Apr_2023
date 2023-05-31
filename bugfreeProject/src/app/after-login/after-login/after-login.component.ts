@@ -6,5 +6,9 @@ import { Component } from '@angular/core';
   styleUrls: ['./after-login.component.scss']
 })
 export class AfterLoginComponent {
+  searchText = '';
+  onSearch(){
+    console.log('Searching for:', this.searchText);
+  }
 
 }

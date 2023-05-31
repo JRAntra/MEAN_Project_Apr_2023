@@ -5,10 +5,11 @@ import { AfterLoginRoutingModule } from './after-login-routing.module';
 import  { Routes, RouterModule } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { CoreModule } from 'src/app/core/core.module';
-
+import { TruncatePipe } from './truncate.pipe';
 @NgModule({
   declarations: [
-    AfterLoginComponent
+    AfterLoginComponent,
+    TruncatePipe
   ],
   imports: [
     CommonModule,
@@ -17,7 +18,8 @@ import { CoreModule } from 'src/app/core/core.module';
     CoreModule
   ],
   exports: [
-    AfterLoginComponent
+    AfterLoginComponent,
+    TruncatePipe
   ]
 })
 export class AfterLoginModule { }
