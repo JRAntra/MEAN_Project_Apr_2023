@@ -1,5 +1,10 @@
 <div class="container">
-	<form nz-form [formGroup]="myFormGroup" class="login-form">
+	<form
+		nz-form
+		[formGroup]="myFormGroup"
+		class="login-form"
+		(ngSubmit)="login()"
+	>
 		<img
 			class="logo-image"
 			src="https://i.pinimg.com/originals/f1/5e/a7/f15ea7d9de04d55d59afe92843a5e037.jpg"
@@ -43,7 +48,11 @@
 		<br />
 		<div class="link-to-register">
 			Or
-			<a [routerLink]="['/register']">No Accounts? Register Now!</a>
+			<a
+				[routerLink]="['/register']"
+				routerLinkActive="router-link-active">
+				No Accounts? Register Now!
+			</a>
 		</div>
 		<br />
 		<span>

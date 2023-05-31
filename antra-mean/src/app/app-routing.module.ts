@@ -17,6 +17,7 @@ const routes: Routes = [
 	{ path: 'like-list', component: LikeListComponent },
 	{ path: 'profile', component: ProfileComponent },
 	{ path: 'register', component: RegisterComponent },
+	{ path: '', component: LoginPageComponent },
 	{ path: '**', component: ErrorComponent }
 ]
 @NgModule({

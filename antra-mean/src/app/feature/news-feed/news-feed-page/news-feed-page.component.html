@@ -1,69 +1,119 @@
-<div class="container">
-	<ul nz-menu nzMode="horizontal" class="like-list-button">
-		<li nz-menu-item [routerLink]="['/like-list']">
-			<span nz-icon nzType="heart"></span>
-			<span nz-typography> Like list </span>
-		</li>
-	</ul>
+<div class="news-feed-page">
+	<nz-page-header>
+		<nz-page-header-title>News Feeds</nz-page-header-title>
+		<nz-page-header-subtitle> Explore! </nz-page-header-subtitle>
+		<nz-page-header-extra class="header-extra">
+			<nz-space>
+				<div class="spacer"></div>
+				<button
+					*nzSpaceItem
+					routerLink="/like-list"
+					nz-button
+					nzType="primary"
+				>
+					<span nz-icon nzType="like" class="like-icon"></span>
+					Go to Like List
+				</button>
+			</nz-space>
+		</nz-page-header-extra>
+	</nz-page-header>
 
-	<form nz-form [formGroup]="myFormGroup" class="post-form">
-		<div class="post-news-feed-form">
-			<nz-card>
-				<textarea rows="4" nz-input [(ngModel)]="inputValue"></textarea>
-			</nz-card>
-			<div class="post-button">
-				<button nz-button nzBlock class="post-button" nzType="primary">
+	<!-- Post Form -->
+	<div class="post-form">
+		<nz-form [formGroup]="postForm" (ngSubmit)="submitPostForm()">
+			<nz-form-item>
+				<nz-form-control>
+					<textarea
+						nz-input
+						formControlName="content"
+						rows="4"
+						placeholder="Write your post here"
+						nz-input
+						[(ngModel)]="inputValue"
+					></textarea>
+				</nz-form-control>
+			</nz-form-item>
+			<nz-form-item class="post-button">
+				<button
+					nz-button
+					nzType="primary"
+					[disabled]="postForm.invalid"
+					style="width: 100%"
+				>
 					Post
 				</button>
-			</div>
-		</div>
-	</form>
+			</nz-form-item>
+		</nz-form>
+	</div>
 
-	<div class="cards">
+	<!-- news feeds -->
+	<div class="news-feed" *ngFor="let newsItem of news">
 		<nz-card
-			[nzCover]="textTemplate"
+			[nzCover]="body"
 			nzSize="default"
 			[nzActions]="[actionComment, actionLike]"
 		>
 			<nz-card-meta
-				nzTitle="User Name"
-				nzDescription="Publish Time"
+				[nzTitle]="newsItem.publisherName"
+				[nzDescription]="newsItem.publishedTime | date : 'medium'"
 				[nzAvatar]="avatarTemplate"
 			></nz-card-meta>
 		</nz-card>
+
 		<ng-template #avatarTemplate>
 			<nz-avatar
+				nzSize="large"
 				nzSrc="https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png"
 			></nz-avatar>
 		</ng-template>
-		<ng-template #textTemplate>
-			<span nz-typography class="text-posted">
-				Lorem Ipsum is simply dummy text of the printing and typesetting
-				industry. Lorem Ipsum has been the industry's standard dummy
-				text ever since the 1500s, when an unknown printer took a galley
-				of type and scrambled it to make a type specimen book. It has
-				survived not only five centuries, but also the leap into
-				electronic typesetting, remaining essentially unchanged. It was
-				popularised in the 1960s with the release of Letraset sheets
-				containing
+
+		<ng-template #body>
+			<div class="body-container">
+				<img
+					*ngIf="newsItem.content?.image"
+					[src]="newsItem.content?.image"
+					alt="Image"
+					class="news-feed-image"
+				/>
+				<video
+					*ngIf="newsItem.content?.video"
+					[src]="newsItem.content?.video"
+					controls
+					class="news-feed-video"
+				></video>
+			</div>
+			<span nz-typography class="post-body">
+				{{ newsItem.content?.text }}
 			</span>
 		</ng-template>
+
 		<ng-template #actionComment class="comment-box">
-			<span nz-icon nzType="comment" class="comment-icon"></span>
-			<span nz-typography nzType="secondary">10</span>
+			<div class="icon-with-count">
+				<span nz-icon nzType="comment" class="comment-icon"></span>
+				<span nz-typography nzType="secondary">{{
+					newsItem.comments ? newsItem.comments.length : 0
+				}}</span>
+			</div>
 		</ng-template>
+
 		<ng-template #actionLike class="like-box">
-			<span nz-icon nzType="like" class="like-icon"></span>
-			<span nz-typography nzType="secondary">110</span>
+			<div class="icon-with-count">
+				<span nz-icon nzType="like" class="like-icon"></span>
+				<span nz-typography nzType="secondary">{{
+					newsItem.likes ? newsItem.likes.length : 0
+				}}</span>
+			</div>
 		</ng-template>
 	</div>
+
 	<div class="pagination-container">
-		<nz-pagination
-			[nzPageIndex]="1"
-			[nzTotal]="500"
-			class="pagination"
-			[nzResponsive]="true"
-			[nzHideOnSinglePage]="true"
-		></nz-pagination>
+		<div class="pagination-center">
+			<nz-pagination
+				[nzTotal]="500"
+				class="pagination"
+				[nzResponsive]="true"
+				[nzHideOnSinglePage]="false"
+			></nz-pagination>
+		</div>
 	</div>
 </div>

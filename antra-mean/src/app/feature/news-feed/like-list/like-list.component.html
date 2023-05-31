@@ -1,78 +1,75 @@
-<div class="container">
-	<ul nz-menu nzMode="horizontal" class="like-list-button">
-		<li nz-menu-item [routerLink]="['/news-feed']">
-			<span nz-icon nzType="rollback" nzTheme="outline"></span>
-			<span nz-typography> News feed </span>
-		</li>
-	</ul>
-	<div class="cards">
-		<nz-card [nzCover]="textTemplate" nzSize="default">
+<div class="like-list-page">
+	<nz-page-header>
+		<nz-page-header-title>Liked list</nz-page-header-title>
+		<nz-page-header-extra class="header-extra">
+			<nz-space>
+				<div class="spacer"></div>
+				<button
+					*nzSpaceItem
+					routerLink="/news-feed"
+					nz-button
+					nzType="primary"
+				>
+					<span nz-icon nzType="rollback" nzTheme="outline"></span>
+					Back to news feed
+				</button>
+			</nz-space>
+		</nz-page-header-extra>
+	</nz-page-header>
+
+	<!-- news feeds -->
+	<div class="news-feed" *ngFor="let likedItem of likedNews">
+		<nz-card
+			[nzCover]="body"
+			nzSize="default"
+			[nzActions]="[actionComment, actionLike]"
+		>
 			<nz-card-meta
-				nzTitle="User Name"
-				nzDescription="Publish Time"
+				[nzTitle]="likedItem.userID"
+				nzDescription="{{ likedItem.date }}"
 				[nzAvatar]="avatarTemplate"
 			></nz-card-meta>
-			<div nz-row>
-				<div
-					class="comment-counter-box"
-					nz-col
-					nzXs="2"
-					nzSm="4"
-					nzMd="6"
-					nzLg="8"
-					nzXl="10"
-				>
-					<span
-						nz-icon
-						nzType="comment"
-						class="comment-icon"
-						nzTheme="outline"
-					></span>
-					<span nz-typography nzType="secondary">10</span>
-				</div>
-				<div
-					nz-col
-					nzXs="20"
-					nzSm="16"
-					nzMd="12"
-					nzLg="8"
-					nzXl="4"
-				></div>
-				<div
-					class="like-counter-box"
-					nz-col
-					nzXs="2"
-					nzSm="4"
-					nzMd="6"
-					nzLg="8"
-					nzXl="10"
-				>
-					<span
-						nz-icon
-						nzType="like"
-						class="like-icon"
-						nzTheme="outline"
-					></span>
-					<span nz-typography nzType="secondary">110</span>
-				</div>
-			</div>
 		</nz-card>
+
 		<ng-template #avatarTemplate>
 			<nz-avatar
+				nzSize="large"
 				nzSrc="https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png"
 			></nz-avatar>
 		</ng-template>
-		<ng-template #textTemplate>
-			<span nz-typography class="text-posted">
-				Lorem Ipsum is simply dummy text of the printing and typesetting
-				industry. Lorem Ipsum has been the industry's standard dummy
-				text ever since the 1500s, when an unknown printer took a galley
-				of type and scrambled it to make a type specimen book. It has
-				survived not only five centuries, but also the leap into
-				electronic typesetting, remaining essentially unchanged. It was
-				popularised in the 1960s with the release of Letraset sheets
-				containing
+		<ng-template #body>
+			<span nz-typography class="post-body">
+				{{ likedItem.body }}
 			</span>
 		</ng-template>
+
+		<ng-template #actionComment class="comment-box">
+			<div class="icon-with-count">
+				<span nz-icon nzType="comment" class="comment-icon"></span>
+				<span nz-typography nzType="secondary">{{
+					likedItem.comments ? likedItem.comments : 0
+				}}</span>
+			</div>
+		</ng-template>
+
+		<ng-template #actionLike class="like-box">
+			<div class="icon-with-count">
+				<span nz-icon nzType="like" class="like-icon"></span>
+				<span nz-typography nzType="secondary">{{
+					likedItem.likes ? likedItem.likes : 0
+				}}</span>
+			</div>
+		</ng-template>
+	</div>
+
+	<div class="pagination-container">
+		<div class="pagination-center">
+			<nz-pagination
+				[nzTotal]="500"
+				class="pagination"
+				[nzResponsive]="true"
+				[nzHideOnSinglePage]="false"
+			></nz-pagination>
+		</div>
 	</div>
 </div>
