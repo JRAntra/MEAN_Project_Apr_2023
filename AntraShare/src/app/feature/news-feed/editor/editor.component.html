@@ -1,0 +1,14 @@
+<div>
+    <p-fileUpload *ngIf="!content.image" mode="basic" chooseLabel="Add Image" [auto]="true" [customUpload]="true"
+        (uploadHandler)="onUploadClicked($event)" accept="image/*"></p-fileUpload>
+    <div class="editor__image-container" *ngIf="content.image">
+        <span class="editor__image-with-button">
+            <p-image [src]="content.image">
+            </p-image>
+            <button pButton type="button" icon="pi pi-times" class="editor__close-button p-button-danger"
+                (click)="removeImage()"></button>
+        </span>
+    </div>
+    <textarea class="editor__textinput" rows="5" cols="30" pInputTextarea [autoResize]="true"
+        [(ngModel)]="content.text"></textarea>
+</div>

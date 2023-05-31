@@ -6,6 +6,7 @@ import { CommentListComponent } from './news-feed/comment-list/comment-list.comp
 import { CommentComponent } from './news-feed/comment-list/comment/comment.component';
 import { NewCommentComponent } from './news-feed/comment-list/new-comment/new-comment.component';
 import { NewStoryComponent } from './news-feed/story/new-story/new-story.component';
+import { EditorComponent } from './editor/editor.component';
 
 import { FormsModule } from '@angular/forms';
 import { CardModule } from 'primeng/card';
@@ -16,6 +17,8 @@ import { EditorModule } from 'primeng/editor';
 import { DividerModule } from 'primeng/divider';
 import { DataViewModule } from 'primeng/dataview';
 import { ImageModule } from 'primeng/image';
+import { FileUploadModule } from 'primeng/fileupload';
+import { InputTextareaModule } from 'primeng/inputtextarea';
 import { StoryListComponent } from './news-feed/story-list/story-list.component';
 
 @NgModule({
@@ -27,6 +30,7 @@ import { StoryListComponent } from './news-feed/story-list/story-list.component'
     NewCommentComponent,
     NewStoryComponent,
     StoryListComponent,
+    EditorComponent,
   ],
   imports: [
     FormsModule,
@@ -39,6 +43,8 @@ import { StoryListComponent } from './news-feed/story-list/story-list.component'
     DividerModule,
     DataViewModule,
     ImageModule,
+    FileUploadModule,
+    InputTextareaModule,
   ],
   exports: [NewsFeedComponent],
 })
