@@ -5,11 +5,13 @@ import { FormsModule } from '@angular/forms';
 import { ProfileComponent } from './profile/profile.component';
 import { CoreModule } from '../core/core.module';
 import { ProfileRoutingModule } from './profile-routing.module';
+import { AutoHideDirective } from './auto-hide.directive';
 
 
 @NgModule({
   declarations: [
-    ProfileComponent
+    ProfileComponent,
+    AutoHideDirective
   ],
   imports: [
     CommonModule,
