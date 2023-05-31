@@ -1,4 +1,9 @@
 <p-card class="comment__container">
+    <ng-template *ngIf="comment.content?.image" pTemplate="header">
+        <div class="comment__image">
+            <p-image alt="Card" [preview]="true" [src]="comment.content!.image" />
+        </div>
+    </ng-template>
     <div class="comment__poster">
         <p-avatar label="P" styleClass="mr-2" shape="circle"></p-avatar>
         {{ comment.publisherName }}

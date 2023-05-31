@@ -2,6 +2,7 @@ import { Component, Input } from '@angular/core';
 import { MessageService } from 'primeng/api';
 import { NewsFeedService } from '../../../news-feed.service';
 import { AuthService } from 'src/app/auth.service';
+import { Content } from 'src/app/shared/types';
 
 @Component({
   selector: 'app-new-comment[storyId]',
@@ -9,7 +10,7 @@ import { AuthService } from 'src/app/auth.service';
   styleUrls: ['./new-comment.component.sass'],
 })
 export class NewCommentComponent {
-  text = '';
+  content: Content = {};
   buttonLoading = false;
   @Input() storyId!: string;
 
@@ -20,7 +21,7 @@ export class NewCommentComponent {
   ) {}
 
   postComment() {
-    if (!this.text) {
+    if (!this.content.text) {
       this.messageService.add({
         severity: 'error',
         summary: 'Error',
@@ -35,13 +36,11 @@ export class NewCommentComponent {
       .postComment(this.storyId, {
         publisherName: postUser?.name ?? 'guest',
         publishedTime: new Date().toISOString(),
-        content: {
-          text: this.text,
-        },
+        content: this.content,
       })
       .subscribe(() => {
         this.buttonLoading = false;
-        this.text = '';
+        this.content = {};
         this.messageService.add({
           severity: 'success',
           summary: 'Success',

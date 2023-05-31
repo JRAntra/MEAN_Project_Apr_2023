@@ -1,5 +1,5 @@
 <div>
-    <p-editor [(ngModel)]="text" [style]="{ 'min-height': '10em' }"></p-editor>
+    <app-editor [(content)]="content"></app-editor>
     <div class="new-story__post-button">
         <button pButton type="button" label="Post" (click)="postStory()" [loading]="buttonLoading"></button>
     </div>

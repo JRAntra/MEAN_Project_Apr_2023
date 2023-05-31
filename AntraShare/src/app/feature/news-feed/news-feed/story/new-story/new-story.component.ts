@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { MessageService } from 'primeng/api';
 import { NewsFeedService } from '../../../news-feed.service';
 import { AuthService } from 'src/app/auth.service';
+import { Content } from 'src/app/shared/types';
 
 @Component({
   selector: 'app-new-story',
@@ -9,7 +10,7 @@ import { AuthService } from 'src/app/auth.service';
   styleUrls: ['./new-story.component.sass'],
 })
 export class NewStoryComponent {
-  text = '';
+  content: Content = {};
   buttonLoading = false;
 
   constructor(
@@ -19,7 +20,7 @@ export class NewStoryComponent {
   ) {}
 
   postStory() {
-    if (!this.text) {
+    if (!this.content.text) {
       this.messageService.add({
         severity: 'error',
         summary: 'Error',
@@ -34,14 +35,12 @@ export class NewStoryComponent {
       .postStory({
         publisherName: postUser?.name ?? 'guest',
         publishedTime: new Date().toISOString(),
-        content: {
-          text: this.text.substring(3, this.text.length - 4),
-        },
+        content: this.content,
         comment: [],
       })
       .subscribe(() => {
         this.buttonLoading = false;
-        this.text = '';
+        this.content = {};
         this.messageService.add({
           severity: 'success',
           summary: 'Success',

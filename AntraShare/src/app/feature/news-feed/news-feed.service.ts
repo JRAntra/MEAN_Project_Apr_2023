@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Observable, catchError, throwError } from 'rxjs';
+import imageCompression from 'browser-image-compression';
 import { Story, Comment } from 'src/app/shared/types';
 import { environment } from 'src/environments/environment';
 
@@ -63,6 +64,23 @@ export class NewsFeedService {
             subscriber.next(data);
           }
         });
+    });
+  }
+
+  uploadImage(file: File): Observable<string> {
+    // mock upload image
+    // reduce image size and convert to base64 string
+    return new Observable<string>((subscriber) => {
+      imageCompression(file, { maxSizeMB: 0.005, maxWidthOrHeight: 800 }).then(
+        (compressedFile) => {
+          // convert file to base64 string
+          const reader = new FileReader();
+          reader.readAsDataURL(compressedFile);
+          reader.onload = () => {
+            subscriber.next(reader.result as string);
+          };
+        }
+      );
     });
   }
 
