@@ -13,10 +13,16 @@
 
   
     <div class="body">
-      <div class="rectangle">
-        <h3>News 1</h3>
-        <p>This is a placeholder for the news content.</p>
+      <div class="rectangle" *ngFor="let news of newsFeed">
+        <h3>{{ news.publisherName }}</h3>
+        <p>{{ news.content.text }}</p>
+        <div *ngFor="let comment of news.comment">
+          <p>{{ comment.publisherName }}: {{ comment.content.text }}</p>
+        </div>
       </div>
+      
+      
+      
   
       <div class="rectangle">
         <h3>News 2</h3>
