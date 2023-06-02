@@ -5,7 +5,7 @@ import { RouterModule, Routes } from '@angular/router';
 //import { RegisterComponent } from './register/register/register.component';
 import { AfterLoginComponent } from './after-login/after-login/after-login.component';
 import { ProfileComponent } from './profile/profile/profile.component';
-import {SettingPageComponent} from './setting/setting-page/setting-page.component';
+import {SettingPageComponent} from './setting/setting-page-component';
 
 import { AdminComponent } from './admin/components/admin/admin.component';
 import { AppComponent } from './app.component';
