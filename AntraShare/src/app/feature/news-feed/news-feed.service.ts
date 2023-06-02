@@ -1,70 +1,64 @@
-import { Injectable } from '@angular/core';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
-import { Observable, catchError, throwError } from 'rxjs';
+import { Injectable } from '@angular/core';
 import imageCompression from 'browser-image-compression';
-import { Story, Comment } from 'src/app/shared/types';
+import {
+  BehaviorSubject,
+  Observable,
+  catchError,
+  share,
+  throwError,
+} from 'rxjs';
+import { Comment, Story } from 'src/app/shared/types';
 import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root',
 })
 export class NewsFeedService {
-  newsFeedCache: Story[] = [];
+  private newsFeed$ = new BehaviorSubject<Story[]>([]);
   constructor(private http: HttpClient) {}
 
-  _fetchNewsFeed() {
-    return new Observable<Story[]>((subscriber) => {
-      this.http
-        .get<Story[]>(`${environment.apiUrl}/api/news`)
-        .pipe(catchError(this.handleError))
-        .subscribe((data: Story[]) => {
-          this.newsFeedCache = data;
-          this.newsFeedCache.reverse(); // Latest story first
-          subscriber.next(data);
-        });
-    });
+  fetchNewsFeed() {
+    this.http
+      .get<Story[]>(`${environment.apiUrl}/api/news`)
+      .pipe(catchError(this.handleError))
+      .subscribe((data) => this.newsFeed$.next(data));
   }
 
   getNewsFeed() {
-    if (this.newsFeedCache.length === 0) {
-      return this._fetchNewsFeed();
-    } else {
-      return new Observable<Story[]>((subscriber) => {
-        subscriber.next(this.newsFeedCache);
-      });
+    // fetch news feed if not fetched yet
+    if (!this.newsFeed$.getValue().length) {
+      this.fetchNewsFeed();
     }
+    return this.newsFeed$.asObservable();
   }
 
   postStory(story: Story) {
-    return new Observable<Story>((subscriber) => {
-      this.http
-        .post<Story>(`${environment.apiUrl}/api/news`, story)
-        .pipe(catchError(this.handleError))
-        .subscribe((data: Story) => {
-          this.newsFeedCache.unshift(data);
-          subscriber.next(data);
-        });
+    const multicast = this.http
+      .post<Story>(`${environment.apiUrl}/api/news`, story)
+      .pipe(catchError(this.handleError), share());
+    multicast.subscribe((data: Story) => {
+      this.newsFeed$.next([...this.newsFeed$.getValue(), data]);
     });
+    return multicast;
   }
 
   postComment(storyId: string, comment: Comment) {
-    return new Observable<Comment>((subscriber) => {
-      this.http
-        .patch<Comment>(
-          `${environment.apiUrl}/api/news/addComment/${storyId}`,
-          comment
-        )
-        .pipe(catchError(this.handleError))
-        .subscribe((data: Comment) => {
-          const story = this.newsFeedCache.find(
-            (story) => story._id === storyId
-          );
-          if (story) {
-            story.comment?.unshift(data);
-            subscriber.next(data);
-          }
-        });
+    const multicast = this.http
+      .patch<Comment>(
+        `${environment.apiUrl}/api/news/addComment/${storyId}`,
+        comment
+      )
+      .pipe(catchError(this.handleError), share());
+    multicast.subscribe((data: Comment) => {
+      const newsFeed = this.newsFeed$.getValue();
+      const story = newsFeed.find((story) => story._id === storyId);
+      if (story) {
+        story.comment?.push(data);
+        this.newsFeed$.next(newsFeed);
+      }
     });
+    return multicast;
   }
 
   uploadImage(file: File): Observable<string> {
@@ -78,6 +72,7 @@ export class NewsFeedService {
           reader.readAsDataURL(compressedFile);
           reader.onload = () => {
             subscriber.next(reader.result as string);
+            subscriber.complete();
           };
         }
       );

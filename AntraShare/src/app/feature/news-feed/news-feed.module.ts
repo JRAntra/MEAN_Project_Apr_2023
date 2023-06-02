@@ -6,6 +6,7 @@ import { CommentListComponent } from './news-feed/comment-list/comment-list.comp
 import { CommentComponent } from './news-feed/comment-list/comment/comment.component';
 import { NewCommentComponent } from './news-feed/comment-list/new-comment/new-comment.component';
 import { NewsFeedComponent } from './news-feed/news-feed.component';
+import { ReversedPipe } from './news-feed/reversed.pipe';
 import { StoryListComponent } from './news-feed/story-list/story-list.component';
 import { HeadPipe } from './news-feed/story/head.pipe';
 import { NewStoryComponent } from './news-feed/story/new-story/new-story.component';
@@ -20,6 +21,7 @@ import { FileUploadModule } from 'primeng/fileupload';
 import { ImageModule } from 'primeng/image';
 import { InplaceModule } from 'primeng/inplace';
 import { InputTextareaModule } from 'primeng/inputtextarea';
+import { SidebarModule } from 'primeng/sidebar';
 
 @NgModule({
   declarations: [
@@ -32,6 +34,7 @@ import { InputTextareaModule } from 'primeng/inputtextarea';
     StoryListComponent,
     EditorComponent,
     HeadPipe,
+    ReversedPipe,
   ],
   imports: [
     FormsModule,
@@ -45,6 +48,7 @@ import { InputTextareaModule } from 'primeng/inputtextarea';
     ImageModule,
     FileUploadModule,
     InputTextareaModule,
+    SidebarModule,
   ],
   exports: [NewsFeedComponent],
 })
