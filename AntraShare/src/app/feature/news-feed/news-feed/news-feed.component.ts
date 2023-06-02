@@ -10,6 +10,8 @@ import { catchError } from 'rxjs';
 })
 export class NewsFeedComponent implements OnInit {
   storyList: Story[];
+  likedListSidebarVisible = false;
+
   constructor(private newsFeedService: NewsFeedService) {
     this.storyList = [];
   }
@@ -26,5 +28,9 @@ export class NewsFeedComponent implements OnInit {
       .subscribe((data) => {
         this.storyList = data;
       });
+  }
+
+  toggleLikedList() {
+    this.likedListSidebarVisible = !this.likedListSidebarVisible;
   }
 }

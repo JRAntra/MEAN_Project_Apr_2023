@@ -20,6 +20,7 @@ import { FileUploadModule } from 'primeng/fileupload';
 import { ImageModule } from 'primeng/image';
 import { InplaceModule } from 'primeng/inplace';
 import { InputTextareaModule } from 'primeng/inputtextarea';
+import { SidebarModule } from 'primeng/sidebar';
 
 @NgModule({
   declarations: [
@@ -45,6 +46,7 @@ import { InputTextareaModule } from 'primeng/inputtextarea';
     ImageModule,
     FileUploadModule,
     InputTextareaModule,
+    SidebarModule,
   ],
   exports: [NewsFeedComponent],
 })
