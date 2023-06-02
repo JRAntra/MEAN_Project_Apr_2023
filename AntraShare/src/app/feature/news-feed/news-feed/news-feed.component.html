@@ -3,11 +3,15 @@
         <app-new-story></app-new-story>
     </div>
     <div class="news-feed__buttons-bar">
-        <p-button label="Liked List" class="news-feed__like-list-button" styleClass="p-button-link" (click)="toggleLikedList()"></p-button>
+        <p-button label="Liked List" class="news-feed__like-list-button" styleClass="p-button-link"
+            (click)="toggleLikedListSidebar()"></p-button>
     </div>
-    <p-sidebar [(visible)]="likedListSidebarVisible" position="right"
-        [style]="{'width':'100%','max-width':'45em'}">
-        <app-story-list [storyList]="storyList"></app-story-list>
+    <p-sidebar [(visible)]="likedListSidebarVisible" position="right" [style]="{'width':'100%','max-width':'45em'}">
+        <!-- <app-story-list *ngIf="storyList$ | async as storyList" [storyList]="storyList | reversed"></app-story-list> -->
     </p-sidebar>
-    <app-story-list [storyList]="storyList" class="news-feed__viewer"></app-story-list>
+    <app-story-list *ngIf="storyList$ | async as storyList; else loading" [storyList]="storyList | reversed"
+        class="news-feed__viewer"></app-story-list>
+    <ng-template #loading>
+        loading
+    </ng-template>
 </div>

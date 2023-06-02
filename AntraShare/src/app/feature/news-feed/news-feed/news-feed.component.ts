@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Story } from 'src/app/shared/types';
 import { NewsFeedService } from '../news-feed.service';
-import { catchError } from 'rxjs';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-news-feed',
@@ -9,28 +9,16 @@ import { catchError } from 'rxjs';
   styleUrls: ['./news-feed.component.sass'],
 })
 export class NewsFeedComponent implements OnInit {
-  storyList: Story[];
+  storyList$: Observable<Story[]> | null = null;
   likedListSidebarVisible = false;
 
-  constructor(private newsFeedService: NewsFeedService) {
-    this.storyList = [];
-  }
+  constructor(private newsFeedService: NewsFeedService) {}
 
   ngOnInit() {
-    this.newsFeedService
-      .getNewsFeed()
-      .pipe(
-        catchError((err) => {
-          alert(err);
-          return [];
-        })
-      )
-      .subscribe((data) => {
-        this.storyList = data;
-      });
+    this.storyList$ = this.newsFeedService.getNewsFeed();
   }
 
-  toggleLikedList() {
+  toggleLikedListSidebar() {
     this.likedListSidebarVisible = !this.likedListSidebarVisible;
   }
 }
