@@ -1,0 +1,11 @@
+import { Component } from "@angular/core"
+
+@Component({
+    selector: 'app-setting-page',
+    templateUrl: './setting-page-component.html',
+    styleUrls: ['./setting-page-component.scss'],
+})
+
+export class SettingPageComponent {
+    public str: string = 'hellooooooooooooooooooooooooooooooo';
+}
