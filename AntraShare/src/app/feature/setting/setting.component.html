@@ -1,38 +1,43 @@
 <div class="card">
-    <p-panel>
-        <ng-template pTemplate="header">
-            <div class="card flex flex-column gap-3 header--container">
-                <p-button (click)="op.toggle($event)" icon="pi pi-heart" label="Like List"></p-button>
-                <p-overlayPanel #op [style]="{'width': '50%'}" [showCloseIcon]="true">
-                    <ng-template pTemplate="content">
-                        <p-table [paginator]="true" [rows]="5" responsiveLayout="scroll">
-                            <ng-template pTemplate="header">
-                                <tr>
-                                    <th>Name</th>
-                                    <th>Image</th>
-                                    <th>Price </th>
-                                </tr>
-                            </ng-template>
-                            <ng-template pTemplate="body" let-rowData let-product>
-                                <tr [pSelectableRow]="rowData">
-                                    <td>{{product.name}}</td>
-                                    <td>{{product.price}}</td>
-                                </tr>
-                            </ng-template>
-                        </p-table>
-                    </ng-template>
-                </p-overlayPanel>
-            </div>
-        </ng-template>
-        <div class="body--container">
-            <div class="card--container">
-                <p-card>
-                    Seeting Panel
-                </p-card>
-            </div>
-            
-            <p-button label="Logout" class="logoutButton" [style]="{'width':'25%'}"></p-button>
-        </div>
-        
-    </p-panel>
+  <p-panel>
+    <ng-template pTemplate="header">
+      <div class="card flex flex-column gap-3 header--container">
+        <p-button
+          (click)="op.toggle($event)"
+          icon="pi pi-heart"
+          label="Like List"
+        ></p-button>
+        <p-overlayPanel #op [style]="{ width: '50%' }" [showCloseIcon]="true">
+          <ng-template pTemplate="content">
+            <p-table [paginator]="true" [rows]="5" responsiveLayout="scroll">
+              <ng-template pTemplate="header">
+                <tr>
+                  <th>Name</th>
+                  <th>Image</th>
+                  <th>Price</th>
+                </tr>
+              </ng-template>
+              <ng-template pTemplate="body" let-rowData let-product>
+                <tr [pSelectableRow]="rowData">
+                  <td>{{ product.name }}</td>
+                  <td>{{ product.price }}</td>
+                </tr>
+              </ng-template>
+            </p-table>
+          </ng-template>
+        </p-overlayPanel>
+      </div>
+    </ng-template>
+    <div class="body--container">
+      <div class="card--container">
+        <p-card> Seeting Panel </p-card>
+      </div>
+
+      <p-button
+        label="Logout"
+        class="logoutButton"
+        [style]="{ width: '25%' }"
+      ></p-button>
+    </div>
+  </p-panel>
 </div>

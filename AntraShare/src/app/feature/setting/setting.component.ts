@@ -5,6 +5,4 @@ import { Component } from '@angular/core';
   templateUrl: './setting.component.html',
   styleUrls: ['./setting.component.sass'],
 })
-export class SettingComponent {
-
-}
+export class SettingComponent {}

@@ -19,7 +19,7 @@ export class UserListComponent {
 
   virtualUserList: UserProfile[] = [];
 
-  generateUser(id:number): UserProfile {
+  generateUser(id: number): UserProfile {
     const user: UserProfile = {
       userName: id.toString(),
       userEmail: id + '@gmail.com',
@@ -33,7 +33,9 @@ export class UserListComponent {
   }
 
   ngOnInit() {
-    this.userList = Array.from({ length: 10000 }).map((_, i) => this.generateUser(i + 1));
+    this.userList = Array.from({ length: 10000 }).map((_, i) =>
+      this.generateUser(i + 1)
+    );
     this.virtualUserList = Array.from({ length: 10000 });
   }
 }

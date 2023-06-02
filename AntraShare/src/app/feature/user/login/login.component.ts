@@ -15,10 +15,12 @@ import { AlertComponent } from '../alert/alert.component';
   providers: [DialogService],
 })
 export class LoginComponent {
-  constructor(private accountService: AccountService,
-              private router:Router,
-              public dialogService: DialogService,
-              private authService: AuthService) { }
+  constructor(
+    private accountService: AccountService,
+    private router: Router,
+    public dialogService: DialogService,
+    private authService: AuthService
+  ) {}
 
   login_info: UserProfile = {
     userEmail: '',
@@ -33,8 +35,12 @@ export class LoginComponent {
 
   validateEmail() {
     // only perform an API call for a valid email address
-    if (this.login_info.userEmail !== '' &&
-    /^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/.test(this.login_info.userEmail!)) {
+    if (
+      this.login_info.userEmail !== '' &&
+      /^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/.test(
+        this.login_info.userEmail!
+      )
+    ) {
       return true;
     }
     return false;
@@ -60,7 +66,8 @@ export class LoginComponent {
     }, 2000);
 
     if (this.validateEmail() && this.agreement_checked) {
-      this.accountService.login(this.login_info)
+      this.accountService
+        .login(this.login_info)
         .pipe(first())
         .subscribe({
           next: (response) => {
@@ -70,7 +77,7 @@ export class LoginComponent {
               this.router.navigate(['news-feed']);
             }
           },
-          error: error => {
+          error: (error) => {
             this.error_message = error.error;
             this.showAlert();
           },

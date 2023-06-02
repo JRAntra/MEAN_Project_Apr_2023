@@ -1,32 +1,49 @@
 <p-card class="story__container">
-    <ng-template *ngIf="story.content?.image" pTemplate="header">
-        <div class="story__image">
-            <p-image alt="Card" [preview]="true" [src]="story.content!.image" />
-        </div>
-    </ng-template>
-    <div class="story__poster">
-        <p-avatar label="P" styleClass="mr-2" shape="circle"></p-avatar>
-        {{ story.publisherName }}
-        posted at
-        {{ story.publishedTime | date: 'short' }}
+  <ng-template *ngIf="story.content?.image" pTemplate="header">
+    <div class="story__image">
+      <p-image alt="Card" [preview]="true" [src]="story.content!.image" />
     </div>
-    <div class="story__content">
-        {{ story.content?.text ?? 'no content' }}
+  </ng-template>
+  <div class="story__poster">
+    <p-avatar label="P" styleClass="mr-2" shape="circle"></p-avatar>
+    {{ story.publisherName }}
+    posted at
+    {{ story.publishedTime | date : "short" }}
+  </div>
+  <div class="story__content">
+    {{ story.content?.text ?? "no content" }}
+  </div>
+  <div *ngIf="showComment" class="story__comment-list">
+    <app-comment-list
+      [commentList]="story.comment ?? []"
+      [storyId]="story._id!"
+    ></app-comment-list>
+  </div>
+  <ng-template pTemplate="footer">
+    <div class="story__footer">
+      <div class="story__action-group">
+        <p-button
+          [label]="showComment ? 'Hide Comments' : 'Comments'"
+          icon="pi pi-file"
+          (click)="toggleCommentPanel()"
+          styleClass="p-button-rounded p-button-text"
+        ></p-button>
+        <p-divider layout="vertical"></p-divider>
+        <p-button
+          *ngIf="!liked"
+          label="Like"
+          (click)="setLike()"
+          icon="pi pi-heart"
+          styleClass="p-button-rounded p-button-text"
+        ></p-button>
+        <p-button
+          *ngIf="liked"
+          label="Liked"
+          (click)="resetLike()"
+          icon="pi pi-heart-fill"
+          styleClass="p-button-rounded p-button-text story__like-button--liked"
+        ></p-button>
+      </div>
     </div>
-    <div *ngIf="showComment" class="story__comment-list">
-        <app-comment-list [commentList]="story.comment ?? []" [storyId]="story._id!"></app-comment-list>
-    </div>
-    <ng-template pTemplate="footer">
-        <div class="story__footer">
-            <div class="story__action-group">
-                <p-button [label]="showComment ? 'Hide Comments' : 'Comments'" icon="pi pi-file"
-                    (click)="toggleCommentPanel()" styleClass="p-button-rounded p-button-text"></p-button>
-                <p-divider layout="vertical"></p-divider>
-                <p-button *ngIf="!liked" label="Like" (click)="setLike()" icon="pi pi-heart"
-                    styleClass="p-button-rounded p-button-text"></p-button>
-                <p-button *ngIf="liked" label="Liked" (click)="resetLike()" icon="pi pi-heart-fill"
-                    styleClass="p-button-rounded p-button-text story__like-button--liked"></p-button>
-            </div>
-        </div>
-    </ng-template>
+  </ng-template>
 </p-card>

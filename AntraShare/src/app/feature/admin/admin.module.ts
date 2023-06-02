@@ -11,13 +11,8 @@ import { ButtonModule } from 'primeng/button';
 import { CardModule } from 'primeng/card';
 import { DividerModule } from 'primeng/divider';
 
-
 @NgModule({
-  declarations: [
-    AdminComponent,
-    UserListComponent,
-    UserDetailComponent,
-  ],
+  declarations: [AdminComponent, UserListComponent, UserDetailComponent],
   imports: [
     CommonModule,
     SplitterModule,
@@ -27,11 +22,6 @@ import { DividerModule } from 'primeng/divider';
     CardModule,
     DividerModule,
   ],
-  exports: [
-    AdminComponent,
-    UserListComponent,
-  ],
+  exports: [AdminComponent, UserListComponent],
 })
-
-export class AdminModule {
-}
+export class AdminModule {}

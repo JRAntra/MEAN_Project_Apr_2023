@@ -19,14 +19,15 @@ export class AdminComponent implements OnInit {
   selectedUser?: UserProfile;
 
   ngOnInit() {
-    this.adminService.getAllUser()
+    this.adminService
+      .getAllUser()
       .pipe(first())
       .subscribe({
         next: (response) => {
           this.userList = response;
           console.log(response);
         },
-        error: error => {
+        error: (error) => {
           console.log(error);
           alert(error);
         },

@@ -8,13 +8,16 @@ import { map } from 'rxjs/operators';
   providedIn: 'root',
 })
 export class AdminService {
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) {}
 
   getAllUser() {
-    return this.http.get<UserProfile[]>(`${environment.apiUrl}/api/users/getAllUsers`, { observe: 'response' })
+    return this.http
+      .get<UserProfile[]>(`${environment.apiUrl}/api/users/getAllUsers`, {
+        observe: 'response',
+      })
       .pipe(
         map((response) => {
-          return (<UserProfile[]>response.body);
+          return <UserProfile[]>response.body;
         })
       );
   }

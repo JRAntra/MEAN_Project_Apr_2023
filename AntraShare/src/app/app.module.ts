@@ -14,12 +14,8 @@ import { SettingModule } from './feature/setting/setting.module';
 import { UserModule } from './feature/user/user.module';
 import { AutoDisappearDirective } from './shared/auto-disappear.directive';
 
-
 @NgModule({
-  declarations: [
-    AppComponent,
-    AutoDisappearDirective,
-  ],
+  declarations: [AppComponent, AutoDisappearDirective],
   imports: [
     BrowserModule,
     AppRoutingModule,
@@ -36,4 +32,4 @@ import { AutoDisappearDirective } from './shared/auto-disappear.directive';
   providers: [httpInterceptorProviders],
   bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}

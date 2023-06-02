@@ -8,11 +8,8 @@ import { OverlayPanelModule } from 'primeng/overlaypanel';
 import { TableModule } from 'primeng/table';
 import { CardModule } from 'primeng/card';
 
-
 @NgModule({
-  declarations: [
-    SettingComponent,
-  ],
+  declarations: [SettingComponent],
   imports: [
     CommonModule,
     PanelModule,
@@ -21,8 +18,6 @@ import { CardModule } from 'primeng/card';
     TableModule,
     CardModule,
   ],
-  exports: [
-    SettingComponent,
-  ],
+  exports: [SettingComponent],
 })
-export class SettingModule { }
+export class SettingModule {}

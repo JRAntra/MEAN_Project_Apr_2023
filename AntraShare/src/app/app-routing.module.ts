@@ -7,7 +7,6 @@ import { NotFoundComponent } from './feature/not-found/not-found.component';
 import { LoginComponent } from './feature/user/login/login.component';
 import { RegisterComponent } from './feature/user/register/register.component';
 
-
 const routes: Routes = [
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegisterComponent },
@@ -22,4 +21,4 @@ const routes: Routes = [
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule],
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {}

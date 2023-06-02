@@ -1,16 +1,18 @@
 <div class="card panel--container">
-    <p-splitter [panelSizes]="[25, 75]" [style]="{'height':'100%'}">
-        <ng-template pTemplate>
-            <div class="userList--container">
-                <app-user-list [userList]="userList" [(selected)]="selectedUser"></app-user-list>
-            </div>
-            
-        </ng-template>
+  <p-splitter [panelSizes]="[25, 75]" [style]="{ height: '100%' }">
+    <ng-template pTemplate>
+      <div class="userList--container">
+        <app-user-list
+          [userList]="userList"
+          [(selected)]="selectedUser"
+        ></app-user-list>
+      </div>
+    </ng-template>
 
-        <ng-template pTemplate>
-            <div class="userDetail--container">
-                <app-user-detail [selectedUser]="selectedUser"></app-user-detail>
-            </div>
-        </ng-template>
-    </p-splitter>
+    <ng-template pTemplate>
+      <div class="userDetail--container">
+        <app-user-detail [selectedUser]="selectedUser"></app-user-detail>
+      </div>
+    </ng-template>
+  </p-splitter>
 </div>

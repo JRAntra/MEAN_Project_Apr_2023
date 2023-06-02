@@ -13,22 +13,22 @@ export class PasswordStatus {
 export type Genders = 'Male' | 'Female' | 'Other';
 
 export type UserProfile = {
-    bearerToken?: string,
-    name?: string,
-    userName?: string,
-    userEmail?: string,
-    password?: string,
-    userRole?: string,
-    age?: number,
-    gender?: string,
-    phone?: number,
+  bearerToken?: string;
+  name?: string;
+  userName?: string;
+  userEmail?: string;
+  password?: string;
+  userRole?: string;
+  age?: number;
+  gender?: string;
+  phone?: number;
 };
 
 export type Content = {
-  _id?: string,
-  image?: string,
-  video?: string,
-  text?: string,
+  _id?: string;
+  image?: string;
+  video?: string;
+  text?: string;
 };
 
 export type Comment = {

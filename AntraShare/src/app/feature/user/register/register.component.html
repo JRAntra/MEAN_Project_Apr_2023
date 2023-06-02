@@ -1,121 +1,151 @@
 <p-card>
-    <div class="form--container">
-        <div class="username--container">
-            <span class="p-float-label">
-                <input pInputText id="username" 
-                       [(ngModel)]="register_info.userName"
-                       (change)="validateUsername()"
-                       [pTooltip]="usernameTooltip()"
-                       tooltipPosition="bottom"
-                       tooltipEvent="focus"
-                       [escape]="false"/>
-                <label htmlFor="username" >Username</label>
-            </span>
-        </div>
-        
-    
-        <div class="email--container">
-            <span class="p-float-label">
-                <p-overlayPanel #emailOverlay>
-                    <div *ngIf="email.value !== '' && email.untouched && email.invalid">Please enter a valid email!</div>
-                </p-overlayPanel>
-                <input pInputText id="email" 
-                    [(ngModel)]="register_info.userEmail"
-                    [email] = "true"
-                    #email="ngModel" 
-                    [required] = "true" 
-                    [minlength]= "6"
-                    (change)="validateEmail()"
-                    [pTooltip]="emailTooltip()"
-                    tooltipPosition="bottom"
-                    tooltipEvent="focus"
-                    [escape]="false"
-                    />
-                <label htmlFor="email">Email</label>
-            </span>
-            
-        </div>
-        
-        <div class="password--container">
-            <span class="p-float-label">
-                <p-overlayPanel #overlayPassword appendTo="body">
-                    <div class="validatePassword--overlay--container">
-                        <ng-template #passwordRequirement>
-                            <div class="validatePassword--overlay">Password Requirements:</div>
-                        </ng-template>
-                        <ng-template #checkmark>
-                            <i class="pi pi-check-circle"></i>
-                        </ng-template>
-    
-                        <div *ngIf="register_info.password !== '' && passwordOK.valid === false; else passwordRequirement" class="validatePassword--overlay">
-                            Please Enter a valid passowrd
-                        </div>
-
-                        <div class="validatePassword--overlay">
-                            <i *ngIf="passwordOK.length === false; else checkmark" class="pi pi-times-circle"></i>
-                            <span class="passwordRequirement">6-15 characters long</span>
-                        </div>
-                        <div class="validatePassword--overlay">
-                            <i *ngIf="passwordOK.digit === false; else checkmark" class="pi pi-times-circle"></i>
-                            <span class="passwordRequirement">0-9</span>
-                        </div>
-                        
-                        <div class="validatePassword--overlay">
-                            <i *ngIf="passwordOK.uppercase === false; else checkmark" class="pi pi-times-circle"></i>
-                            <span class="passwordRequirement">A-Z</span>
-                        </div>
-    
-                        <div class="validatePassword--overlay">
-                            <i *ngIf="passwordOK.lowercase === false; else checkmark" class="pi pi-times-circle"></i>
-                            <span class="passwordRequirement">a-z</span>
-                        </div>
-                    </div>
-                </p-overlayPanel>
-                
-                <p-password id="password"
-                            [(ngModel)]="register_info.password" 
-                            [toggleMask]="true" 
-                            [feedback]="false"
-                            [minlength]="6" 
-                            [maxLength]="15" 
-                            [required]="true"
-                            (onFocus)="overlayPassword.toggle($event)"
-                            (onBlur)="overlayPassword.toggle($event)"
-                            [style]="{'width':'100%'}"
-                            [inputStyle]="{'width':'100%'}"
-                            (input)="validatePassword()">
-                </p-password>
-                <label for="password">Password</label>
-            </span>
-        </div>
-    
-        <div class="confirmPassword--container">
-            <span class="p-float-label confirmPassword--wrapper">
-                <p-overlayPanel #overlayConfrimPassword>
-                    <div *ngIf="register_info.password !== confirmedPassword.value">The password does not match!</div>
-                </p-overlayPanel>
-                <p-password id="confirmPassword"
-                            #confirmedPassword
-                            [(ngModel)]="confirmPassword" 
-                            [toggleMask]="true" 
-                            [feedback]="false"
-                            [minlength]="6" 
-                            [maxLength]="15" 
-                            [required]="true"
-                            (onFocus)="overlayConfrimPassword.show($event)"
-                            (onBlur)="overlayConfrimPassword.hide()"
-                            [style]="{'width':'100%'}"
-                            [inputStyle]="{'width':'100%'}"
-                            >
-                </p-password>
-                <label for="password">Confirm Password</label>
-            </span>
-        </div>
-
-        <p-button label="Submit" [loading]="submitLoading_icon" (click)="onSubmit()"></p-button>
-
+  <div class="form--container">
+    <div class="username--container">
+      <span class="p-float-label">
+        <input
+          pInputText
+          id="username"
+          [(ngModel)]="register_info.userName"
+          (change)="validateUsername()"
+          [pTooltip]="usernameTooltip()"
+          tooltipPosition="bottom"
+          tooltipEvent="focus"
+          [escape]="false"
+        />
+        <label htmlFor="username">Username</label>
+      </span>
     </div>
 
-    
-</p-card>
+    <div class="email--container">
+      <span class="p-float-label">
+        <p-overlayPanel #emailOverlay>
+          <div *ngIf="email.value !== '' && email.untouched && email.invalid">
+            Please enter a valid email!
+          </div>
+        </p-overlayPanel>
+        <input
+          pInputText
+          id="email"
+          [(ngModel)]="register_info.userEmail"
+          [email]="true"
+          #email="ngModel"
+          [required]="true"
+          [minlength]="6"
+          (change)="validateEmail()"
+          [pTooltip]="emailTooltip()"
+          tooltipPosition="bottom"
+          tooltipEvent="focus"
+          [escape]="false"
+        />
+        <label htmlFor="email">Email</label>
+      </span>
+    </div>
 
+    <div class="password--container">
+      <span class="p-float-label">
+        <p-overlayPanel #overlayPassword appendTo="body">
+          <div class="validatePassword--overlay--container">
+            <ng-template #passwordRequirement>
+              <div class="validatePassword--overlay">
+                Password Requirements:
+              </div>
+            </ng-template>
+            <ng-template #checkmark>
+              <i class="pi pi-check-circle"></i>
+            </ng-template>
+
+            <div
+              *ngIf="
+                register_info.password !== '' && passwordOK.valid === false;
+                else passwordRequirement
+              "
+              class="validatePassword--overlay"
+            >
+              Please Enter a valid passowrd
+            </div>
+
+            <div class="validatePassword--overlay">
+              <i
+                *ngIf="passwordOK.length === false; else checkmark"
+                class="pi pi-times-circle"
+              ></i>
+              <span class="passwordRequirement">6-15 characters long</span>
+            </div>
+            <div class="validatePassword--overlay">
+              <i
+                *ngIf="passwordOK.digit === false; else checkmark"
+                class="pi pi-times-circle"
+              ></i>
+              <span class="passwordRequirement">0-9</span>
+            </div>
+
+            <div class="validatePassword--overlay">
+              <i
+                *ngIf="passwordOK.uppercase === false; else checkmark"
+                class="pi pi-times-circle"
+              ></i>
+              <span class="passwordRequirement">A-Z</span>
+            </div>
+
+            <div class="validatePassword--overlay">
+              <i
+                *ngIf="passwordOK.lowercase === false; else checkmark"
+                class="pi pi-times-circle"
+              ></i>
+              <span class="passwordRequirement">a-z</span>
+            </div>
+          </div>
+        </p-overlayPanel>
+
+        <p-password
+          id="password"
+          [(ngModel)]="register_info.password"
+          [toggleMask]="true"
+          [feedback]="false"
+          [minlength]="6"
+          [maxLength]="15"
+          [required]="true"
+          (onFocus)="overlayPassword.toggle($event)"
+          (onBlur)="overlayPassword.toggle($event)"
+          [style]="{ width: '100%' }"
+          [inputStyle]="{ width: '100%' }"
+          (input)="validatePassword()"
+        >
+        </p-password>
+        <label for="password">Password</label>
+      </span>
+    </div>
+
+    <div class="confirmPassword--container">
+      <span class="p-float-label confirmPassword--wrapper">
+        <p-overlayPanel #overlayConfrimPassword>
+          <div *ngIf="register_info.password !== confirmedPassword.value">
+            The password does not match!
+          </div>
+        </p-overlayPanel>
+        <p-password
+          id="confirmPassword"
+          #confirmedPassword
+          [(ngModel)]="confirmPassword"
+          [toggleMask]="true"
+          [feedback]="false"
+          [minlength]="6"
+          [maxLength]="15"
+          [required]="true"
+          (onFocus)="overlayConfrimPassword.show($event)"
+          (onBlur)="overlayConfrimPassword.hide()"
+          [style]="{ width: '100%' }"
+          [inputStyle]="{ width: '100%' }"
+        >
+        </p-password>
+        <label for="password">Confirm Password</label>
+      </span>
+    </div>
+
+    <p-button
+      label="Submit"
+      [loading]="submitLoading_icon"
+      (click)="onSubmit()"
+    ></p-button>
+  </div>
+</p-card>

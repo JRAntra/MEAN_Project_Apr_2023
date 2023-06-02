@@ -25,7 +25,6 @@ import { DialogModule } from 'primeng/dialog';
 import { DynamicDialogModule } from 'primeng/dynamicdialog';
 import { AlertComponent } from './alert/alert.component';
 
-
 @NgModule({
   declarations: [
     LoginComponent,
@@ -53,10 +52,6 @@ import { AlertComponent } from './alert/alert.component';
     DialogModule,
     DynamicDialogModule,
   ],
-  exports: [
-    LoginComponent,
-    RegisterComponent,
-    ProfileComponent,
-  ],
+  exports: [LoginComponent, RegisterComponent, ProfileComponent],
 })
-export class UserModule { }
+export class UserModule {}

@@ -12,7 +12,7 @@ import { Router } from '@angular/router';
   styleUrls: ['./register.component.sass'],
 })
 export class RegisterComponent {
-  constructor(private accountService: AccountService, private router: Router) { }
+  constructor(private accountService: AccountService, private router: Router) {}
 
   register_info: UserProfile = {
     userName: '',
@@ -39,14 +39,16 @@ export class RegisterComponent {
   }
 
   checkExistUsername() {
-    this.accountService.checkExistUsername(this.register_info.userName!)
+    this.accountService
+      .checkExistUsername(this.register_info.userName!)
       .subscribe((response) => {
         this.usernameOK = !response;
       });
   }
 
   checkExistEmail() {
-    this.accountService.checkExistEmail(this.register_info.userEmail!)
+    this.accountService
+      .checkExistEmail(this.register_info.userEmail!)
       .subscribe((response) => {
         this.emailOK = !response;
       });
@@ -70,7 +72,11 @@ export class RegisterComponent {
     let tooltip = '<span>';
     if (this.register_info.userEmail === '') {
       tooltip += 'Please enter your email!';
-    } else if (!/^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/.test(this.register_info.userEmail!)) {
+    } else if (
+      !/^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/.test(
+        this.register_info.userEmail!
+      )
+    ) {
       tooltip += 'Please a valid email!';
     } else if (this.emailOK === false) {
       tooltip += 'Email exists, please use another email!';
@@ -91,14 +97,21 @@ export class RegisterComponent {
 
   validateEmail() {
     // only perform an API call for a valid email address
-    if (this.register_info.userEmail !== '' &&
-    /^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/.test(this.register_info.userEmail!)) {
+    if (
+      this.register_info.userEmail !== '' &&
+      /^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/.test(
+        this.register_info.userEmail!
+      )
+    ) {
       this.checkExistEmail();
     }
   }
 
   validatePassword() {
-    if (this.register_info.password!.length > 5 && this.register_info.password!.length < 16) {
+    if (
+      this.register_info.password!.length > 5 &&
+      this.register_info.password!.length < 16
+    ) {
       this.passwordOK.length = true;
     } else {
       this.passwordOK.length = false;
@@ -122,11 +135,13 @@ export class RegisterComponent {
       this.passwordOK.lowercase = false;
     }
 
-    if (this.passwordOK.digit &&
-        this.passwordOK.uppercase &&
-        this.passwordOK.lowercase &&
-        this.register_info.password!.length > 5 &&
-        this.register_info.password!.length < 16) {
+    if (
+      this.passwordOK.digit &&
+      this.passwordOK.uppercase &&
+      this.passwordOK.lowercase &&
+      this.register_info.password!.length > 5 &&
+      this.register_info.password!.length < 16
+    ) {
       this.passwordOK.valid = true;
     } else {
       this.passwordOK.valid = false;
@@ -140,11 +155,14 @@ export class RegisterComponent {
       this.submitLoading_icon = false;
     }, 2000);
 
-    if (this.usernameOK === true &&
-        this.emailOK === true &&
-        this.passwordOK.valid === true &&
-        this.confirmPassword === this.register_info.password) {
-      this.accountService.register(this.register_info)
+    if (
+      this.usernameOK === true &&
+      this.emailOK === true &&
+      this.passwordOK.valid === true &&
+      this.confirmPassword === this.register_info.password
+    ) {
+      this.accountService
+        .register(this.register_info)
         .pipe()
         .subscribe((response) => {
           console.log(response);
