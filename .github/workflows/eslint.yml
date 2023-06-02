@@ -13,11 +13,17 @@ jobs:
     - uses: actions/setup-node@v3
       with:
         node-version: 16
-    - name: ESLint
+    - uses: actions/cache@v2
+      with:
+        path: ~/.npm
+        key: TeamAxion-${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
+        restore-keys: |
+          TeamAxion-${{ runner.os }}-node-
+    - name: Lint with prettier
       run: |
         cd AntraShare
         npm install
-        npm run lint -- --fix
+        npm run lint
         if [ -z "$(git status --untracked-files=no --porcelain)" ]; then
           echo "already linted"
         else 
