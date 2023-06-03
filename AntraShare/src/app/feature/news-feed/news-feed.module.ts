@@ -22,6 +22,7 @@ import { ImageModule } from 'primeng/image';
 import { InplaceModule } from 'primeng/inplace';
 import { InputTextareaModule } from 'primeng/inputtextarea';
 import { SidebarModule } from 'primeng/sidebar';
+import { ToArrayPipe } from './news-feed/to-array.pipe';
 
 @NgModule({
   declarations: [
@@ -35,6 +36,7 @@ import { SidebarModule } from 'primeng/sidebar';
     EditorComponent,
     HeadPipe,
     ReversedPipe,
+    ToArrayPipe,
   ],
   imports: [
     FormsModule,

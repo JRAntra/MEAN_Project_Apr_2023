@@ -13,6 +13,7 @@ export class PasswordStatus {
 export type Genders = 'Male' | 'Female' | 'Other';
 
 export type UserProfile = {
+  _id?: string;
   bearerToken?: string;
   name?: string;
   userName?: string;
@@ -44,4 +45,5 @@ export type Story = {
   publishedTime?: ISOTime;
   content?: Content;
   comment?: Comment[];
+  likedIdList?: string[];
 };
