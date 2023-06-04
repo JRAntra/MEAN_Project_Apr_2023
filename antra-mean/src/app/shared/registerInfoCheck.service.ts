@@ -36,7 +36,8 @@ export class RegisterInfoCheckService {
 		return (
 			control: AbstractControl
 		): Observable<ValidationErrors | null> => {
-			const value = control.parent?.get('username')?.value
+			const value = control.parent?.get('userName')?.value
+			console.log('userName : ', value)
 			return this.userAccountService.checkExistUsername(value).pipe(
 				map((exists: boolean) => {
 					return exists ? { usernameExists: true } : null
@@ -53,7 +54,7 @@ export class RegisterInfoCheckService {
 		return (
 			control: AbstractControl
 		): Observable<ValidationErrors | null> => {
-			const value = control.parent?.get('email')?.value
+			const value = control.parent?.get('userEmail')?.value
 			return this.userAccountService.checkExistEmail(value).pipe(
 				map((exists: boolean) => {
 					return exists ? { emailExists: true } : null

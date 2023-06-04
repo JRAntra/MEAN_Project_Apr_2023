@@ -159,7 +159,9 @@
 					</ng-container>
 					<ng-container
 						*ngIf="
-							registerForm.get('email')!.hasError('emailExists')
+							registerForm
+								.get('userEmail')!
+								.hasError('emailExists')
 						"
 					>
 						Email already taken
