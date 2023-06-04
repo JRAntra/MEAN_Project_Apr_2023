@@ -1,0 +1,36 @@
+<p-sidebar class="news-feed__like-list" [(visible)]="sidebarVisible">
+  <h3>Liked list</h3>
+  <ul>
+    <li *ngFor="let post of likedPosts">{{ post }}</li>
+  </ul>
+
+  <!-- news feeds -->
+  <div class="news-feed" *ngFor="let likedItem of likedNews">
+    <p-card [header]="likedItem.userID" [subheader]="likedItem.date?.toString()" class="p-shadow-2">
+      <ng-template pTemplate="content">
+        <ng-template ngIf="likedItem.body" [ngIfElse]="noBodyTemplate">
+          <span class="post-body">{{ likedItem.body }}</span>
+        </ng-template>
+        <ng-template #noBodyTemplate>
+          <span class="post-body">No body content available</span>
+        </ng-template>
+      </ng-template>
+
+      <ng-template pTemplate="footer">
+        <div class="comment-box">
+          <div class="icon-with-count">
+            <i class="pi pi-comment comment-icon"></i>
+            <a class="count">{{ likedItem.comments ? likedItem.comments : 0 }}</a>
+          </div>
+        </div>
+        <div class="like-box">
+          <div class="icon-with-count">
+            <i class="pi pi-heart"></i>
+            <a class="count">{{ likedItem.likes ? likedItem.likes : 0 }}</a>
+          </div>
+        </div>
+      </ng-template>
+    </p-card>
+  </div>
+</p-sidebar>
+<p-button (click)="sidebarVisible = true" class="news-feed__like-list-button">Like List</p-button>

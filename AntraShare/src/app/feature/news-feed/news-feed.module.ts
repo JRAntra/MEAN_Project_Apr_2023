@@ -16,6 +16,9 @@ import { EditorModule } from 'primeng/editor';
 import { DividerModule } from 'primeng/divider';
 import { DataViewModule } from 'primeng/dataview';
 import { StoryListComponent } from './news-feed/story-list/story-list.component';
+import { LikeListComponent } from './news-feed/like-list/like-list.component';
+import { DatePipe } from '@angular/common';
+import { SidebarModule } from 'primeng/sidebar';
 
 @NgModule({
   declarations: [
@@ -26,6 +29,7 @@ import { StoryListComponent } from './news-feed/story-list/story-list.component'
     NewCommentComponent,
     NewStoryComponent,
     StoryListComponent,
+    LikeListComponent,
   ],
   imports: [
     FormsModule,
@@ -37,7 +41,10 @@ import { StoryListComponent } from './news-feed/story-list/story-list.component'
     EditorModule,
     DividerModule,
     DataViewModule,
+    SidebarModule,
   ],
   exports: [NewsFeedComponent],
+  providers: [DatePipe],
+
 })
 export class NewsFeedModule {}

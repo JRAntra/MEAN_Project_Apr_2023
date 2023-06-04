@@ -9,9 +9,14 @@ import { catchError } from 'rxjs';
   styleUrls: ['./news-feed.component.sass'],
 })
 export class NewsFeedComponent implements OnInit {
+  showLikeList = false;
   storyList: Story[];
   constructor(private newsFeedService: NewsFeedService) {
     this.storyList = [];
+  }
+
+  toggleLikeList(): void {
+    this.showLikeList = !this.showLikeList;
   }
 
   ngOnInit() {
