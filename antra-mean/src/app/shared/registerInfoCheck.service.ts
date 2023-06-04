@@ -1,4 +1,9 @@
 import { Injectable } from '@angular/core'
+import { AbstractControl } from '@angular/forms'
+import { Observable, of } from 'rxjs'
+import { AsyncValidatorFn, ValidationErrors } from '@angular/forms'
+import { UserAccountService } from './userAccountService'
+import { catchError, map } from 'rxjs/operators'
 @Injectable({
 	providedIn: 'root'
 })
@@ -10,46 +15,53 @@ export class RegisterInfoCheckService {
 	ageRegex = /^([1-9]|[1-9][0-9]|[1-9][0-9][0-9])$/
 	phoneRegex = /^\d{10}$/
 
-	constructor() {}
-	isValidEmail(email: string | null): boolean {
-		if (email === null) {
-			return false // or handle the null case according to your logic
+	constructor(private userAccountService: UserAccountService) {}
+
+	matchPasswordValidator(
+		control: AbstractControl
+	): { [key: string]: boolean } | null {
+		const password = control.parent?.get('password')?.value
+		const confirmPassword = control.parent?.get('confirmPassword')?.value
+		console.log('password : ', password)
+		console.log('confirmPassword : ', confirmPassword)
+		if (password && confirmPassword && password !== confirmPassword) {
+			return { mismatch: true }
 		}
-		return this.emailRegex.test(email)
+
+		return null
 	}
 
-	isValidPassword(password: string | null): boolean {
-		if (password === null) {
-			return false // or handle the null case according to your logic
+	// Async validator for username field
+	usernameValidator(): AsyncValidatorFn {
+		return (
+			control: AbstractControl
+		): Observable<ValidationErrors | null> => {
+			const value = control.parent?.get('username')?.value
+			return this.userAccountService.checkExistUsername(value).pipe(
+				map((exists: boolean) => {
+					return exists ? { usernameExists: true } : null
+				}),
+				catchError(() => {
+					return of(null)
+				})
+			)
 		}
-		return this.passwordRegex.test(password)
 	}
 
-	isValidName(name: string | null): boolean {
-		if (name === null) {
-			return false // or handle the null case according to your logic
+	// Async validator for email field
+	emailValidator(): AsyncValidatorFn {
+		return (
+			control: AbstractControl
+		): Observable<ValidationErrors | null> => {
+			const value = control.parent?.get('email')?.value
+			return this.userAccountService.checkExistEmail(value).pipe(
+				map((exists: boolean) => {
+					return exists ? { emailExists: true } : null
+				}),
+				catchError(() => {
+					return of(null)
+				})
+			)
 		}
-		return this.nameRegex.test(name)
-	}
-
-	isValidGender(gender: string | null): boolean {
-		if (gender === null) {
-			return false // or handle the null case according to your logic
-		}
-		return this.genderRegex.test(gender)
-	}
-
-	isValidAge(age: number | null): boolean {
-		if (age === null) {
-			return false // or handle the null case according to your logic
-		}
-		return this.ageRegex.test(age.toString())
-	}
-
-	isValidPhone(phone: string | null): boolean {
-		if (phone === null) {
-			return false // or handle the null case according to your logic
-		}
-		return this.phoneRegex.test(phone)
 	}
 }

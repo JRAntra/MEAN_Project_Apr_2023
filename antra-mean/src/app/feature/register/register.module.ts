@@ -22,7 +22,8 @@ import { NzTypographyModule } from 'ng-zorro-antd/typography'
 		NzSelectModule,
 		NzIconModule,
 		FormsModule,
-		NzTypographyModule
+		NzTypographyModule,
+		ReactiveFormsModule
 	],
 	declarations: [RegisterComponent],
 	exports: [RegisterComponent]

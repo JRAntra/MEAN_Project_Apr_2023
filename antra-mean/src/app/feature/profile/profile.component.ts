@@ -1,7 +1,7 @@
 import { Component, ViewChild, ElementRef, OnInit } from '@angular/core'
 import { UserInfo } from 'src/app/shared/userInfo.model'
 //import service in the component
-import { UserInfoService } from 'src/app/shared/userInfoSerivce.service'
+import { UserAccountService } from 'src/app/shared/userAccountService'
 @Component({
 	selector: 'app-profile',
 	templateUrl: './profile.component.html',
@@ -10,15 +10,15 @@ import { UserInfoService } from 'src/app/shared/userInfoSerivce.service'
 export class ProfileComponent implements OnInit {
 	user: UserInfo = {}
 	userFromDB: any
-	constructor(private userInfoService: UserInfoService) {}
+	constructor(private userAccountService: UserAccountService) {}
 
 	ngOnInit(): void {
-		this.user = this.userInfoService.getUserInfo()
+		this.user = this.userAccountService.getUserInfo()
 		console.log(
 			'🚀 ~ file: profile.component.ts:27 ~ ProfileComponent ~ ngOnInit ~ user:',
 			this.user
 		)
-		this.userInfoService.getUserInfoFromDB().subscribe((data) => {
+		this.userAccountService.getUserInfoFromDB().subscribe((data) => {
 			this.userFromDB = data.users.map((user: any) => {
 				return user.firstName
 			}) // Update this line to get the user from the database

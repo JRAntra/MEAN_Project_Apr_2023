@@ -1,5 +1,5 @@
 <div class="container">
-	<form>
+	<form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
 		<div class="form-group">
 			<label class="label-name">
 				<span class="required">*</span>User Name:
@@ -8,28 +8,43 @@
 				nz-input
 				type="text"
 				class="form-control"
-				name="username"
-				[(ngModel)]="username"
-				(keyup)="checkFormCompleted()"
+				formControlName="userName"
 				[nzStatus]="
-					!registerInfoCheckService.isValidName(username) &&
-					name.touched
+					registerForm.get('userName')!.invalid &&
+					registerForm.get('userName')!.touched
 						? 'error'
 						: ''
 				"
 				required
-				#name="ngModel"
 			/>
 			<ng-container
 				*ngIf="
-					!registerInfoCheckService.isValidName(username) &&
-					name.touched
+					registerForm.get('userName')!.invalid &&
+					registerForm.get('userName')!.touched
 				"
 			>
-				<small nz-typography nzType="danger" class="error-message"
-					>Please enter a valid name (letters and spaces only)</small
-				></ng-container
-			>
+				<small nz-typography nzType="danger" class="error-message">
+					<ng-container
+						*ngIf="
+							registerForm.get('userName')!.hasError('pattern') &&
+							!registerForm
+								.get('userName')!
+								.hasError('usernameExists')
+						"
+					>
+						Please enter a valid name (letters and spaces only)
+					</ng-container>
+					<ng-container
+						*ngIf="
+							registerForm
+								.get('userName')!
+								.hasError('usernameExists')
+						"
+					>
+						Username already taken
+					</ng-container>
+				</small>
+			</ng-container>
 		</div>
 		<div class="form-group">
 			<label class="label-name">
@@ -41,13 +56,10 @@
 					nz-input
 					class="password-input"
 					type="password"
-					name="password"
-					[(ngModel)]="password"
-					#passwordInput="ngModel"
-					(keyup)="checkFormCompleted()"
+					formControlName="password"
 					[nzStatus]="
-						!registerInfoCheckService.isValidPassword(password) &&
-						passwordInput.touched
+						registerForm.get('password')!.invalid &&
+						registerForm.get('password')!.touched
 							? 'error'
 							: ''
 					"
@@ -61,8 +73,8 @@
 				></span>
 				<ng-container
 					*ngIf="
-						!registerInfoCheckService.isValidPassword(password) &&
-						passwordInput.touched
+						registerForm.get('password')!.invalid &&
+						registerForm.get('password')!.touched
 					"
 				>
 					<small nz-typography nzType="danger" class="error-message"
@@ -81,17 +93,14 @@
 					[type]="passwordVisible ? 'text' : 'password'"
 					nz-input
 					type="password"
-					name="confirm-password"
 					class="password-input"
-					#confirmedPasswordInput="ngModel"
-					(keyup)="checkFormCompleted()"
+					formControlName="confirmPassword"
 					[nzStatus]="
-						password !== confirmPassword &&
-						confirmedPasswordInput.touched
+						registerForm.get('confirmPassword')!.invalid &&
+						registerForm.get('confirmPassword')!.touched
 							? 'error'
 							: ''
 					"
-					[(ngModel)]="confirmPassword"
 					required
 				/>
 				<span
@@ -102,8 +111,8 @@
 				></span>
 				<ng-container
 					*ngIf="
-						password !== confirmPassword &&
-						confirmedPasswordInput.touched
+						registerForm.get('confirmPassword')!.invalid &&
+						registerForm.get('confirmPassword')!.touched
 					"
 				>
 					<small nz-typography nzType="danger" class="error-message"
@@ -120,13 +129,10 @@
 				nz-input
 				type="email"
 				class="form-control"
-				name="email"
-				#emailInput="ngModel"
-				[(ngModel)]="email"
-				(keyup)="checkFormCompleted()"
+				formControlName="userEmail"
 				[nzStatus]="
-					!registerInfoCheckService.isValidEmail(email) &&
-					emailInput.touched
+					registerForm.get('userEmail')!.invalid &&
+					registerForm.get('userEmail')!.touched
 						? 'error'
 						: ''
 				"
@@ -134,15 +140,32 @@
 			/>
 			<ng-container
 				*ngIf="
-					!registerInfoCheckService.isValidEmail(email) &&
-					emailInput.touched
+					registerForm.get('userEmail')!.invalid &&
+					registerForm.get('userEmail')!.touched
 				"
 			>
-				<small nz-typography nzType="danger" class="error-message"
-					>Please enter a valid email address (e.g.,
-					example@example.com)</small
-				></ng-container
-			>
+				<small nz-typography nzType="danger" class="error-message">
+					<ng-container
+						*ngIf="
+							registerForm
+								.get('userEmail')!
+								.hasError('pattern') &&
+							!registerForm
+								.get('userEmail')!
+								.hasError('emailExists')
+						"
+					>
+						Please enter a valid name (letters and spaces only)
+					</ng-container>
+					<ng-container
+						*ngIf="
+							registerForm.get('email')!.hasError('emailExists')
+						"
+					>
+						Email already taken
+					</ng-container>
+				</small>
+			</ng-container>
 		</div>
 		<div class="form-group">
 			<label class="label-name">
@@ -152,13 +175,10 @@
 				nz-input
 				type="text"
 				class="form-control"
-				name="phoneNumber"
-				#phoneNumberInput="ngModel"
-				(keyup)="checkFormCompleted()"
-				[(ngModel)]="phoneNumber"
+				formControlName="phoneNumber"
 				[nzStatus]="
-					!registerInfoCheckService.isValidPhone(phoneNumber) &&
-					phoneNumberInput.touched
+					registerForm.get('phoneNumber')!.invalid &&
+					registerForm.get('phoneNumber')!.touched
 						? 'error'
 						: ''
 				"
@@ -166,8 +186,8 @@
 			/>
 			<ng-container
 				*ngIf="
-					!registerInfoCheckService.isValidPhone(phoneNumber) &&
-					phoneNumberInput.touched
+					registerForm.get('phoneNumber')!.invalid &&
+					registerForm.get('phoneNumber')!.touched
 				"
 			>
 				<small nz-typography nzType="danger" class="error-message"
@@ -182,13 +202,10 @@
 			</label>
 			<nz-select
 				class="gender-select"
-				#genderInput="ngModel"
-				name="Gender"
-				(keyup)="checkFormCompleted()"
-				[(ngModel)]="gender"
+				formControlName="gender"
 				[nzStatus]="
-					!registerInfoCheckService.isValidGender(gender) &&
-					genderInput.touched
+					registerForm.get('gender')!.invalid &&
+					registerForm.get('gender')!.touched
 						? 'error'
 						: ''
 				"
@@ -199,8 +216,8 @@
 			</nz-select>
 			<ng-container
 				*ngIf="
-					!registerInfoCheckService.isValidGender(gender) &&
-					genderInput.touched
+					registerForm.get('gender')!.invalid &&
+					registerForm.get('gender')!.touched
 				"
 			>
 				<small nz-typography nzType="danger" class="error-message"
@@ -216,13 +233,10 @@
 				nz-input
 				type="number"
 				class="form-control"
-				name="age"
-				[(ngModel)]="age"
-				#ageInput="ngModel"
-				(keyup)="checkFormCompleted()"
+				formControlName="age"
 				[nzStatus]="
-					!registerInfoCheckService.isValidAge(age) &&
-					ageInput.touched
+					registerForm.get('age')!.invalid &&
+					registerForm.get('age')!.touched
 						? 'error'
 						: ''
 				"
@@ -230,8 +244,8 @@
 			/>
 			<ng-container
 				*ngIf="
-					!registerInfoCheckService.isValidAge(age) &&
-					ageInput.touched
+					registerForm.get('age')!.invalid &&
+					registerForm.get('age')!.touched
 				"
 			>
 				<small nz-typography nzType="danger" class="error-message"
@@ -246,10 +260,7 @@
 				<label
 					nz-checkbox
 					class="agree-checkbox"
-					name="agree"
-					#checkBoxInput="ngModel"
-					[(ngModel)]="checked"
-					(ngModelChange)="checkFormCompleted()"
+					formControlName="agreed"
 				></label>
 				<label>
 					<span>
@@ -262,10 +273,9 @@
 		<div class="form-group">
 			<div class="spacer"></div>
 			<button
-				[disabled]="formCompleted === false"
+				[disabled]="registerForm.status === 'INVALID'"
 				nz-button
 				nzType="primary"
-				(click)="submit()"
 			>
 				Register
 			</button>
