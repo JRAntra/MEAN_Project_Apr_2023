@@ -9,13 +9,15 @@ import { Observable } from 'rxjs';
   styleUrls: ['./news-feed.component.sass'],
 })
 export class NewsFeedComponent implements OnInit {
-  storyList$: Observable<Story[]> | null = null;
+  storyList$?: Observable<Story[]>;
+  likedList$?: Observable<{ [id: string]: Story }>;
   likedListSidebarVisible = false;
 
   constructor(private newsFeedService: NewsFeedService) {}
 
   ngOnInit() {
     this.storyList$ = this.newsFeedService.getNewsFeed();
+    this.likedList$ = this.newsFeedService.getLikedList();
   }
 
   toggleLikedListSidebar() {

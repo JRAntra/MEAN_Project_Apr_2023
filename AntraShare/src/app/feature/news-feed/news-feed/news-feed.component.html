@@ -15,7 +15,10 @@
     position="right"
     [style]="{ width: '100%', 'max-width': '45em' }"
   >
-    <!-- <app-story-list *ngIf="storyList$ | async as storyList" [storyList]="storyList | reversed"></app-story-list> -->
+    <app-story-list
+      *ngIf="likedList$ | async as likedList"
+      [storyList]="likedList | toArray | reversed"
+    ></app-story-list>
   </p-sidebar>
   <app-story-list
     *ngIf="storyList$ | async as storyList; else loading"

@@ -5,6 +5,7 @@ import {
   BehaviorSubject,
   Observable,
   catchError,
+  of,
   share,
   throwError,
 } from 'rxjs';
@@ -16,7 +17,15 @@ import { environment } from 'src/environments/environment';
 })
 export class NewsFeedService {
   private newsFeed$ = new BehaviorSubject<Story[]>([]);
-  constructor(private http: HttpClient) {}
+  private likedList$ = new BehaviorSubject<{ [id: string]: Story }>({});
+
+  constructor(private http: HttpClient) {
+    const storage = localStorage.getItem('AntraShareLikedList');
+    if (storage) {
+      const storagesLikedList: { [id: string]: Story } = JSON.parse(storage);
+      this.likedList$.next(storagesLikedList);
+    }
+  }
 
   fetchNewsFeed() {
     this.http
@@ -59,6 +68,30 @@ export class NewsFeedService {
       }
     });
     return multicast;
+  }
+
+  getLikedList() {
+    return this.likedList$.asObservable();
+  }
+
+  isLiked(storyId: string) {
+    return this.likedList$.getValue()[storyId] !== undefined;
+  }
+
+  setLike(story: Story) {
+    const likedList = this.likedList$.getValue();
+    likedList[story._id!] = story;
+    this.likedList$.next(likedList);
+    localStorage.setItem('AntraShareLikedList', JSON.stringify(likedList));
+    return of(null);
+  }
+
+  removeLike(storyId: string) {
+    const likedList = this.likedList$.getValue();
+    delete likedList[storyId];
+    this.likedList$.next(likedList);
+    localStorage.setItem('AntraShareLikedList', JSON.stringify(likedList));
+    return of(null);
   }
 
   uploadImage(file: File): Observable<string> {
