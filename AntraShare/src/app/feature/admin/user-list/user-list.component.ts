@@ -15,27 +15,9 @@ export class UserListComponent {
     this.selectedChange.emit(selectedUser);
   }
 
-  @Input() userList!: UserProfile[];
+  @Input() userList: UserProfile[] = [];
 
   virtualUserList: UserProfile[] = [];
 
-  generateUser(id: number): UserProfile {
-    const user: UserProfile = {
-      userName: id.toString(),
-      userEmail: id + '@gmail.com',
-      name: 'John Doe',
-      gender: 'Male',
-      age: 23,
-      userRole: 'user',
-    };
-
-    return user;
-  }
-
-  ngOnInit() {
-    this.userList = Array.from({ length: 10000 }).map((_, i) =>
-      this.generateUser(i + 1)
-    );
-    this.virtualUserList = Array.from({ length: 10000 });
-  }
+  ngOnInit() {}
 }

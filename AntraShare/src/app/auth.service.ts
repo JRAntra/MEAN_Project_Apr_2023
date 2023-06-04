@@ -1,11 +1,11 @@
 import { Injectable } from '@angular/core';
-import { UserProfile } from './shared/types';
+import { UserProfileWithToken } from './shared/types';
 
 @Injectable({
   providedIn: 'root',
 })
 export class AuthService {
-  userProfile: UserProfile | null = null;
+  userProfile: UserProfileWithToken | null = null;
 
   constructor() {
     const storage = localStorage.getItem('userProfile');
@@ -14,7 +14,7 @@ export class AuthService {
     }
   }
 
-  setUserProfile(userProfile: UserProfile) {
+  setUserProfile(userProfile: UserProfileWithToken) {
     this.userProfile = userProfile;
     localStorage.setItem('userProfile', JSON.stringify(userProfile));
   }

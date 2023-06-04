@@ -1,28 +1,24 @@
-/** unix timestamp */
-export type Time = number;
-export type ISOTime = string;
+type ISOTime = string;
+type Genders = string;
 
-export class PasswordStatus {
-  valid = false;
-  length = false;
-  digit = false;
-  uppercase = false;
-  lowercase = false;
-}
-
-export type Genders = 'Male' | 'Female' | 'Other';
-
-export type UserProfile = {
-  bearerToken?: string;
+export interface UserProfile {
+  _id: string;
   name?: string;
-  userName?: string;
-  userEmail?: string;
-  password?: string;
+  userName: string;
+  userEmail: string;
   userRole?: string;
   age?: number;
-  gender?: string;
+  gender?: Genders;
   phone?: number;
-};
+}
+
+export interface UserProfileWithPassword extends UserProfile {
+  password: string;
+}
+
+export interface UserProfileWithToken extends UserProfile {
+  bearerToken: string;
+}
 
 export type Content = {
   _id?: string;

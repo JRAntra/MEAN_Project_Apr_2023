@@ -1,15 +1,18 @@
-/* eslint-disable @typescript-eslint/no-non-null-assertion */
+import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Router } from '@angular/router';
-import { HttpClient } from '@angular/common/http';
-import { UserProfile } from 'src/app/shared/types';
+import { enc, HmacSHA256 } from 'crypto-js';
+import {
+  UserProfile,
+  UserProfileWithPassword,
+  UserProfileWithToken,
+} from 'src/app/shared/types';
 import { environment } from 'src/environments/environment';
-
 @Injectable({
   providedIn: 'root',
 })
 export class AccountService {
-  constructor(private http: HttpClient, private router: Router) {}
+  salt = 'salt-placeholder-antrashare'; // It should be fetched from server, and should be different for each user
+  constructor(private http: HttpClient) {}
 
   checkExistEmail(email: string) {
     return this.http.get<boolean>(
@@ -23,28 +26,23 @@ export class AccountService {
     );
   }
 
-  register(user: UserProfile) {
-    const body = {
-      userName: user.userName,
-      userEmail: user.userEmail,
-      password: user.password,
-    };
+  register(user: UserProfileWithPassword) {
+    const mac = enc.Base64.stringify(HmacSHA256(user.password, this.salt));
     return this.http.post<UserProfile>(
       `${environment.apiUrl}/api/register/createNewAccount`,
-      body,
+      { ...user, password: mac } as UserProfileWithPassword,
       { observe: 'response' }
     );
   }
 
-  login(user: UserProfile) {
-    const body = {
-      userEmail: user.userEmail,
-      password: user.password,
-    };
-    return this.http.post<UserProfile>(
+  login(loginInfo: { userEmail: string; password: string }) {
+    const mac = enc.Base64.stringify(HmacSHA256(loginInfo.password, this.salt));
+    return this.http.post<UserProfileWithToken>(
       `${environment.apiUrl}/api/login/`,
-      body,
-      { observe: 'response' }
+      {
+        userEmail: loginInfo.userEmail,
+        password: mac,
+      }
     );
   }
 }

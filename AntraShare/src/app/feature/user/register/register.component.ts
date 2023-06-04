@@ -1,175 +1,169 @@
-/* eslint-disable @typescript-eslint/no-non-null-assertion */
-// import { first } from 'rxjs/operators';
-
-import { AccountService } from './../account.service';
-import { Component } from '@angular/core';
-import { PasswordStatus, UserProfile } from '../../../shared/types';
+import { Component, OnDestroy, OnInit } from '@angular/core';
+import {
+  AbstractControl,
+  AbstractControlOptions,
+  AsyncValidatorFn,
+  FormBuilder,
+  FormControl,
+  FormControlOptions,
+  FormGroup,
+  ValidationErrors,
+  ValidatorFn,
+  Validators,
+} from '@angular/forms';
 import { Router } from '@angular/router';
+import { MessageService } from 'primeng/api';
+import {
+  BehaviorSubject,
+  Observable,
+  Subject,
+  Subscription,
+  debounceTime,
+  distinctUntilChanged,
+  first,
+  map,
+  of,
+  share,
+  switchMap,
+} from 'rxjs';
+import { AuthService } from 'src/app/auth.service';
+import {
+  UserProfile,
+  UserProfileWithPassword,
+  UserProfileWithToken,
+} from 'src/app/shared/types';
+import { AccountService } from './../account.service';
+
+type RegisterForm = FormGroup<{
+  userName: FormControl<string>;
+  userEmail: FormControl<string>;
+  password: FormControl<string>;
+  confirmPassword: FormControl<string>;
+}>;
 
 @Component({
   selector: 'app-register',
   templateUrl: './register.component.html',
   styleUrls: ['./register.component.sass'],
 })
-export class RegisterComponent {
-  constructor(private accountService: AccountService, private router: Router) {}
-
-  register_info: UserProfile = {
-    userName: '',
-    userEmail: '',
-    password: '',
-  };
-
-  confirmPassword = '';
-
-  emailOK = false;
-  usernameOK = false;
-  passwordOK = new PasswordStatus();
-
-  submitLoading_icon = false;
-  timeout?: ReturnType<typeof setTimeout>;
-
-  onKeySearch(event: KeyboardEvent) {
-    clearTimeout(this.timeout);
-    this.timeout = setTimeout(() => {
-      if (event.key !== 'Enter') {
-        this.checkExistUsername();
-      }
-    }, 500);
-  }
-
-  checkExistUsername() {
-    this.accountService
-      .checkExistUsername(this.register_info.userName!)
-      .subscribe((response) => {
-        this.usernameOK = !response;
-      });
-  }
-
-  checkExistEmail() {
-    this.accountService
-      .checkExistEmail(this.register_info.userEmail!)
-      .subscribe((response) => {
-        this.emailOK = !response;
-      });
-  }
-
-  usernameTooltip() {
-    let tooltip = '<span>';
-    if (this.register_info.userName === '') {
-      tooltip += 'Please enter your username!';
-    } else if (this.usernameOK === false) {
-      tooltip += 'Username exists, please use another email!';
-    } else if (this.usernameOK === true) {
-      tooltip += 'Username OK!';
-    } else {
-      return '';
+export class RegisterComponent implements OnDestroy {
+  subscription = new Subscription();
+  registerForm: RegisterForm = this.fb.nonNullable.group(
+    {
+      userName: [
+        '',
+        {
+          validators: [Validators.required],
+          asyncValidators: [this.UsernameAvailableValidator()],
+        },
+      ],
+      userEmail: [
+        '',
+        {
+          validators: [Validators.required, Validators.email],
+        },
+      ],
+      password: [
+        '',
+        {
+          validators: [Validators.required, Validators.minLength(6)],
+        },
+      ],
+      confirmPassword: [
+        '',
+        {
+          validators: [Validators.required],
+        },
+      ],
+    },
+    {
+      validators: [this.confirmPasswordMatchValidator as ValidatorFn],
     }
-    return tooltip + '</span>';
+  );
+  submitButtonLoading = false;
+
+  constructor(
+    private accountService: AccountService,
+    private authService: AuthService,
+    private fb: FormBuilder,
+    private messageService: MessageService,
+    private router: Router
+  ) {}
+
+  ngOnDestroy() {
+    this.subscription.unsubscribe();
   }
 
-  emailTooltip() {
-    let tooltip = '<span>';
-    if (this.register_info.userEmail === '') {
-      tooltip += 'Please enter your email!';
-    } else if (
-      !/^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/.test(
-        this.register_info.userEmail!
+  UsernameAvailableValidator(): AsyncValidatorFn {
+    const inputSubject = new Subject<string>();
+    const resultSubject = new Subject<ValidationErrors | null>();
+    inputSubject
+      .pipe(
+        distinctUntilChanged(),
+        debounceTime(1000),
+        switchMap((username) =>
+          this.accountService.checkExistUsername(username)
+        ),
+        map<boolean, ValidationErrors | null>((exist) =>
+          exist ? { usernameExist: true } : null
+        )
       )
-    ) {
-      tooltip += 'Please a valid email!';
-    } else if (this.emailOK === false) {
-      tooltip += 'Email exists, please use another email!';
-    } else if (this.emailOK === true) {
-      tooltip += 'Email OK!';
-    } else {
-      return '';
-    }
-    return tooltip + '</span>';
+      .subscribe(resultSubject);
+
+    this.subscription.add(inputSubject);
+    this.subscription.add(resultSubject);
+    return (control) => {
+      inputSubject.next(control.value);
+      return resultSubject.pipe(first());
+    };
   }
 
-  validateUsername() {
-    // only perform an API call for a valid non-empty username
-    if (this.register_info.userName !== '') {
-      this.checkExistUsername();
-    }
+  confirmPasswordMatchValidator(form: RegisterForm) {
+    const password = form.value.password;
+    const confirmPassword = form.value.confirmPassword;
+
+    const error =
+      password === confirmPassword ? null : { confirmPasswordNotMatch: true };
+
+    form.controls.confirmPassword.setErrors(error);
+
+    return error;
   }
 
-  validateEmail() {
-    // only perform an API call for a valid email address
-    if (
-      this.register_info.userEmail !== '' &&
-      /^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/.test(
-        this.register_info.userEmail!
-      )
-    ) {
-      this.checkExistEmail();
+  onSubmitClicked() {
+    if (this.registerForm.invalid) {
+      this.messageService.add({
+        severity: 'warn',
+        summary: 'Not completed',
+        detail: 'Please fill in all required fields!',
+      });
+      return;
     }
-  }
-
-  validatePassword() {
-    if (
-      this.register_info.password!.length > 5 &&
-      this.register_info.password!.length < 16
-    ) {
-      this.passwordOK.length = true;
-    } else {
-      this.passwordOK.length = false;
-    }
-    // check if password has at least one digit, on uppercase letter, and one lowercase letter
-    if (/\d/.test(this.register_info.password!)) {
-      this.passwordOK.digit = true;
-    } else {
-      this.passwordOK.digit = false;
-    }
-
-    if (/[A-Z]/.test(this.register_info.password!)) {
-      this.passwordOK.uppercase = true;
-    } else {
-      this.passwordOK.uppercase = false;
-    }
-
-    if (/[a-z]/.test(this.register_info.password!)) {
-      this.passwordOK.lowercase = true;
-    } else {
-      this.passwordOK.lowercase = false;
-    }
-
-    if (
-      this.passwordOK.digit &&
-      this.passwordOK.uppercase &&
-      this.passwordOK.lowercase &&
-      this.register_info.password!.length > 5 &&
-      this.register_info.password!.length < 16
-    ) {
-      this.passwordOK.valid = true;
-    } else {
-      this.passwordOK.valid = false;
-    }
-  }
-
-  onSubmit() {
-    this.submitLoading_icon = true;
-
-    setTimeout(() => {
-      this.submitLoading_icon = false;
-    }, 2000);
-
-    if (
-      this.usernameOK === true &&
-      this.emailOK === true &&
-      this.passwordOK.valid === true &&
-      this.confirmPassword === this.register_info.password
-    ) {
-      this.accountService
-        .register(this.register_info)
-        .pipe()
-        .subscribe((response) => {
-          console.log(response);
-          if (response.status === 200) {
-            this.router.navigate(['/login']);
-          }
-        });
-    }
+    this.submitButtonLoading = true;
+    this.accountService
+      .register({
+        userName: this.registerForm.value.userName as string,
+        userEmail: this.registerForm.value.userEmail as string,
+        password: this.registerForm.value.password as string,
+      } as UserProfileWithPassword)
+      .subscribe({
+        next: (response) => {
+          this.authService.setUserProfile({
+            bearerToken: response.headers.get('bearerToken')!,
+            ...(response.body as UserProfile),
+          });
+          this.router.navigate(['/news-feed']);
+        },
+        error: (err) => {
+          this.messageService.add({
+            severity: 'error',
+            summary: 'Error',
+            detail: err.error, // the response body (json but it's a string)
+          });
+        },
+        complete: () => {
+          this.submitButtonLoading = false;
+        },
+      });
   }
 }
