@@ -1,21 +1,24 @@
-.form--container
+.container
+    max-width: 60em
+    margin: 10em auto 0 auto
+
+.form__container
     display: flex
     flex-direction: column
     align-items: center
 
-.username--container, .email--container, .password--container, .confirmPassword--container
+.field__container
     height: 5rem
     width: 80%
-    text-align: center
  
     input
         width: 100%
 
-.validatePassword--overlay--container
+.validatePassword__overlay__container
     display: flex
     flex-direction: column
 
-.validatePassword--overlay
+.validatePassword__overlay
     margin: 0.25rem auto
     width: 100%
 
@@ -26,4 +29,10 @@
     color: green
 
 .pi-times-circle
+    color: red
+
+.icon--valid
+    color: green
+
+.icon--invalid
     color: red

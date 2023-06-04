@@ -22,7 +22,7 @@ export class LoginComponent {
     private authService: AuthService
   ) {}
 
-  login_info: UserProfile = {
+  login_info = {
     userEmail: '',
     password: '',
   };
@@ -69,19 +69,25 @@ export class LoginComponent {
       this.accountService
         .login(this.login_info)
         .pipe(first())
-        .subscribe({
-          next: (response) => {
-            if (response.status === 200) {
-              const resBody: UserProfile = response.body!;
-              this.authService.setUserProfile(resBody);
-              this.router.navigate(['news-feed']);
-            }
-          },
-          error: (error) => {
-            this.error_message = error.error;
-            this.showAlert();
-          },
-        });
+        .subscribe(
+          //   {
+          //   next: (response) => {
+          //     if (response.status === 200) {
+          //       const resBody: UserProfile = response.body!;
+          //       this.authService.setUserProfile(resBody);
+          //       this.router.navigate(['news-feed']);
+          //     }
+          //   },
+          //   error: (error) => {
+          //     this.error_message = error.error;
+          //     this.showAlert();
+          //   },
+          // }
+          (response) => {
+            this.authService.setUserProfile(response);
+            this.router.navigate(['news-feed']);
+          }
+        );
     } else if (!this.validateEmail()) {
       this.error_message = 'Please enter a valid email!';
       this.showAlert();

@@ -1,151 +1,143 @@
-<p-card>
-  <div class="form--container">
-    <div class="username--container">
-      <span class="p-float-label">
-        <input
-          pInputText
-          id="username"
-          [(ngModel)]="register_info.userName"
-          (change)="validateUsername()"
-          [pTooltip]="usernameTooltip()"
-          tooltipPosition="bottom"
-          tooltipEvent="focus"
-          [escape]="false"
-        />
-        <label htmlFor="username">Username</label>
-      </span>
-    </div>
-
-    <div class="email--container">
-      <span class="p-float-label">
-        <p-overlayPanel #emailOverlay>
-          <div *ngIf="email.value !== '' && email.untouched && email.invalid">
-            Please enter a valid email!
-          </div>
-        </p-overlayPanel>
-        <input
-          pInputText
-          id="email"
-          [(ngModel)]="register_info.userEmail"
-          [email]="true"
-          #email="ngModel"
-          [required]="true"
-          [minlength]="6"
-          (change)="validateEmail()"
-          [pTooltip]="emailTooltip()"
-          tooltipPosition="bottom"
-          tooltipEvent="focus"
-          [escape]="false"
-        />
-        <label htmlFor="email">Email</label>
-      </span>
-    </div>
-
-    <div class="password--container">
-      <span class="p-float-label">
-        <p-overlayPanel #overlayPassword appendTo="body">
-          <div class="validatePassword--overlay--container">
-            <ng-template #passwordRequirement>
-              <div class="validatePassword--overlay">
-                Password Requirements:
-              </div>
-            </ng-template>
-            <ng-template #checkmark>
-              <i class="pi pi-check-circle"></i>
-            </ng-template>
-
-            <div
-              *ngIf="
-                register_info.password !== '' && passwordOK.valid === false;
-                else passwordRequirement
-              "
-              class="validatePassword--overlay"
-            >
-              Please Enter a valid passowrd
-            </div>
-
-            <div class="validatePassword--overlay">
-              <i
-                *ngIf="passwordOK.length === false; else checkmark"
-                class="pi pi-times-circle"
-              ></i>
-              <span class="passwordRequirement">6-15 characters long</span>
-            </div>
-            <div class="validatePassword--overlay">
-              <i
-                *ngIf="passwordOK.digit === false; else checkmark"
-                class="pi pi-times-circle"
-              ></i>
-              <span class="passwordRequirement">0-9</span>
-            </div>
-
-            <div class="validatePassword--overlay">
-              <i
-                *ngIf="passwordOK.uppercase === false; else checkmark"
-                class="pi pi-times-circle"
-              ></i>
-              <span class="passwordRequirement">A-Z</span>
-            </div>
-
-            <div class="validatePassword--overlay">
-              <i
-                *ngIf="passwordOK.lowercase === false; else checkmark"
-                class="pi pi-times-circle"
-              ></i>
-              <span class="passwordRequirement">a-z</span>
-            </div>
-          </div>
-        </p-overlayPanel>
-
-        <p-password
-          id="password"
-          [(ngModel)]="register_info.password"
-          [toggleMask]="true"
-          [feedback]="false"
-          [minlength]="6"
-          [maxLength]="15"
-          [required]="true"
-          (onFocus)="overlayPassword.toggle($event)"
-          (onBlur)="overlayPassword.toggle($event)"
-          [style]="{ width: '100%' }"
-          [inputStyle]="{ width: '100%' }"
-          (input)="validatePassword()"
+<div class="container">
+  <p-card>
+    <form [formGroup]="registerForm" class="form__container">
+      <div class="field__container">
+        <span class="p-float-label">
+          <input pInputText formControlName="userName" id="username" />
+          <label htmlFor="username">Username</label>
+        </span>
+        <ng-container
+          *ngIf="
+            registerForm.controls.userName.touched ||
+            registerForm.controls.userName.dirty
+          "
         >
-        </p-password>
-        <label for="password">Password</label>
-      </span>
-    </div>
-
-    <div class="confirmPassword--container">
-      <span class="p-float-label confirmPassword--wrapper">
-        <p-overlayPanel #overlayConfrimPassword>
-          <div *ngIf="register_info.password !== confirmedPassword.value">
-            The password does not match!
+          <div
+            *ngIf="registerForm.controls.userName.valid; else usernameInvalid"
+          >
+            ✅
           </div>
-        </p-overlayPanel>
-        <p-password
-          id="confirmPassword"
-          #confirmedPassword
-          [(ngModel)]="confirmPassword"
-          [toggleMask]="true"
-          [feedback]="false"
-          [minlength]="6"
-          [maxLength]="15"
-          [required]="true"
-          (onFocus)="overlayConfrimPassword.show($event)"
-          (onBlur)="overlayConfrimPassword.hide()"
-          [style]="{ width: '100%' }"
-          [inputStyle]="{ width: '100%' }"
-        >
-        </p-password>
-        <label for="password">Confirm Password</label>
-      </span>
-    </div>
+        </ng-container>
+        <ng-template #usernameInvalid>
+          <i
+            *ngIf="registerForm.controls.userName.pending"
+            class="pi pi-spin pi-spinner"
+          ></i>
+          <div *ngIf="registerForm.controls.userName.errors?.['required']">
+            ❗ this field is required
+          </div>
+          <div *ngIf="registerForm.controls.userName.errors?.['usernameExist']">
+            ❗ this username is already taken
+          </div>
+        </ng-template>
+      </div>
 
-    <p-button
-      label="Submit"
-      [loading]="submitLoading_icon"
-      (click)="onSubmit()"
-    ></p-button>
-  </div>
-</p-card>
+      <div class="field__container">
+        <span class="p-float-label">
+          <input pInputText id="email" formControlName="userEmail" />
+          <label htmlFor="email">Email</label>
+        </span>
+        <ng-container
+          *ngIf="
+            registerForm.controls.userEmail.touched ||
+            registerForm.controls.userEmail.dirty
+          "
+        >
+          <div *ngIf="registerForm.controls.userEmail.valid; else emailInvalid">
+            ✅
+          </div>
+        </ng-container>
+        <ng-template #emailInvalid>
+          <div *ngIf="registerForm.controls.userEmail.errors?.['required']">
+            ❗ this field is required
+          </div>
+          <div *ngIf="registerForm.controls.userEmail.errors?.['email']">
+            ❗ invalid email
+          </div>
+        </ng-template>
+      </div>
+
+      <div class="field__container">
+        <span class="p-float-label">
+          <input
+            pInputText
+            type="password"
+            id="password"
+            formControlName="password"
+          />
+          <label for="password">Password</label>
+        </span>
+        <ng-container
+          *ngIf="
+            registerForm.controls.password.touched ||
+            registerForm.controls.password.dirty
+          "
+        >
+          <div
+            *ngIf="registerForm.controls.password.valid; else passwordInvalid"
+          >
+            ✅
+          </div>
+        </ng-container>
+        <ng-template #passwordInvalid>
+          <div *ngIf="registerForm.controls.password.errors?.['required']">
+            ❗ this field is required
+          </div>
+          <div *ngIf="registerForm.controls.password.errors?.['minlength']">
+            ❗ password must be at least 6 characters
+          </div>
+        </ng-template>
+      </div>
+
+      <div class="field__container">
+        <span class="p-float-label confirmPassword__wrapper">
+          <input
+            pInputText
+            type="password"
+            id="confirmPassword"
+            formControlName="confirmPassword"
+          />
+
+          <label for="password">Confirm Password</label>
+        </span>
+        <ng-container
+          *ngIf="
+            registerForm.controls.confirmPassword.touched ||
+            registerForm.controls.confirmPassword.dirty
+          "
+        >
+          <div
+            *ngIf="
+              registerForm.controls.confirmPassword.valid;
+              else confirmPasswordInvalid
+            "
+          >
+            ✅
+          </div>
+        </ng-container>
+        <ng-template #confirmPasswordInvalid>
+          <div
+            *ngIf="
+              registerForm.controls.confirmPassword.errors?.['required']
+            "
+          >
+            ❗ this field is required
+          </div>
+          <div
+            *ngIf="
+              registerForm.errors?.['confirmPasswordNotMatch']
+            "
+          >
+            ❗ password does not match
+          </div>
+        </ng-template>
+      </div>
+
+      <p-button
+        label="Submit"
+        [loading]="submitButtonLoading"
+        (click)="onSubmitClicked()"
+      ></p-button>
+    </form>
+  </p-card>
+</div>
