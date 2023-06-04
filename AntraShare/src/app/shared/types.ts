@@ -40,4 +40,5 @@ export type Story = {
   publishedTime?: ISOTime;
   content?: Content;
   comment?: Comment[];
+  likedIdList?: string[];
 };
