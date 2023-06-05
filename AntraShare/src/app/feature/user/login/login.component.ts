@@ -1,12 +1,13 @@
-/* eslint-disable @typescript-eslint/no-non-null-assertion */
+
 import { AccountService } from './../account.service';
 import { AuthService } from 'src/app/auth.service';
-import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { first } from 'rxjs';
-import { UserProfile } from 'src/app/shared/types';
+import { UserProfileWithToken } from 'src/app/shared/types';
 import { DialogService, DynamicDialogRef } from 'primeng/dynamicdialog';
 import { AlertComponent } from '../alert/alert.component';
+import { Component, OnDestroy, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-login',
@@ -14,36 +15,27 @@ import { AlertComponent } from '../alert/alert.component';
   styleUrls: ['./login.component.sass'],
   providers: [DialogService],
 })
-export class LoginComponent {
-  constructor(
-    private accountService: AccountService,
-    private router: Router,
-    public dialogService: DialogService,
-    private authService: AuthService
-  ) {}
-
-  login_info = {
-    userEmail: '',
-    password: '',
-  };
-
+export class LoginComponent implements OnInit {
+  myFormGroup!: FormGroup;
   loginLoading_icon = false;
   agreement_checked = false;
-
   error_message = '';
   alertDialogRef!: DynamicDialogRef;
 
-  validateEmail() {
-    // only perform an API call for a valid email address
-    if (
-      this.login_info.userEmail !== '' &&
-      /^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/.test(
-        this.login_info.userEmail!
-      )
-    ) {
-      return true;
-    }
-    return false;
+  constructor(
+    private formBuilder: FormBuilder,
+    private accountService: AccountService,
+    private router: Router,
+    private dialogService: DialogService,
+    private authService: AuthService
+  ) {}
+
+  ngOnInit() {
+    this.myFormGroup = this.formBuilder.group({
+      userEmail: ['', [Validators.required, Validators.email]],
+      password: ['', Validators.required],
+      agreement: [false, Validators.requiredTrue],
+    });
   }
 
   showAlert() {
@@ -58,56 +50,37 @@ export class LoginComponent {
     });
   }
 
-  onLogin() {
-    this.loginLoading_icon = true;
+  onLogin(event: Event) {
+    event.preventDefault();
 
-    setTimeout(() => {
-      this.loginLoading_icon = false;
-    }, 2000);
+    if (this.myFormGroup.valid) {
+      const loginInfo = {
+        userEmail: this.myFormGroup.get('userEmail')?.value,
+        password: this.myFormGroup.get('password')?.value,
+      };
 
-    if (this.validateEmail() && this.agreement_checked) {
+      this.loginLoading_icon = true;
+
+      setTimeout(() => {
+        this.loginLoading_icon = false;
+      }, 2000);
+
       this.accountService
-        .login(this.login_info)
+        .login(loginInfo)
         .pipe(first())
         .subscribe(
-          //   {
-          //   next: (response) => {
-          //     if (response.status === 200) {
-          //       const resBody: UserProfile = response.body!;
-          //       this.authService.setUserProfile(resBody);
-          //       this.router.navigate(['news-feed']);
-          //     }
-          //   },
-          //   error: (error) => {
-          //     this.error_message = error.error;
-          //     this.showAlert();
-          //   },
-          // }
-          (response) => {
+          (response: UserProfileWithToken) => {
             this.authService.setUserProfile(response);
             this.router.navigate(['news-feed']);
+          },
+          (error) => {
+            this.error_message = error.error;
+            this.showAlert();
           }
         );
-    } else if (!this.validateEmail()) {
-      this.error_message = 'Please enter a valid email!';
-      this.showAlert();
-    } else if (!this.agreement_checked) {
-      this.error_message = 'Please agree to our terms and conditions!';
-      this.showAlert();
+      } else {
+        this.error_message = 'Please agree to our terms and conditions!';
+        this.showAlert();
+      }
     }
   }
-
-  ngOnDestroy() {
-    if (this.alertDialogRef) {
-      this.alertDialogRef.close();
-    }
-  }
-}
-
-/*
-{
-  userName: 'allister',
-  userEmail: 'allister@abc.com',
-  password: '1Q2w3e4r'
-}
-*/
