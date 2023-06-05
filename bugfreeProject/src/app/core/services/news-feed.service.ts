@@ -19,6 +19,7 @@ export interface Comment {
 export interface NewsItem {
   id: string;
   publisherName: string;
+  //title: string;
   content: {
     image: string;
     video: string;

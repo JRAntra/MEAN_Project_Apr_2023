@@ -1,18 +1,31 @@
 <div class="after-login-container">
     <div class="top-bar">
-      <button class="like-list-button">Like List</button>
+      <!--<button class="like-list-button" routerLink="/like-list">Like List</button>-->
+      <button class="like-list-button"  (click)="toggleLikeList()">Like List</button>
+      <div class="like-list-container" *ngIf="showLikeList">
+        <app-like-list></app-like-list>
+      </div>     
+    </div>
+
+    <!--<div class="SearchBar">
+      <input type="text" [(ngModel)]="searchText" placeholder="Search..." />
+    </div>-->
+    <div class="container">
+      <div class="centered">
+        <div class="SearchBar">
+          <input type="text" [(ngModel)]="searchText" placeholder="Search..." />
+        </div>
+      </div>
     </div>
     
-    <input type="text" [(ngModel)]="searchText" placeholder="Search..." />
+    
     <div class="button-container">
       <button class="button button-primary" (click)="onSearch()">Search</button>
     </div>
-    
-    <p>Your search text is limited to 20 characters: {{ searchText | truncate }}</p>
-    
-
-  
-    <div class="body">
+    <div class="hint">
+      <p>Your search text is limited to 20 characters: {{ searchText | truncate }}</p>
+    </div>
+    <!--
       <div class="rectangle" *ngFor="let news of newsFeed">
         <h3>{{ news.publisherName }}</h3>
         <p>{{ news.content.text }}</p>
@@ -20,19 +33,11 @@
           <p>{{ comment.publisherName }}: {{ comment.content.text }}</p>
         </div>
       </div>
+    -->
+    <div class="body">
       
       
-      
-  
-      <div class="rectangle">
-        <h3>News 2</h3>
-        <p>This is a placeholder for the news content.</p>
-      </div>
-  
-      <div class="rectangle">
-        <h3>News 3</h3>
-        <p>This is a placeholder for the news content.</p>
-      </div>
+      <app-story></app-story>
     </div>
   </div>
   <app-navbar></app-navbar> 

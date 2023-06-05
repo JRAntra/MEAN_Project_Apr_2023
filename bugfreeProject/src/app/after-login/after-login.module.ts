@@ -6,10 +6,15 @@ import  { Routes, RouterModule } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { CoreModule } from 'src/app/core/core.module';
 import { TruncatePipe } from './truncate.pipe';
+import { LikeListComponent } from './like-list/like-list.component';
+import { StoryComponent } from './story/story.component';
+
 @NgModule({
   declarations: [
     AfterLoginComponent,
-    TruncatePipe
+    TruncatePipe,
+    LikeListComponent,
+    StoryComponent
   ],
   imports: [
     CommonModule,
@@ -19,7 +24,9 @@ import { TruncatePipe } from './truncate.pipe';
   ],
   exports: [
     AfterLoginComponent,
-    TruncatePipe
+    TruncatePipe,
+    LikeListComponent,
+    StoryComponent
   ]
 })
 export class AfterLoginModule { }

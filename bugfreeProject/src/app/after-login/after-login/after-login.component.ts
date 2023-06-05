@@ -23,6 +23,11 @@ export class AfterLoginComponent implements OnInit {
   onSearch(){
     console.log('Searching for:', this.searchText);
   }
+  showLikeList = false;
+
+  toggleLikeList() {
+    this.showLikeList = !this.showLikeList;
+  }
 
 
 }
