@@ -1,6 +1,6 @@
 <div class="card--container">
   <p-card>
-    <form class="form--container">
+    <form class="form--container" [formGroup]="myFormGroup" (submit)="onLogin($event)">
       <div class="card flex justify-content-center logo--container container">
         <p-image
           src="https://antra.com/wp-content/uploads/2023/03/Antra-black.png"
@@ -8,65 +8,61 @@
           width="250"
         ></p-image>
       </div>
-
       <div class="email--container container">
         <span class="p-float-label email--wrapper">
           <input
             pInputText
             id="email"
-            [(ngModel)]="login_info.userEmail"
+            formControlName="userEmail"
             name="email"
             [email]="true"
           />
-          <label htmlFor="username">Email</label>
+          <label for="username">Email</label>
         </span>
+        <div *ngIf="myFormGroup.get('userEmail')?.invalid && myFormGroup.get('userEmail')?.touched" class="error-message">
+          <div *ngIf="myFormGroup.get('userEmail')?.hasError('required')">Email is required.</div>
+          <div *ngIf="myFormGroup.get('userEmail')?.hasError('email')">Please enter a valid email.</div>
+        </div>
       </div>
 
       <div class="password--container container">
         <span class="p-float-label">
           <p-password
-            [(ngModel)]="login_info.password"
+            formControlName="password"
             [feedback]="false"
-            name="passowrd"
+            id="password"
+            name="password"
             [style]="{ width: '100%' }"
             [inputStyle]="{ width: '100%' }"
           ></p-password>
           <label for="password">Password</label>
         </span>
+        <div *ngIf="myFormGroup.get('password')?.invalid && myFormGroup.get('password')?.touched" class="error-message">
+          <div *ngIf="myFormGroup.get('password')?.hasError('required')">Password is required.</div>
+        </div>
       </div>
 
-      <div class="loginButton--container container">
-        <p-button
-          label="Login"
-          [loading]="loginLoading_icon"
-          (click)="onLogin()"
-          class="loginButton"
-          [style]="{ width: '100%' }"
-        ></p-button>
+      <div class="agreement--container container">
+        <p-checkbox
+          name="agreement"
+          formControlName="agreement"
+          label="Agree"
+          [binary]="true"
+        ></p-checkbox>
+        <div *ngIf="myFormGroup.get('agreement')?.invalid" class="error-message">
+          Please agree to the terms and conditions.
+        </div>
       </div>
 
-      <br />
+      <p-button
+        type="submit"
+        label="Login"
+        [loading]="loginLoading_icon"
+        class="loginButton"
+        [style]="{ width: '100%' }"
+      ></p-button>
 
-      <div class="registerLink--container container">
-        <a routerLink="/register">No Accounts? Register Now!</a>
-      </div>
-
-      <div
-        class="card flex justify-content-center agreementAndHelp--container container"
-      >
-        <span class="agreement--conatiner">
-          <p-checkbox
-            [(ngModel)]="agreement_checked"
-            [binary]="true"
-            inputId="binary"
-            name="agreement"
-          ></p-checkbox>
-          <span>Agreement</span>
-        </span>
-        <span class="help--container">
-          <a href="../../../index.html">Need Help?</a>
-        </span>
-      </div>
     </form>
   </p-card>
 </div>
+
