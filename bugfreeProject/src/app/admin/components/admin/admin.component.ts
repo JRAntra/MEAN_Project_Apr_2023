@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { User } from 'src/app/User';
 
 @Component({
   selector: 'app-admin',
@@ -6,5 +7,7 @@ import { Component } from '@angular/core';
   styleUrls: ['./admin.component.scss']
 })
 export class AdminComponent {
-
+    getChosenUser(user: User) {
+        console.log(user);
+    }
 }
