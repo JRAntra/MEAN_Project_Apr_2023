@@ -3,7 +3,7 @@
         <app-user-list (userEmitter)="getChosenUser($event)"></app-user-list>
     </div>
     <div class="wrapper__user-detail-panel">
-        user detail panel yes
+        <app-user-detail [chosenUser]="chosenUser"></app-user-detail>
     </div>
 </section>
 <app-navbar></app-navbar>
