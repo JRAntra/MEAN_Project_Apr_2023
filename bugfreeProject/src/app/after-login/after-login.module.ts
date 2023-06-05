@@ -8,6 +8,9 @@ import { CoreModule } from 'src/app/core/core.module';
 import { TruncatePipe } from './truncate.pipe';
 import { LikeListComponent } from './like-list/like-list.component';
 import { StoryComponent } from './story/story.component';
+import { MatDialogModule } from '@angular/material/dialog';
+import { MatMenuModule } from '@angular/material/menu';
+
 
 @NgModule({
   declarations: [
@@ -20,7 +23,8 @@ import { StoryComponent } from './story/story.component';
     CommonModule,
     FormsModule,
     AfterLoginRoutingModule,
-    CoreModule
+    CoreModule,
+    MatMenuModule
   ],
   exports: [
     AfterLoginComponent,
