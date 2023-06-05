@@ -10,13 +10,21 @@ import { NewsFeedService } from '../news-feed.service';
 })
 export class LikeListComponent implements OnInit {
 	@Input() storyList!: Story[];
+	like = false;
 
 	constructor(private newsFeedService: NewsFeedService) { }
 
 	setLikeStory(story: Story){
-		this.newsFeedService.toggleLike(story)
+		this.newsFeedService.addToLikeList(story)
 	}
 
+	removeLikeStory(story: Story){
+		this.newsFeedService.removeFromLikeList(story)
+	}
+
+	isLiked(story: Story){
+		return this.newsFeedService.isLiked(story)
+	}
 
 	ngOnInit(): void {
 	}

@@ -21,7 +21,7 @@
 	<div *ngIf="likedlistVisible" class="liked-list">
 		<app-like-list
 			*ngIf="likedList$ | async as likedList"
-			[storyList]="likedList | toArray"
+			[storyList]="likedList"
 		></app-like-list>
 	</div>
 

@@ -10,24 +10,23 @@ import { Story } from 'src/app/shared/userInfo.model'
 export class NewsFeedService implements OnInit, OnDestroy{
   private apiUrl = 'http://localhost:4231/api/news'
 
-  private likedList$ = new BehaviorSubject<{ [id: string]: Story }>({});
+  private likedList$ = new BehaviorSubject<Story[]>([]);
   private newsFeed$ = new BehaviorSubject<Story[]>([]);
 
 
   constructor(private http: HttpClient) { }
 
   ngOnInit(): void {
-    const storage = localStorage.getItem('LikedList');
-    if (storage) {
-      const storagesLikedList: { [id: string]: Story } = JSON.parse(storage);
-      this.likedList$.next(storagesLikedList);
+    const storedLikeList = localStorage.getItem('LikedList');
+    if (storedLikeList) {
+      this.likedList$.next(JSON.parse(storedLikeList));
     }else{
-      this.likedList$.next({});
+      this.likedList$.next([]);
     }
   }
 
   ngOnDestroy(): void {
-    this.likedList$.next({});
+    this.likedList$.next([]);
     localStorage.removeItem('LikedList');
   }
 
@@ -45,22 +44,28 @@ export class NewsFeedService implements OnInit, OnDestroy{
     }
   }
 
-  toggleLike(story: Story) {
+  isLiked(story: Story) {
     const likedList = this.likedList$.getValue();
-    if (likedList[story._id!]) {
-      likedList[story._id!].liked = false;
-      delete likedList[story._id!];
-    } else {
-      likedList[story._id!] = story;
-      likedList[story._id!].liked = true;
-    }
-    this.likedList$.next(likedList);
-    localStorage.setItem('LikedList', JSON.stringify(likedList));
-    // for (let key in likedList) {
-    //   console.log("key", key)
-    //   console.log("value", likedList[key])
-    // }
-    return of(null);
+    return likedList.some((item) => item._id === story._id);
+  }
+
+  addToLikeList(story: Story) {
+    const currentLikeList = this.likedList$.getValue();
+    const updatedLikeList = [...currentLikeList, story];
+
+    this.likedList$.next(updatedLikeList);
+    this.updateLocalStorage(updatedLikeList);
+  }
+
+  removeFromLikeList(story: Story) {
+    const currentLikeList = this.likedList$.getValue();
+    const updatedLikeList = currentLikeList.filter((item) => item._id !== story._id);
+    this.likedList$.next(updatedLikeList);
+    this.updateLocalStorage(updatedLikeList);
+  }
+
+  private updateLocalStorage(likedList: Story[]) {
+    localStorage.setItem('likeList', JSON.stringify(likedList));
   }
 
 }

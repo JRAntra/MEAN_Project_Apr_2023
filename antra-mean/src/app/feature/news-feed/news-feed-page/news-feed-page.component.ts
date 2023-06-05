@@ -15,10 +15,8 @@ import { NewsFeedService } from '../news-feed.service';
 export class NewsFeedPageComponent implements OnInit {
   postForm!: FormGroup
   inputValue?: string
-
-
   storyList$?: Observable<Story[]>
-  likedList$?: Observable<{ [id: string]: Story }>;
+  likedList$?: Observable<Story[]>;
 
   likedlistVisible = false
 

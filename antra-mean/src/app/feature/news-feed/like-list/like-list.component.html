@@ -48,7 +48,18 @@
 		</ng-template>
 
 		<ng-template #actionLike class="like-box">
-			<div class="icon-with-count" (click)="setLikeStory(story)">
+			<div
+				class="icon-with-count"
+				*ngIf="!isLiked(story)"
+				(click)="setLikeStory(story)"
+			>
+				<span nz-icon nzType="like" class="like-icon"></span>
+			</div>
+			<div
+				class="icon-with-count"
+				*ngIf="isLiked(story)"
+				(click)="removeLikeStory(story)"
+			>
 				<span nz-icon nzType="like" class="like-icon"></span>
 			</div>
 		</ng-template>
