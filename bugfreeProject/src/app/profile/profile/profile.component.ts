@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component,OnInit } from '@angular/core';
+import { FormBuilder, FormGroup } from '@angular/forms';
 
 
 @Component({
@@ -6,13 +7,26 @@ import { Component } from '@angular/core';
   templateUrl: './profile.component.html',
   styleUrls: ['./profile.component.scss']
 })
-export class ProfileComponent {
+export class ProfileComponent implements OnInit{
+  profileForm: FormGroup;
   username?: string;
   email?: string;
   age?: number;
   gender?: string;
   password?: string;
   showPassword: boolean = false;
+  constructor(private fb: FormBuilder) { 
+    this.profileForm = this.fb.group({
+      username: [''],
+      email: [''],
+      age: [''],
+      gender: [''],
+      password: ['']
+    });
+  }
+
+  ngOnInit(): void {
+  }
 
   togglePasswordVisibility() {
     this.showPassword = !this.showPassword;
