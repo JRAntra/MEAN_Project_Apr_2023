@@ -1,11 +1,9 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import {
   AbstractControl,
-  AbstractControlOptions,
   AsyncValidatorFn,
   FormBuilder,
   FormControl,
-  FormControlOptions,
   FormGroup,
   ValidationErrors,
   ValidatorFn,
@@ -14,24 +12,16 @@ import {
 import { Router } from '@angular/router';
 import { MessageService } from 'primeng/api';
 import {
-  BehaviorSubject,
-  Observable,
   Subject,
   Subscription,
   debounceTime,
   distinctUntilChanged,
   first,
   map,
-  of,
-  share,
   switchMap,
 } from 'rxjs';
 import { AuthService } from 'src/app/auth.service';
-import {
-  UserProfile,
-  UserProfileWithPassword,
-  UserProfileWithToken,
-} from 'src/app/shared/types';
+import { UserProfile, UserProfileWithPassword } from 'src/app/shared/types';
 import { AccountService } from './../account.service';
 
 type RegisterForm = FormGroup<{
@@ -53,7 +43,7 @@ export class RegisterComponent implements OnDestroy {
       userName: [
         '',
         {
-          validators: [Validators.required],
+          validators: [Validators.required, Validators.minLength(3)],
           asyncValidators: [this.UsernameAvailableValidator()],
         },
       ],
@@ -61,12 +51,17 @@ export class RegisterComponent implements OnDestroy {
         '',
         {
           validators: [Validators.required, Validators.email],
+          asyncValidators: [this.EmailAvailableValidator()],
         },
       ],
       password: [
         '',
         {
-          validators: [Validators.required, Validators.minLength(6)],
+          validators: [
+            Validators.required,
+            Validators.minLength(6),
+            this.passwordCharacterValidator,
+          ],
         },
       ],
       confirmPassword: [
@@ -115,6 +110,80 @@ export class RegisterComponent implements OnDestroy {
     return (control) => {
       inputSubject.next(control.value);
       return resultSubject.pipe(first());
+    };
+  }
+
+  EmailAvailableValidator(): AsyncValidatorFn {
+    const inputSubject = new Subject<string>();
+    const resultSubject = new Subject<ValidationErrors | null>();
+    inputSubject
+      .pipe(
+        distinctUntilChanged(),
+        debounceTime(1000),
+        switchMap((email) => this.accountService.checkExistEmail(email)),
+        map<boolean, ValidationErrors | null>((exist) =>
+          exist ? { emailExist: true } : null
+        )
+      )
+      .subscribe(resultSubject);
+
+    this.subscription.add(inputSubject);
+    this.subscription.add(resultSubject);
+    return (control) => {
+      inputSubject.next(control.value);
+      return resultSubject.pipe(first());
+    };
+  }
+
+  passwordCharacterValidator(
+    control: AbstractControl<string>
+  ): ValidationErrors | null {
+    const value = control.value;
+    const hasCharacter = {
+      'lower case': false,
+      'upper case': false,
+      digit: false,
+      'special character': false,
+    };
+    const specialCharacters = [
+      '!',
+      '@',
+      '#',
+      '$',
+      '%',
+      '^',
+      '&',
+      '*',
+      '+',
+      '=',
+      '-',
+      '/',
+      '_',
+      '?',
+      '.',
+      ',',
+    ];
+    for (const c of value) {
+      if (c >= 'a' && c <= 'z') {
+        hasCharacter['lower case'] = true;
+      } else if (c >= 'A' && c <= 'Z') {
+        hasCharacter['upper case'] = true;
+      } else if (c >= '0' && c <= '9') {
+        hasCharacter['digit'] = true;
+      } else if (specialCharacters.includes(c)) {
+        hasCharacter['special character'] = true;
+      } else {
+        return { invalidCharacter: true };
+      }
+    }
+    if (Object.values(hasCharacter).every((v) => v)) {
+      return null;
+    }
+    const missingCharacterList = Object.keys(hasCharacter).filter(
+      (key) => !hasCharacter[key as keyof typeof hasCharacter]
+    );
+    return {
+      missingCharacter: missingCharacterList,
     };
   }
 

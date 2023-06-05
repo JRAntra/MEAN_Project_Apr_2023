@@ -26,6 +26,9 @@
           <div *ngIf="registerForm.controls.userName.errors?.['required']">
             ❗ this field is required
           </div>
+          <div *ngIf="registerForm.controls.userName.errors?.['minlength']">
+            ❗ username must be at least 3 characters
+          </div>
           <div *ngIf="registerForm.controls.userName.errors?.['usernameExist']">
             ❗ this username is already taken
           </div>
@@ -48,11 +51,18 @@
           </div>
         </ng-container>
         <ng-template #emailInvalid>
+          <i
+            *ngIf="registerForm.controls.userEmail.pending"
+            class="pi pi-spin pi-spinner"
+          ></i>
           <div *ngIf="registerForm.controls.userEmail.errors?.['required']">
             ❗ this field is required
           </div>
           <div *ngIf="registerForm.controls.userEmail.errors?.['email']">
             ❗ invalid email
+          </div>
+          <div *ngIf="registerForm.controls.userEmail.errors?.['emailExist']">
+            ❗ this email is already registered
           </div>
         </ng-template>
       </div>
@@ -82,6 +92,20 @@
         <ng-template #passwordInvalid>
           <div *ngIf="registerForm.controls.password.errors?.['required']">
             ❗ this field is required
+          </div>
+          <div
+            *ngIf="registerForm.controls.password.errors?.['invalidCharacter']"
+          >
+            ❗ some characters are not allowed
+          </div>
+          <div
+            *ngIf="registerForm.controls.password.errors?.['missingCharacter'].length > 0"
+          >
+            ❗ password must contain at least 1
+            <ng-container
+              *ngFor="let v of registerForm.controls.password.errors?.['missingCharacter'] ; let isLast=last"
+              >{{ v }}{{ isLast ? "" : ", " }}</ng-container
+            >
           </div>
           <div *ngIf="registerForm.controls.password.errors?.['minlength']">
             ❗ password must be at least 6 characters
