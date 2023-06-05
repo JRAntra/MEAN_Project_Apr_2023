@@ -19,11 +19,15 @@ import { DatePipe } from '@angular/common';
 import { LikeListComponent } from './like-list/like-list.component'
 import { NewsFeedPageComponent } from './news-feed-page/news-feed-page.component'
 import { NzCarouselModule } from 'ng-zorro-antd/carousel';
+import { NzCollapseModule } from 'ng-zorro-antd/collapse';
+import { NzMenuModule } from 'ng-zorro-antd/menu';
 
-import { NewsFeedService } from './news-feed.service';
+import { ToArrayPipe } from './to-array.pipe'
+import { TruncatePipe } from './truncate.pipe'
+
 
 @NgModule({
-	declarations: [LikeListComponent, NewsFeedPageComponent],
+	declarations: [LikeListComponent, NewsFeedPageComponent, ToArrayPipe, TruncatePipe],
 	imports: [
 		CommonModule,
 		NzPaginationModule,
@@ -40,10 +44,12 @@ import { NewsFeedService } from './news-feed.service';
 		NzButtonModule,
 		NzPageHeaderModule,
 		NzSpaceModule,
-		NzCarouselModule
+		NzCarouselModule,
+		NzCollapseModule,
+		NzMenuModule,
 	],
 	exports: [],
-	providers: [NewsFeedService, DatePipe]
+	providers: [ DatePipe]
 
 })
 export class NewsFeedModule {}

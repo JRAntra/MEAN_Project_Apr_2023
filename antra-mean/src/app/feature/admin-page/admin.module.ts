@@ -6,6 +6,7 @@ import { NzButtonModule } from 'ng-zorro-antd/button'
 import { NzMenuModule } from 'ng-zorro-antd/menu'
 import { NzIconModule } from 'ng-zorro-antd/icon'
 import { TruncatePipe } from 'src/app/shared/truncate.pipe'
+
 @NgModule({
 	imports: [
 		CommonModule,

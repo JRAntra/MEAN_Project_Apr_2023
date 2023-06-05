@@ -1,18 +1,10 @@
 import { Component, OnInit } from '@angular/core'
-import { NewsFeedService } from '../news-feed.service'
+import { Observable } from 'rxjs';
+import { Story } from 'src/app/shared/userInfo.model';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { DatePipe } from '@angular/common';
+import { NewsFeedService } from '../news-feed.service';
 
-export interface Post {
-  image: string
-  video: string
-  text: string
-  publisherName: string
-  publishedTime: string
-  content: object
-  comment: object
-  likedIdList: any
-}
 
 @Component({
   selector: 'app-news-feed-page',
@@ -21,20 +13,24 @@ export interface Post {
 })
 
 export class NewsFeedPageComponent implements OnInit {
-  news: any[] = []
   postForm!: FormGroup
   inputValue?: string
 
-  constructor(private datePipe: DatePipe, private newsFeedService: NewsFeedService, private fb: FormBuilder) { }
+
+  storyList$?: Observable<Story[]>
+  likedList$?: Observable<{ [id: string]: Story }>;
+
+  likedlistVisible = false
+
+  constructor(private datePipe: DatePipe, private newsFeedService: NewsFeedService, private fb: FormBuilder ) { }
 
   ngOnInit(): void {
-    this.getNews()
-
-    // Initialize the postForm
     this.postForm = this.fb.group({
       content: ['', [Validators.required, Validators.maxLength(400)]]
     })
 
+    this.storyList$ = this.newsFeedService.getNewsFeed();
+    this.likedList$ = this.newsFeedService.getLikedList();
   }
 
   submitPostForm(): void {
@@ -42,28 +38,12 @@ export class NewsFeedPageComponent implements OnInit {
       return
     }
 
-    // Process and submit the post form data
     const postData = this.postForm.value
-    // Perform your logic here (e.g., send the data to an API)
-
-    // Reset the form after submission
     this.postForm.reset()
   }
 
-  getNews(): void {
-    this.newsFeedService.getNewsFeed()
-      .subscribe((response: any) => {
-        const newsFeedArray = response;
-        console.log(newsFeedArray)
-        this.news = newsFeedArray.map((post: Post) => ({
-          content: post.content,
-          comments: post.comment,
-          likes: post.likedIdList,
-          publisherName: post.publisherName,
-          // publishedTime: this.datePipe.transform(post.publishedTime),
-          publishedTime: post.publishedTime
-        }))
-        console.log(this.news)
-      })
+  goToLikedList() {
+    this.likedlistVisible = !this.likedlistVisible
   }
+
 }
