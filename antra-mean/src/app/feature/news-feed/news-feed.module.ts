@@ -21,13 +21,11 @@ import { NewsFeedPageComponent } from './news-feed-page/news-feed-page.component
 import { NzCarouselModule } from 'ng-zorro-antd/carousel';
 import { NzCollapseModule } from 'ng-zorro-antd/collapse';
 import { NzMenuModule } from 'ng-zorro-antd/menu';
-
-import { ToArrayPipe } from './to-array.pipe'
 import { TruncatePipe } from './truncate.pipe'
 
 
 @NgModule({
-	declarations: [LikeListComponent, NewsFeedPageComponent, ToArrayPipe, TruncatePipe],
+	declarations: [LikeListComponent, NewsFeedPageComponent, TruncatePipe],
 	imports: [
 		CommonModule,
 		NzPaginationModule,
