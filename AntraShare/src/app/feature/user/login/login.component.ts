@@ -1,4 +1,3 @@
-
 import { AccountService } from './../account.service';
 import { AuthService } from 'src/app/auth.service';
 import { Router } from '@angular/router';
@@ -78,9 +77,9 @@ export class LoginComponent implements OnInit {
             this.showAlert();
           }
         );
-      } else {
-        this.error_message = 'Please agree to our terms and conditions!';
-        this.showAlert();
-      }
+    } else {
+      this.error_message = 'Please agree to our terms and conditions!';
+      this.showAlert();
     }
   }
+}

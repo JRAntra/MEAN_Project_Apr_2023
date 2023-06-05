@@ -1,6 +1,10 @@
 <div class="card--container">
   <p-card>
-    <form class="form--container" [formGroup]="myFormGroup" (submit)="onLogin($event)">
+    <form
+      class="form--container"
+      [formGroup]="myFormGroup"
+      (submit)="onLogin($event)"
+    >
       <div class="card flex justify-content-center logo--container container">
         <p-image
           src="https://antra.com/wp-content/uploads/2023/03/Antra-black.png"
@@ -19,9 +23,19 @@
           />
           <label for="username">Email</label>
         </span>
-        <div *ngIf="myFormGroup.get('userEmail')?.invalid && myFormGroup.get('userEmail')?.touched" class="error-message">
-          <div *ngIf="myFormGroup.get('userEmail')?.hasError('required')">Email is required.</div>
-          <div *ngIf="myFormGroup.get('userEmail')?.hasError('email')">Please enter a valid email.</div>
+        <div
+          *ngIf="
+            myFormGroup.get('userEmail')?.invalid &&
+            myFormGroup.get('userEmail')?.touched
+          "
+          class="error-message"
+        >
+          <div *ngIf="myFormGroup.get('userEmail')?.hasError('required')">
+            Email is required.
+          </div>
+          <div *ngIf="myFormGroup.get('userEmail')?.hasError('email')">
+            Please enter a valid email.
+          </div>
         </div>
       </div>
 
@@ -37,8 +51,16 @@
           ></p-password>
           <label for="password">Password</label>
         </span>
-        <div *ngIf="myFormGroup.get('password')?.invalid && myFormGroup.get('password')?.touched" class="error-message">
-          <div *ngIf="myFormGroup.get('password')?.hasError('required')">Password is required.</div>
+        <div
+          *ngIf="
+            myFormGroup.get('password')?.invalid &&
+            myFormGroup.get('password')?.touched
+          "
+          class="error-message"
+        >
+          <div *ngIf="myFormGroup.get('password')?.hasError('required')">
+            Password is required.
+          </div>
         </div>
       </div>
 
@@ -49,7 +71,10 @@
           label="Agree"
           [binary]="true"
         ></p-checkbox>
-        <div *ngIf="myFormGroup.get('agreement')?.invalid" class="error-message">
+        <div
+          *ngIf="myFormGroup.get('agreement')?.invalid"
+          class="error-message"
+        >
           Please agree to the terms and conditions.
         </div>
       </div>
@@ -61,8 +86,6 @@
         class="loginButton"
         [style]="{ width: '100%' }"
       ></p-button>
-
     </form>
   </p-card>
 </div>
-
