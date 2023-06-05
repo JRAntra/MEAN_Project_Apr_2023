@@ -1,7 +1,45 @@
 
 <div class="login-container">
-  
-    <form #testForm="ngForm" (ngSubmit)="submit(testForm)" class="login-form">
+  <form class="login-form" [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+    <div class="avatar-container">
+      <img src="assets/company-avatar.png" alt="Company Avatar" class="avatar">
+    </div>
+    <h2>Login</h2>
+    <div class="form-group">
+      <label for="userEmail">UserEmail</label>
+      <input type="text" formControlName="userEmail" class="form-input" placeholder="Email">
+      <span class="email-error" *ngIf="loginForm.controls['userEmail'].errors && loginForm.controls['userEmail'].touched">
+        Email address is not valid.
+      </span>
+    </div>
+    <div class="form-group">
+      <label for="password">Password</label>
+      <input type="password" formControlName="password" class="form-input" placeholder="Password">
+      
+    </div>
+    <button type="submit" class="btn btn-primary">Login</button>
+    <div class="form-group">
+      <Span class="register-link">Don't have an account? <a href="/register">Register</a></Span>
+    </div>
+    <div class="form-group agreement-help">
+      <div class="checkbox-agreement">
+        <input type="checkbox" id="agreement" formControlName="agreement" (change)="onCheckboxChange($event)">
+      <label for="agreement"><a href="#" class="agreement">Agreement</a></label>
+      <!-- <span class="email-error" *ngIf="loginForm.controls['agreement'].errors && loginForm.touched">
+        Please accept agreements.
+      </span> -->
+      <span class="agreement-error">
+        Please accept agreements.
+      </span>
+      </div>
+    </div>
+    <!-- </div> 
+      <a href="#">Need Help?</a> 
+    </div> -->
+    
+     
+  </form>
+    <!-- <form #testForm="ngForm" (ngSubmit)="submit(testForm)" class="login-form">
       <div class="avatar-container">
         <img src="assets/company-avatar.png" alt="Company Avatar" class="avatar">
       </div>
@@ -26,7 +64,7 @@
         <a href="#">Need Help?</a> 
       </div>
        
-    </form>
+    </form> -->
   </div>
 
 <p>userEmail: "bugfree@123.com"</p>

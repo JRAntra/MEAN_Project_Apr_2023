@@ -18,7 +18,19 @@ h2 {
 .avatar {
   width: 100px;
   height: 100px;
-  /* Add any additional styles for the avatar */
+}
+
+.email-error{
+  color: red;
+  font-size: 13px;
+  text-align: left;
+}
+
+.agreement-error{
+  display: none;
+  color: red;
+  font-size: 13px;
+  // text-align: left;
 }
 .login-form {
   width: 300px;

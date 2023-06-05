@@ -1,15 +1,16 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { DisappearDirective } from './disappear.directive';
+// import { DisappearDirective } from './disappear.directive';
 import { RegisterComponent } from './register/register.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { TruncatePipe } from './truncate.pipe';
+// import { TruncatePipe } from './truncate.pipe';
+import { RegisterService } from './register.service';
 
 @NgModule({
   declarations: [
     RegisterComponent,
-    DisappearDirective,
-    TruncatePipe,
+    // DisappearDirective,
+    // TruncatePipe,
   ],
   imports: [
     CommonModule,
@@ -18,6 +19,9 @@ import { TruncatePipe } from './truncate.pipe';
   ],
   exports: [
     RegisterComponent
+  ],
+  providers: [
+    RegisterService
   ]
 })
 export class RegisterModule { }
