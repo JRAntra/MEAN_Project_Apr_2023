@@ -6,6 +6,8 @@ import { SettingComponent } from './feature/setting/setting.component';
 import { NotFoundComponent } from './feature/not-found/not-found.component';
 import { LoginComponent } from './feature/user/login/login.component';
 import { RegisterComponent } from './feature/user/register/register.component';
+import { AdminComponent } from './feature/admin/admin.component';
+import { AuthGuard } from './shared/auth.guard';
 
 const routes: Routes = [
   { path: 'login', component: LoginComponent },
@@ -13,6 +15,7 @@ const routes: Routes = [
   { path: 'news-feed', component: NewsFeedComponent },
   { path: 'profile', component: ProfileComponent },
   { path: 'setting', component: SettingComponent },
+  { path: 'admin', component: AdminComponent, canActivate: [AuthGuard]},
   { path: '', redirectTo: '/login', pathMatch: 'full' },
   { path: '**', component: NotFoundComponent },
 ];
