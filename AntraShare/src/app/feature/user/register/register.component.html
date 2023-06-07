@@ -99,7 +99,7 @@
             ❗ some characters are not allowed
           </div>
           <div
-            *ngIf="registerForm.controls.password.errors?.['missingCharacter'].length > 0"
+            *ngIf="registerForm.controls.password.errors?.['missingCharacter']?.length > 0"
           >
             ❗ password must contain at least 1
             <ng-container
