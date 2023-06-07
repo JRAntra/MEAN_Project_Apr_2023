@@ -15,7 +15,7 @@ const routes: Routes = [
   { path: 'news-feed', component: NewsFeedComponent },
   { path: 'profile', component: ProfileComponent },
   { path: 'setting', component: SettingComponent },
-  { path: 'admin', component: AdminComponent, canActivate: [AuthGuard]},
+  { path: 'admin', component: AdminComponent, canActivate: [AuthGuard] },
   { path: '', redirectTo: '/login', pathMatch: 'full' },
   { path: '**', component: NotFoundComponent },
 ];

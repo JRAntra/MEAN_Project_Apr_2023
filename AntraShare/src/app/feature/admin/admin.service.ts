@@ -12,19 +12,19 @@ export class AdminService {
   isAdmin = false;
 
   constructor(private http: HttpClient, private authService: AuthService) {
-    this.changeState()
+    this.changeState();
   }
 
   private changeState() {
-    const user = this.authService.getUser()
-    console.log(user)
-    if (user && user.userRole === "admin") {
-      this.isAdmin = true
+    const user = this.authService.getUser();
+    console.log(user);
+    if (user && user.userRole === 'admin') {
+      this.isAdmin = true;
     }
   }
 
   adminAuthorized() {
-    return this.isAdmin
+    return this.isAdmin;
   }
 
   getAllUser() {
