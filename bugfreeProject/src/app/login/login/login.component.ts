@@ -3,6 +3,8 @@ import { LoginCheckService } from '../login-check.service';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { UserInfoService } from '../../service/user-info.service';
 
+declare const window: any;
+
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -20,7 +22,6 @@ export class LoginComponent{
   constructor(private loginCheckService : LoginCheckService,
               private userInfoService: UserInfoService) {
    }
-  
 
   onCheckboxChange(event: any): void {
     // Access the checkbox value and perform actions based on its state
@@ -38,6 +39,9 @@ export class LoginComponent{
       // this.inputData = this.loginForm.value;
       this.loginCheckService.login(this.loginForm.value).subscribe({
         next:(res) => { if (res.status === 200) {
+            // console.log(res.body);
+            window.localStorage.setItem('userInfo', res.body);
+            
             alert("Login Success...");
             this.userInfoService.setUserEmail(this.loginForm.value.userEmail);
             // this.router.navigate(['news-feed']);
