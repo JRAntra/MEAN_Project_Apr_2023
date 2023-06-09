@@ -1,21 +1,35 @@
-.news-feed-page
-  width: 600px
+.likelist-title
+  padding-bottom: 0
+
+.news-feed
+  margin-top: 10px
 
 .body-container
   display: flex
   flex-direction: rows
   justify-content: space-between
   padding: 10px 20px
-  overflow-x: scroll
+  .news-feed-image
+    width: 300px
+    height: 200px
+    padding-right: 10px
 
-.body-container::-webkit-scrollbar
-  display: none
+  .news-feed-video
+    width: 300px
+    height: 200px
 
-.news-feed-image
-  width: 300px
-  height: 200px
-  padding-right: 10px
 
-.news-feed-video
-  width: 300px
-  height: 200px
+.body-container-likelist
+  display: flex
+  flex-direction: column
+  margin-left: 25px
+  padding-top: 10px
+  .news-feed-image, .news-feed-video
+    width: 90%
+    height: 80%
+    padding-right: 0px
+    padding-bottom: 10px
+
+.post-body
+  padding-left: 20px
+

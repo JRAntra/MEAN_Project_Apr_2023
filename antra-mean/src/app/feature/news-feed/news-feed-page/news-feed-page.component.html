@@ -22,6 +22,7 @@
 		<app-like-list
 			*ngIf="likedList$ | async as likedList"
 			[storyList]="likedList"
+			[isLikedList]="true"
 		></app-like-list>
 	</div>
 
@@ -57,5 +58,6 @@
 	<app-like-list
 		*ngIf="storyList$ | async as storyList"
 		[storyList]="storyList"
+		[isLikedList]="false"
 	></app-like-list>
 </div>

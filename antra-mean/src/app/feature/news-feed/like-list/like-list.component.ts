@@ -1,5 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core'
-import { DatePipe } from '@angular/common'
+import { Component, Input } from '@angular/core'
 import { Story } from 'src/app/shared/userInfo.model'
 import { NewsFeedService } from '../news-feed.service'
 
@@ -8,8 +7,9 @@ import { NewsFeedService } from '../news-feed.service'
 	templateUrl: './like-list.component.html',
 	styleUrls: ['./like-list.component.sass']
 })
-export class LikeListComponent implements OnInit {
+export class LikeListComponent {
 	@Input() storyList!: Story[]
+	@Input() isLikedList: boolean = false
 	like = false
 
 	constructor(private newsFeedService: NewsFeedService) {}
@@ -27,6 +27,4 @@ export class LikeListComponent implements OnInit {
 	isLiked(story: Story) {
 		return this.newsFeedService.isLiked(story)
 	}
-
-	ngOnInit(): void {}
 }

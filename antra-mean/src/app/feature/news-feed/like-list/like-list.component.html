@@ -1,71 +1,87 @@
-<div class="like-list-page">
-	<div class="news-feed" *ngFor="let story of storyList">
-		<nz-card
-			[nzCover]="body"
-			nzSize="default"
-			[nzActions]="[actionComment, actionLike]"
+<nz-page-header class="likelist-title" *ngIf="isLikedList">
+	<nz-page-header-title>Liked List</nz-page-header-title>
+</nz-page-header>
+<div class="news-feed" *ngFor="let story of storyList">
+	<nz-card
+		[nzCover]="body"
+		nzSize="default"
+		[nzActions]="[actionComment, actionLike]"
+	>
+		<nz-card-meta
+			[nzTitle]="story.publisherName ?? 'Default Publisher Name'"
+			nzDescription="{{ story.publishedTime | date : 'medium' }}"
+			[nzAvatar]="avatarTemplate"
+		></nz-card-meta>
+	</nz-card>
+
+	<ng-template #avatarTemplate>
+		<nz-avatar
+			nzSize="large"
+			nzSrc="https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png"
+		></nz-avatar>
+	</ng-template>
+
+	<ng-template #body>
+		<div class="body-container" *ngIf="!isLikedList">
+			<img
+				*ngIf="story.content?.image"
+				[src]="story.content?.image"
+				alt="Image"
+				class="news-feed-image"
+			/>
+			<video
+				*ngIf="story.content?.video"
+				[src]="story.content?.video"
+				controls
+				class="news-feed-video"
+			></video>
+		</div>
+
+		<div class="body-container-likelist" *ngIf="isLikedList">
+			<img
+				*ngIf="story.content?.image"
+				[src]="story.content?.image"
+				alt="Image"
+				class="news-feed-image"
+			/>
+			<video
+				*ngIf="story.content?.video"
+				[src]="story.content?.video"
+				controls
+				class="news-feed-video"
+			></video>
+		</div>
+		<span nz-typography class="post-body">
+			{{ story.content?.text ?? 'no content' | truncate : 20 }}
+		</span>
+	</ng-template>
+
+	<ng-template #actionComment class="comment-box">
+		<div class="icon-with-count">
+			<span nz-icon nzType="comment" class="comment-icon"></span>
+			<span nz-typography nzType="secondary"></span>
+		</div>
+	</ng-template>
+
+	<ng-template #actionLike class="like-box">
+		<div
+			class="icon-with-count"
+			*ngIf="!isLiked(story)"
+			(click)="setLikeStory(story)"
 		>
-			<nz-card-meta
-				[nzTitle]="story.publisherName ?? 'Default Publisher Name'"
-				nzDescription="{{ story.publishedTime | date : 'medium' }}"
-				[nzAvatar]="avatarTemplate"
-			></nz-card-meta>
-		</nz-card>
-
-		<ng-template #avatarTemplate>
-			<nz-avatar
-				nzSize="large"
-				nzSrc="https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png"
-			></nz-avatar>
-		</ng-template>
-
-		<ng-template #body>
-			<div class="body-container">
-				<img
-					*ngIf="story.content?.image"
-					[src]="story.content?.image"
-					alt="Image"
-					class="news-feed-image"
-				/>
-				<video
-					*ngIf="story.content?.video"
-					[src]="story.content?.video"
-					controls
-					class="news-feed-video"
-				></video>
-			</div>
-			<span nz-typography class="post-body">
-				{{ story.content?.text ?? 'no content' | truncate : 20 }}
-			</span>
-		</ng-template>
-
-		<ng-template #actionComment class="comment-box">
-			<div class="icon-with-count">
-				<span nz-icon nzType="comment" class="comment-icon"></span>
-				<span nz-typography nzType="secondary"></span>
-			</div>
-		</ng-template>
-
-		<ng-template #actionLike class="like-box">
-			<div
-				class="icon-with-count"
-				*ngIf="!isLiked(story)"
-				(click)="setLikeStory(story)"
-			>
-				<span nz-icon nzType="like" class="like-icon"></span>
-			</div>
-			<div
-				class="icon-with-count"
-				*ngIf="isLiked(story)"
-				(click)="removeLikeStory(story)"
-			>
-				<span
-					nz-icon
-					nzType="like"
-					[nzTheme]="'twotone'"
-					class="like-icon"
-				></span>
-			</div>
-		</ng-template>
-	</div>
+			<span nz-icon nzType="like" class="like-icon"></span>
+		</div>
+		<div
+			class="icon-with-count"
+			*ngIf="isLiked(story)"
+			(click)="removeLikeStory(story)"
+		>
+			<span
+				nz-icon
+				nzType="like"
+				[nzTheme]="'twotone'"
+				class="like-icon"
+			></span>
+		</div>
+	</ng-template>
 </div>
