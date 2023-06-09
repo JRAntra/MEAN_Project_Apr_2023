@@ -7,16 +7,23 @@
 				<div class="spacer"></div>
 				<button
 					*nzSpaceItem
-					routerLink="/like-list"
 					nz-button
 					nzType="primary"
+					(click)="goToLikedList()"
 				>
 					<span nz-icon nzType="like" class="like-icon"></span>
-					Go to Like List
+					Liked List
 				</button>
 			</nz-space>
 		</nz-page-header-extra>
 	</nz-page-header>
+
+	<div *ngIf="likedlistVisible" class="liked-list">
+		<app-like-list
+			*ngIf="likedList$ | async as likedList"
+			[storyList]="likedList"
+		></app-like-list>
+	</div>
 
 	<!-- Post Form -->
 	<div class="post-form">
@@ -47,73 +54,8 @@
 	</div>
 
 	<!-- news feeds -->
-	<div class="news-feed" *ngFor="let newsItem of news">
-		<nz-card
-			[nzCover]="body"
-			nzSize="default"
-			[nzActions]="[actionComment, actionLike]"
-		>
-			<nz-card-meta
-				[nzTitle]="newsItem.publisherName"
-				[nzDescription]="newsItem.publishedTime | date : 'medium'"
-				[nzAvatar]="avatarTemplate"
-			></nz-card-meta>
-		</nz-card>
-
-		<ng-template #avatarTemplate>
-			<nz-avatar
-				nzSize="large"
-				nzSrc="https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png"
-			></nz-avatar>
-		</ng-template>
-
-		<ng-template #body>
-			<div class="body-container">
-				<img
-					*ngIf="newsItem.content?.image"
-					[src]="newsItem.content?.image"
-					alt="Image"
-					class="news-feed-image"
-				/>
-				<video
-					*ngIf="newsItem.content?.video"
-					[src]="newsItem.content?.video"
-					controls
-					class="news-feed-video"
-				></video>
-			</div>
-			<span nz-typography class="post-body">
-				{{ newsItem.content?.text }}
-			</span>
-		</ng-template>
-
-		<ng-template #actionComment class="comment-box">
-			<div class="icon-with-count">
-				<span nz-icon nzType="comment" class="comment-icon"></span>
-				<span nz-typography nzType="secondary">{{
-					newsItem.comments ? newsItem.comments.length : 0
-				}}</span>
-			</div>
-		</ng-template>
-
-		<ng-template #actionLike class="like-box">
-			<div class="icon-with-count">
-				<span nz-icon nzType="like" class="like-icon"></span>
-				<span nz-typography nzType="secondary">{{
-					newsItem.likes ? newsItem.likes.length : 0
-				}}</span>
-			</div>
-		</ng-template>
-	</div>
-
-	<div class="pagination-container">
-		<div class="pagination-center">
-			<nz-pagination
-				[nzTotal]="500"
-				class="pagination"
-				[nzResponsive]="true"
-				[nzHideOnSinglePage]="false"
-			></nz-pagination>
-		</div>
-	</div>
+	<app-like-list
+		*ngIf="storyList$ | async as storyList"
+		[storyList]="storyList"
+	></app-like-list>
 </div>
