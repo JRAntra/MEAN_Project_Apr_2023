@@ -1,107 +1,87 @@
 <div class="profile__container">
   <div class="profile__self">
     <div class="profile__avatar">
-      <p-avatar
-        label="P"
-        styleClass="mr-2"
-        size="xlarge"
-        shape="circle"
-      ></p-avatar>
+      <img [src]="avatarUrl" alt="User Avatar" class="profile__avatar-image">
     </div>
-    <p-card>
-      <div class="profile__identification">
-        <p-inplace #profileNameEditor>
-          <ng-template pTemplate="display">
-            <span>Name</span>
-          </ng-template>
-          <ng-template pTemplate="content">
-            <input type="text" value="Name" pInputText />
-            <p-button
-              icon="pi pi-check"
-              [loading]="loading"
-              (click)="save($event, profileNameEditor)"
-            ></p-button>
-          </ng-template>
-        </p-inplace>
-        <span>email</span>
-      </div>
-    </p-card>
-  </div>
-  <div class="profile__settings">
-    <p-card>
+
+    <form [formGroup]="profileForm">
+      <p-card>
+        <div class="p-inputgroup">
+          <span class="p-button">
+            <i class="pi pi-upload"></i>
+            <input type="file" formControlName="avatar" (change)="onFileChanged($event)" id="avatar" [disabled]="!editing">
+          </span>
+          <button pButton type="button" (click)="saveAvatar()" [disabled]="!isAvatarChanged">Save Avatar</button>
+        </div>
+      </p-card>
+
+      <p-card>
+        <div class="p-inputgroup">
+          <span class="p-inputgroup-addon">
+            <i class="pi pi-user"></i>
+          </span>
+          <input type="text" formControlName="userName" id="userName" [disabled]="!editing" class="p-inputtext">
+        </div>
+      </p-card>
+
+      <p-card>
+        <div class="p-inputgroup">
+          <span class="p-inputgroup-addon">
+            <i class="pi pi-envelope"></i>
+          </span>
+          <input type="email" formControlName="userEmail" id="userEmail" [disabled]="!editing" class="p-inputtext">
+        </div>
+      </p-card>
+
+      <p-card>
+        <div class="p-inputgroup">
+          <span class="p-inputgroup-addon">
+            <i class="pi pi-calendar"></i>
+          </span>
+          <input type="number" formControlName="age" id="age" min="1" [disabled]="!editing" class="p-inputtext">
+        </div>
+      </p-card>
+
+      <p-card>
+        <div class="p-inputgroup">
+          <span class="p-inputgroup-addon">
+            <i class="pi pi-users"></i>
+          </span>
+          <p-dropdown formControlName="gender" id="gender" [options]="genderOptions" [disabled]="!editing" class="p-inputtext"></p-dropdown>
+        </div>
+      </p-card>
+
+      <p-card>
+        <div class="p-inputgroup">
+          <span class="p-inputgroup-addon">
+            <i class="pi pi-lock"></i>
+          </span>
+          <input [type]="isPasswordVisible ? 'text' : 'password'" formControlName="password" id="password" #passwordInput [disabled]="!editing" class="p-inputtext">
+          <button pButton type="button" (click)="togglePasswordVisibility()" [disabled]="!editing" class="p-button-outlined p-button-secondary">
+            <i class="pi pi-eye"></i>
+          </button>
+        </div>
+      </p-card>
+
+      <!-- Edit and Save buttons -->
       <div>
-        <span class="profile__label">Password</span>
-        <p-inplace #profilePasswordEditor>
-          <ng-template pTemplate="display">
-            <span>******</span>
-          </ng-template>
-          <ng-template pTemplate="content">
-            <input type="text" value="" pInputText />
-            <p-button
-              icon="pi pi-check"
-              [loading]="loading"
-              (click)="save($event, profilePasswordEditor)"
-            ></p-button>
-          </ng-template>
-        </p-inplace>
+        <button pButton type="button" (click)="toggleEdit()" *ngIf="!editing" class="p-button p-button-primary">
+          <i class="pi pi-pencil"></i>
+          Edit
+        </button>
+        <button pButton type="button" (click)="saveProfile()" *ngIf="editing" class="p-button p-button-success">
+          <i class="pi pi-check"></i>
+          Save
+        </button>
       </div>
-    </p-card>
-    <p-card>
+    </form>
+
+    <!-- Icons -->
+    <div class="profile__achievement">
       <div>
-        <span class="profile__label">Gender</span>
-        <p-dropdown [options]="genderOptions"></p-dropdown>
+        <i class="pi pi-file" style="font-size: 5em" pBadge value="22"></i>
+        <i class="pi pi-heart-fill" style="font-size: 5em; color: red" pBadge value="12"></i>
       </div>
-    </p-card>
-    <p-card>
-      <div>
-        <span class="profile__label">Age</span>
-        <p-inplace #profileBirthdayEditor>
-          <ng-template pTemplate="display">
-            <span>18</span>
-          </ng-template>
-          <ng-template pTemplate="content">
-            choose your birthday
-            <p-calendar></p-calendar>
-            <p-button
-              icon="pi pi-check"
-              [loading]="loading"
-              (click)="save($event, profileBirthdayEditor)"
-            ></p-button>
-          </ng-template>
-        </p-inplace>
-      </div>
-    </p-card>
-    <p-card>
-      <div><span class="profile__label">Email</span>123@456</div>
-    </p-card>
-    <p-card>
-      <div>
-        <span class="profile__label">Phone</span>
-        <p-inplace #profilePhoneEditor>
-          <ng-template pTemplate="display">
-            <span>123456</span>
-          </ng-template>
-          <ng-template pTemplate="content">
-            <input type="text" value="" pInputText />
-            <p-button
-              icon="pi pi-check"
-              [loading]="loading"
-              (click)="save($event, profilePhoneEditor)"
-            ></p-button>
-          </ng-template>
-        </p-inplace>
-      </div>
-    </p-card>
-  </div>
-  <div class="profile__achievement">
-    <div>
-      <i class="pi pi-file" style="font-size: 5em" pBadge value="22"></i>
-      <i
-        class="pi pi-heart-fill"
-        style="font-size: 5em; color: red"
-        pBadge
-        value="12"
-      ></i>
     </div>
   </div>
 </div>

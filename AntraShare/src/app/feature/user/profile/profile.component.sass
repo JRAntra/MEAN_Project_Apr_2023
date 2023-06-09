@@ -3,16 +3,25 @@
   max-width: 60em
   margin: 0 auto
 
+
 .profile__self
   display: flex
-  flex-direction: row
+  flex-direction: column /* Updated to column */
   align-items: center
 
-  p-card
-    flex: 1
 
 .profile__avatar
   margin: 3em
+
+
+.profile__avatar-image
+  width: 100px
+  height: 100px
+  border-radius: 50%
+  object-fit: cover
+  border: 2px solid #ccc /* Typo fixed */
+  box-shadow: 0 2px 4px rgba(0, 0, 0 , 0.1)
+
 
 .profile__identification
   display: flex
@@ -20,29 +29,40 @@
   align-items: center
   margin: 1em
 
+
 .profile__settings
+  display: flex
+  flex-direction: column /* Updated to column */
+  align-items: center
 
-  p-card
-    flex: 1
-    margin: 1em
 
-    .profile__label
-      margin-right: 2em
+.profile__settings p-card
+  flex: 1
+  margin: 1em
 
-    div
-      display: flex
-      flex-direction: row
-      align-items: center
-      margin: 1em
+
+.profile__settings .profile__label
+  margin-right: 2em
+
+
+.profile__settings div
+  display: flex
+  flex-direction: row
+  align-items: center
+  margin: 1em
+
 
 .profile__achievement
   display: flex
   flex-direction: column
   align-items: center
+  margin-top: 2em /* Added margin-top */
 
-  div
-    display: flex
-    flex-direction: row
 
-    i
-      margin: 1em
+.profile__achievement div
+  display: flex
+  flex-direction: row
+
+
+.profile__achievement i
+  margin: 1em
