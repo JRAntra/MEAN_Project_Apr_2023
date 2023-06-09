@@ -1,5 +1,4 @@
 <div class="like-list-page">
-	<!-- news feeds -->
 	<div class="news-feed" *ngFor="let story of storyList">
 		<nz-card
 			[nzCover]="body"
@@ -60,7 +59,12 @@
 				*ngIf="isLiked(story)"
 				(click)="removeLikeStory(story)"
 			>
-				<span nz-icon nzType="like" class="like-icon"></span>
+				<span
+					nz-icon
+					nzType="like"
+					[nzTheme]="'twotone'"
+					class="like-icon"
+				></span>
 			</div>
 		</ng-template>
 	</div>
