@@ -12,6 +12,7 @@ import { SettingModule } from './setting/setting.module';
 import { AdminModule } from './admin/admin.module';
 import { CoreModule } from './core/core.module';
 
+import  { UserInfoService } from './service/user-info.service';
 
 @NgModule({
   declarations: [
@@ -30,7 +31,7 @@ import { CoreModule } from './core/core.module';
     AdminModule,
     CoreModule 
   ],
-  providers: [],
+  providers: [UserInfoService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

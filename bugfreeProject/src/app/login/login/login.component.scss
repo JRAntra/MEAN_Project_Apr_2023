@@ -1,69 +1,86 @@
+
 .login-container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
+  display: flex;
+  justify-content: center;
+  margin-top: 20vh;
+}
+h2 {
+  text-align: center;
+}
+.avatar-container {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 1.5rem;
+}
+
+.avatar {
+  width: 100px;
+  height: 100px;
+}
+
+.email-error{
+  color: red;
+  font-size: 13px;
+  text-align: left;
+}
+
+.agreement-error{
+  display: none;
+  color: red;
+  font-size: 13px;
+  // text-align: left;
+}
+.login-form {
+  width: 300px;
+  padding: 20px;
+  border-radius: 4px;
+ 
+
+  .form-group {
+    margin-bottom: 15px;
   }
-  
-  .avatar-container {
-    display: flex;
-    justify-content: center;
-    margin-bottom: 1.5rem;
+  label {
+    font-weight: bold;
+  }
+  .form-input {
+    width: 100%;
+    padding: 8px;
+    font-size: 14px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
   }
 
-  .avatar {
-    width: 100px;
-    height: 100px;
-    /* Add any additional styles for the avatar */
+  .register-link {
+    font-size: 15px;
+    color: darkgray;
   }
-  
-  .form-container {
-    width: 300px;
-  
-    h2 {
-      text-align: center;
-      margin-bottom: 1.5rem;
-    }
-  
-    form {
-      .form-group {
-        margin-bottom: 1rem;
-  
-        label {
-          display: block;
-          font-weight: bold;
-        }
-  
-        input[type="text"],
-        input[type="password"] {
-          width: 100%;
-          padding: 0.5rem;
-          border: 1px solid #ccc;
-          border-radius: 4px;
-        }
-      }
-  
-      .button-container {
-        display: flex;
-        justify-content: space-between;
-  
-        .login-button,
-        .register-button {
-          padding: 0.5rem 1rem;
-          border-radius: 4px;
-          cursor: pointer;
-        }
-  
-        .login-button {
-          background-color: #007bff;
-          color: #fff;
-        }
-  
-        .register-button {
-          background-color: #6c757d;
-          color: #fff;
-        }
-      }
-    }
+
+  .btn {
+    display: block;
+    width: 100%;
+    padding: 8px;
+    text-align: center;
+    background-color: #00a2ff;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
   }
-  
+
+  .btn:hover {
+    background-color: #00748e;
+  }
+
+  .agreement-help {
+    margin-top: 20px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+  }
+
+  a {
+    text-decoration: none;
+    color: #00748e;
+  }
+}
