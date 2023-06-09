@@ -1,0 +1,37 @@
+name: backend lint
+on:
+  push:
+    branches:
+      - "Release_Branch/Tian"
+    paths:
+      - AntraShare/**
+jobs:
+  lint:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
+        with:
+          node-version: 16
+      - uses: actions/cache@v2
+        with:
+          path: ~/.npm
+          key: Tian-${{ runner.os }}-node-frontend-${{ hashFiles('**/package-lock.json') }}
+          restore-keys: |
+            Tian-${{ runner.os }}-node-frontend-
+            Tian-${{ runner.os }}-node-
+      - name: Lint with prettier
+        run: |
+          cd AntraShareServer
+          npm install
+          npm run lint
+          if [ -z "$(git status --untracked-files=no --porcelain)" ]; then
+            echo "already linted"
+          else 
+            git config --global user.email "github-actions[bot]@users.noreply.github.com"
+            git config --global user.name "github-actions[bot]"
+            git commit -a -m "auto lint"
+            git push
+          fi
