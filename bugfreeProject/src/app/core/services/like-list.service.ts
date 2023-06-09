@@ -7,7 +7,7 @@ import { NewsFeedService,NewsItem } from '../../core/services/news-feed.service'
 })
 
 export class LikeListService {
-  private storageKey = 'likeList';
+  //private storageKey = 'likeList';
   private _likedNews = new BehaviorSubject<NewsItem[]>([]);
 
   likedNews$ = this._likedNews.asObservable();
