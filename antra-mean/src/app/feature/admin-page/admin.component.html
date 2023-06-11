@@ -14,7 +14,7 @@
 			>
 				<span nz-icon nzType="user"></span>
 				<span>
-					{{ user.userName ? (user.userName | truncate : 10) : '' }}
+					{{ user.userName ? user.userName : '' }}
 				</span>
 				<button
 					class="delete"
@@ -33,25 +33,19 @@
 				<p>
 					<span>Username: </span>
 					<span>{{
-						selectedUser.userName
-							? (selectedUser.userName | truncate : 20)
-							: ''
+						selectedUser.userName ? selectedUser.userName : ''
 					}}</span>
 				</p>
 				<p>
 					<span>Password: </span>
 					<span>{{
-						selectedUser.password
-							? (selectedUser.password | truncate : 20)
-							: ''
+						selectedUser.password ? selectedUser.password : ''
 					}}</span>
 				</p>
 				<p>
 					<span>User Email: </span>
 					<span>{{
-						selectedUser.userEmail
-							? (selectedUser.userEmail | truncate : 20)
-							: ''
+						selectedUser.userEmail ? selectedUser.userEmail : ''
 					}}</span>
 				</p>
 				<p>

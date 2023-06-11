@@ -1,31 +1,30 @@
-import { Component, OnInit, Input } from '@angular/core'
-import { DatePipe } from '@angular/common';
-import { Story } from 'src/app/shared/userInfo.model';
-import { NewsFeedService } from '../news-feed.service';
+import { Component, Input } from '@angular/core'
+import { Story } from 'src/app/shared/userInfo.model'
+import { NewsFeedService } from '../news-feed.service'
 
 @Component({
 	selector: 'app-like-list',
 	templateUrl: './like-list.component.html',
 	styleUrls: ['./like-list.component.sass']
 })
-export class LikeListComponent implements OnInit {
-	@Input() storyList!: Story[];
-	like = false;
+export class LikeListComponent {
+	@Input() storyList!: Story[]
+	@Input() isLikedList: boolean = false
+	like = false
 
-	constructor(private newsFeedService: NewsFeedService) { }
+	constructor(private newsFeedService: NewsFeedService) {}
 
-	setLikeStory(story: Story){
+	setLikeStory(story: Story) {
 		this.newsFeedService.addToLikeList(story)
+		this.like = true
 	}
 
-	removeLikeStory(story: Story){
+	removeLikeStory(story: Story) {
 		this.newsFeedService.removeFromLikeList(story)
+		this.like = false
 	}
 
-	isLiked(story: Story){
+	isLiked(story: Story) {
 		return this.newsFeedService.isLiked(story)
-	}
-
-	ngOnInit(): void {
 	}
 }
