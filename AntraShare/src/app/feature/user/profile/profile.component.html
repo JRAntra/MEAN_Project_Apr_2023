@@ -1,7 +1,7 @@
 <div class="profile__container">
   <div class="profile__self">
     <div class="profile__avatar">
-      <img [src]="avatarUrl" alt="User Avatar" class="profile__avatar-image">
+      <img [src]="avatarUrl" alt="User Avatar" class="profile__avatar-image" />
     </div>
 
     <form [formGroup]="profileForm">
@@ -9,9 +9,17 @@
         <div class="p-inputgroup">
           <span class="p-button">
             <i class="pi pi-upload"></i>
-            <input type="file" (change)="onFileChanged($event)" id="avatar">
+            <input type="file" (change)="onFileChanged($event)" id="avatar" />
           </span>
-          <button pButton type="button" (click)="saveAvatar()" [disabled]="!isAvatarChanged" class="avatar-save-button">Save Avatar</button>
+          <button
+            pButton
+            type="button"
+            (click)="saveAvatar()"
+            [disabled]="!isAvatarChanged"
+            class="avatar-save-button"
+          >
+            Save Avatar
+          </button>
         </div>
       </p-card>
 
@@ -20,7 +28,14 @@
           <span class="p-inputgroup-addon">
             <i class="pi pi-user"></i>
           </span>
-          <input type="text" pInputText formControlName="userName" id="userName" [disabled]="!editing" class="p-inputtext">
+          <input
+            type="text"
+            pInputText
+            formControlName="userName"
+            id="userName"
+            [disabled]="!editing"
+            class="p-inputtext"
+          />
         </div>
       </p-card>
 
@@ -29,7 +44,14 @@
           <span class="p-inputgroup-addon">
             <i class="pi pi-envelope"></i>
           </span>
-          <input type="email" pInputText formControlName="userEmail" id="userEmail" [disabled]="!editing" class="p-inputtext">
+          <input
+            type="email"
+            pInputText
+            formControlName="userEmail"
+            id="userEmail"
+            [disabled]="!editing"
+            class="p-inputtext"
+          />
         </div>
       </p-card>
 
@@ -38,7 +60,15 @@
           <span class="p-inputgroup-addon">
             <i class="pi pi-calendar"></i>
           </span>
-          <input type="number"  pInputText formControlName="age" id="age" min="1" [disabled]="!editing" class="p-inputtext">
+          <input
+            type="number"
+            pInputText
+            formControlName="age"
+            id="age"
+            min="1"
+            [disabled]="!editing"
+            class="p-inputtext"
+          />
         </div>
       </p-card>
 
@@ -47,7 +77,14 @@
           <span class="p-inputgroup-addon">
             <i class="pi pi-users"></i>
           </span>
-          <p-dropdown formControlName="gender" placeholder="Select a gender" id="gender" [options]="genderOptions" [disabled]="!editing" class="p-inputtext custom-dropdown gender-dropdown"></p-dropdown>
+          <p-dropdown
+            formControlName="gender"
+            placeholder="Select a gender"
+            id="gender"
+            [options]="genderOptions"
+            [disabled]="!editing"
+            class="p-inputtext custom-dropdown gender-dropdown"
+          ></p-dropdown>
         </div>
       </p-card>
 
@@ -56,8 +93,22 @@
           <span class="p-inputgroup-addon">
             <i class="pi pi-lock"></i>
           </span>
-          <input pInputText [type]="isPasswordVisible ? 'text' : 'password'" formControlName="password" id="password" #passwordInput [disabled]="!editing" class="p-inputtext">
-          <button pButton type="button" (click)="togglePasswordVisibility()" [disabled]="!editing" class="p-button-outlined p-button-secondary">
+          <input
+            pInputText
+            [type]="isPasswordVisible ? 'text' : 'password'"
+            formControlName="password"
+            id="password"
+            #passwordInput
+            [disabled]="!editing"
+            class="p-inputtext"
+          />
+          <button
+            pButton
+            type="button"
+            (click)="togglePasswordVisibility()"
+            [disabled]="!editing"
+            class="p-button-outlined p-button-secondary"
+          >
             <i class="pi pi-eye"></i>
           </button>
         </div>
@@ -65,11 +116,23 @@
 
       <!-- Edit and Save buttons -->
       <div class="profile__button-container">
-        <button pButton type="button" (click)="toggleEdit()" *ngIf="!editing" class="p-button p-button-primary">
+        <button
+          pButton
+          type="button"
+          (click)="toggleEdit()"
+          *ngIf="!editing"
+          class="p-button p-button-primary"
+        >
           <i class="pi pi-pencil"></i>
           Edit
         </button>
-        <button pButton type="button" (click)="saveProfile()" *ngIf="editing" class="p-button p-button-success">
+        <button
+          pButton
+          type="button"
+          (click)="saveProfile()"
+          *ngIf="editing"
+          class="p-button p-button-success"
+        >
           <i class="pi pi-check"></i>
           Save
         </button>
@@ -80,7 +143,12 @@
     <div class="profile__achievement">
       <div>
         <i class="pi pi-file" style="font-size: 5em" pBadge value="22"></i>
-        <i class="pi pi-heart-fill" style="font-size: 5em; color: red" pBadge value="12"></i>
+        <i
+          class="pi pi-heart-fill"
+          style="font-size: 5em; color: red"
+          pBadge
+          value="12"
+        ></i>
       </div>
     </div>
   </div>
