@@ -2,11 +2,15 @@ import { Component, OnInit } from '@angular/core';
 import { AuthService } from 'src/app/auth.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { DialogService, DynamicDialogRef } from 'primeng/dynamicdialog';
+import { AlertComponent } from '../alert/alert.component';
 
 @Component({
   selector: 'app-profile',
   templateUrl: './profile.component.html',
   styleUrls: ['./profile.component.sass'],
+  providers: [DialogService],
+
 })
 export class ProfileComponent implements OnInit {
   profileForm!: FormGroup;
@@ -21,8 +25,10 @@ export class ProfileComponent implements OnInit {
     { label: 'Female', value: 'female' },
     { label: 'Other', value: 'other' }
   ];
+  alertDialogRef!: DynamicDialogRef;
+  error_message: any;
 
-  constructor(private authService: AuthService, private router: Router, private fb: FormBuilder,) {}
+  constructor(private authService: AuthService, private dialogService: DialogService, private router: Router, private fb: FormBuilder,) {}
 
   ngOnInit() {
     const user = this.authService.getUser();
@@ -91,12 +97,25 @@ export class ProfileComponent implements OnInit {
     }
   }
 
+  alertMessage() {
+    this.alertDialogRef = this.dialogService.open(AlertComponent, {
+      data: {
+        err_msg: this.error_message,
+      },
+      header: 'Alert',
+      width: '70%',
+      contentStyle: { overflow: 'auto' },
+      baseZIndex: 10000,
+    });
+  }
+
   saveProfile() {
     const updatedProfile = this.profileForm.value;
     console.log(updatedProfile);
     this.toggleEdit();
     setTimeout(() => {
-      window.alert("Profile information saved successfully!")
+      this.error_message = "Your information has been successfully saved.";
+      this.alertMessage();
     }, 1000)
   }
 
@@ -123,7 +142,8 @@ export class ProfileComponent implements OnInit {
     localStorage.setItem(`avatarURL_${user?.userEmail}`, this.avatarUrl);
     this.isAvatarChanged = false;
     setTimeout(()=> {
-      window.alert("Your profile image has being saved successfully!")
+      this.error_message = "Your profile image has being saved successfully!";
+      this.alertMessage();
     }, 1000)
   }
 }
