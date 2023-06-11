@@ -1,8 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { Inplace } from 'primeng/inplace'
 import { AuthService } from 'src/app/auth.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-profile',
@@ -23,42 +22,64 @@ export class ProfileComponent implements OnInit {
     { label: 'Other', value: 'other' }
   ];
 
-  constructor(private authService: AuthService, private fb: FormBuilder,) {}
+  constructor(private authService: AuthService, private router: Router, private fb: FormBuilder,) {}
 
   ngOnInit() {
-    this.initForm();
-    this.isAvatarChanged = false
-
-    const savedFormData = localStorage.getItem('profileForm');
-    if(savedFormData) {
-      const formData = JSON.parse(savedFormData);
-      this.profileForm.setValue(formData);
+    const user = this.authService.getUser();
+    console.log(user)
+    if (!user) {
+      // Redirect to login page if not authenticated
+      this.router.navigate(['/login']);
+      return;
     }
 
-    const savedAvatarUrl = localStorage.getItem('avatarUrl');
-    if (savedAvatarUrl) {
-      this.avatarUrl = savedAvatarUrl;
+    this.initForm();
+    this.isAvatarChanged = false;
+
+    // Populate form with user data
+    this.profileForm.patchValue({
+      userName: user.userName,
+      userEmail: user.userEmail,
+      age: user.age,
+      gender: user.gender
+    });
+
+    if (user.avatar) {
+      this.avatarUrl = user.avatar;
+    }
+
+    // Optional: Retrieve unsaved changes from local storage
+    const savedFormValues = localStorage.getItem(`profileForm_${user?.userEmail}`);
+    if (savedFormValues) {
+      this.profileForm.patchValue(JSON.parse(savedFormValues));
+    }
+
+    const savedAvatarURL = localStorage.getItem(`avatarURL_${user?.userEmail}`);
+    if (savedAvatarURL) {
+      this.avatarUrl = savedAvatarURL;
     }
 
     // Listen for changes and save them
     this.profileForm.valueChanges.subscribe(values => {
-      localStorage.setItem('profileForm', JSON.stringify(values));
+      localStorage.setItem(`profileForm_${user?.userEmail}`, JSON.stringify(values));
     });
   }
+
+
 
   private initForm() {
     const user = this.authService.getUser();
     this.profileForm = this.fb.group({
-      avatar: [{ value: this.avatarUrl, disabled: !this.editing }], // Use disabled property here
+      avatar: [''],
       userName: [user?.userName, Validators.required],
       userEmail: [user?.userEmail, [Validators.required, Validators.email]],
       age: [user?.age, [Validators.min(1)]],
       gender: [user?.gender],
       password: ['', Validators.required]
     });
-    if (!this.editing){
-      this.profileForm.disable();
-    }
+
+    this.editing = false;
+    this.profileForm.disable();
   }
 
   toggleEdit() {
@@ -74,8 +95,11 @@ export class ProfileComponent implements OnInit {
     const updatedProfile = this.profileForm.value;
     console.log(updatedProfile);
     this.toggleEdit();
-    window.alert("Profile information saved successfully!")
+    setTimeout(() => {
+      window.alert("Profile information saved successfully!")
+    }, 1000)
   }
+
 
   togglePasswordVisibility() {
     this.isPasswordVisible = !this.isPasswordVisible; // Toggle the visibility state
@@ -83,8 +107,9 @@ export class ProfileComponent implements OnInit {
 
   onFileChanged(event: Event) {
     this.isAvatarChanged = true;
-    const file = (event.target as HTMLInputElement).files![0];
-    if (file) {
+    const input = event.target as HTMLInputElement;
+    if (input.files && input.files.length) {
+      const file = input.files[0];
       const reader = new FileReader();
       reader.onload = () => {
         this.avatarUrl = reader.result as string;
@@ -94,8 +119,11 @@ export class ProfileComponent implements OnInit {
   }
 
   saveAvatar(){
-    localStorage.setItem('avatarUrl', this.avatarUrl);
+    const user = this.authService.getUser()
+    localStorage.setItem(`avatarURL_${user?.userEmail}`, this.avatarUrl);
     this.isAvatarChanged = false;
-    window.alert("Your profile image has being saved successfully!")
+    setTimeout(()=> {
+      window.alert("Your profile image has being saved successfully!")
+    }, 1000)
   }
 }
