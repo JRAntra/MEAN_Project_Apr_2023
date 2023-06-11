@@ -24,6 +24,7 @@ import { TooltipModule } from 'primeng/tooltip';
 import { DialogModule } from 'primeng/dialog';
 import { DynamicDialogModule } from 'primeng/dynamicdialog';
 import { AlertComponent } from './alert/alert.component';
+import { AuthService } from 'src/app/auth.service';
 
 @NgModule({
   declarations: [
@@ -52,7 +53,9 @@ import { AlertComponent } from './alert/alert.component';
     TooltipModule,
     DialogModule,
     DynamicDialogModule,
+    ReactiveFormsModule,
   ],
   exports: [LoginComponent, RegisterComponent, ProfileComponent],
+  providers: [AuthService],
 })
 export class UserModule {}

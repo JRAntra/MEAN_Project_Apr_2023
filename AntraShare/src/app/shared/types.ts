@@ -10,6 +10,7 @@ export interface UserProfile {
   age?: number;
   gender?: Genders;
   phone?: number;
+  avatar?: string;
 }
 
 export interface UserProfileWithPassword extends UserProfile {

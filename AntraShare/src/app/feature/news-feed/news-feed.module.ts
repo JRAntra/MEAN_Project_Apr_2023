@@ -52,6 +52,6 @@ import { ToArrayPipe } from './news-feed/to-array.pipe';
     InputTextareaModule,
     SidebarModule,
   ],
-  exports: [NewsFeedComponent],
+  exports: [NewsFeedComponent, StoryListComponent],
 })
 export class NewsFeedModule {}
