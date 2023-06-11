@@ -26,6 +26,8 @@ export class ProfileComponent implements OnInit{
   }
 
   ngOnInit(): void {
+    this.saveProfile();
+    this.loadProfile();
   }
 
   togglePasswordVisibility() {
@@ -38,6 +40,25 @@ export class ProfileComponent implements OnInit{
 
   showLikedStories() {
     // Implement the logic to show the user's liked stories
+  }
+  loadProfile() {
+      const storedUserInfo = localStorage.getItem('userInfo');
+      
+      if(storedUserInfo) {
+        const userInfo = JSON.parse(storedUserInfo);
+        this.profileForm.patchValue(userInfo);
+      }
+  }
+  saveProfile() {
+    const userInfo = {
+      username: 'bugfree@123.com',
+      email: 'bugfree@123.com',
+      age: 18,
+      gender: 'helicopter',
+      password: 'bugfree'
+    };
+    localStorage.setItem('userInfo', JSON.stringify(userInfo));
+    this.profileForm.patchValue(userInfo);
   }
 
 }

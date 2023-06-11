@@ -1,9 +1,10 @@
 import { Component , OnInit} from '@angular/core';
 import { NewsFeedService,NewsItem } from '../../core/services/news-feed.service';
-import { MatDialog } from '@angular/material/dialog';
+
 import { LikeListComponent } from '../like-list/like-list.component';
 import { LikeListService } from 'src/app/core/services/like-list.service';
-
+import {MatMenuModule} from '@angular/material/menu';
+import {MatSidenavModule} from '@angular/material/sidenav';
 
 
 @Component({

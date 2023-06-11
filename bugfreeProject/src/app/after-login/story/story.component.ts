@@ -40,6 +40,11 @@ export class StoryComponent implements OnInit{
     const likeList = this.likeListService.getLikeList();
     return likeList.some(i => i.id === item.id);
   }
+  
+  hasImage(news: NewsItem): boolean {
+    return news.content && news.content.image !== undefined;
+  }
+  
 
 
 }

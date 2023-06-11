@@ -13,12 +13,31 @@
     cursor: pointer;
     transition: all 0.3s ease;
     border-radius: 15px;
-    width: 300px;
-    height: 200px;
+    width: fit-content; /* Adjust width to fit content */
+    min-width: 300px; /* Set minimum width to 100px */
+    height: auto; /* Remove fixed height */
+    min-height: 200px;
     overflow: auto;
 
     &:hover {
         border-color: #007BFF;
+    }
+    img {
+      max-width: 100%;
+      height: auto;
+      display: block;
+      margin: 0 auto;
+    }
+  
+    .no-photo {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 200px; /* Adjust height as desired */
+      background-color: #f0f0f0;
+      color: #888;
+      font-size: 18px;
+      font-weight: bold;
     }
 }
 

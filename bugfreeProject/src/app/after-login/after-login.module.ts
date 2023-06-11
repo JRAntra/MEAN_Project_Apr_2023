@@ -10,7 +10,12 @@ import { LikeListComponent } from './like-list/like-list.component';
 import { StoryComponent } from './story/story.component';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatMenuModule } from '@angular/material/menu';
-
+import { MatSidenavModule } from '@angular/material/sidenav';
+import {MatListModule} from '@angular/material/list';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatSelectModule } from '@angular/material/select';
+import { MatIconModule } from '@angular/material/icon';
+import { MatToolbarModule } from '@angular/material/toolbar';
 
 @NgModule({
   declarations: [
@@ -24,7 +29,13 @@ import { MatMenuModule } from '@angular/material/menu';
     FormsModule,
     AfterLoginRoutingModule,
     CoreModule,
-    MatMenuModule
+    MatMenuModule,
+    MatSidenavModule,
+    MatListModule,
+    MatFormFieldModule,
+    MatSelectModule,
+    MatIconModule,
+    MatToolbarModule,
   ],
   exports: [
     AfterLoginComponent,
