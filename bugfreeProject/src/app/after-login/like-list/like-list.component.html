@@ -1,0 +1,8 @@
+<div class="floating-page">
+    <p>like-list works!</p>
+</div>
+<div *ngFor="let newsItem of likedNews">
+    <h2>{{ newsItem.publisherName }}</h2>
+    <p>{{ newsItem.content.text|truncate }}</p>
+  </div>
+  

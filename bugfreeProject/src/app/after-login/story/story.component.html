@@ -1,0 +1,21 @@
+<div class="body">
+    <div class="rectangle" *ngFor="let news of newsFeed" (click)="onNewsClick(news)">
+      <h3>{{ news.publisherName }}</h3>
+      <ng-container *ngIf="hasImage(news); else noPhoto">
+        <img [src]="news.content.image" alt="News Image">
+      </ng-container>
+      <ng-template #noPhoto>
+        <div class="no-photo">
+          No Photo
+        </div>
+      </ng-template>
+        <p>{{ news.content.text| truncate }}</p>
+      
+      <button (click)="likeItem(news)" *ngIf="!isLiked(news)">Like</button>
+      <button (click)="unlikeItem(news)" *ngIf="isLiked(news)">Unlike</button>
+      <!--
+        <div *ngFor="let comment of news.comment">
+            <p>{{ comment.publisherName }}: {{ comment.content.text }}</p>
+        </div>
+      -->      
+    </div>
