@@ -8,10 +8,12 @@ import { LikeListComponent } from './feature/news-feed/like-list/like-list.compo
 import { ProfileComponent } from './feature/profile/profile.component'
 import { RegisterComponent } from './feature/register/register.component'
 import { ErrorComponent } from './feature/error/error.component'
+import { AuthGuard } from './shared/auth.guard'
+
 const routes: Routes = [
 	{ path: '', redirectTo: '/login', pathMatch: 'full' },
 	{ path: 'settings', component: SettingPageComponent },
-	{ path: 'admin', component: AdminPageComponent },
+	{ path: 'admin', component: AdminPageComponent, canActivate: [AuthGuard] },
 	{ path: 'login', component: LoginPageComponent },
 	{ path: 'news-feed', component: NewsFeedPageComponent },
 	{ path: 'like-list', component: LikeListComponent },
