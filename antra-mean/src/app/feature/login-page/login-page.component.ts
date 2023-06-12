@@ -54,7 +54,7 @@ export class LoginPageComponent {
 					if (response) {
 						// If login is successful, save user data and redirect to news-feed
 						this.successLoginNotification()
-						//this.router.navigate(['/news-feed'])
+						this.router.navigate(['/news-feed'])
 						console.log(response)
 						console.log(
 							'user local stored info: ',
