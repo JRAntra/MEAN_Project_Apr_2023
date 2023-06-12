@@ -14,6 +14,7 @@ export class ProfileComponent implements OnInit{
   age?: number;
   gender?: string;
   password?: string;
+
   showPassword: boolean = false;
   constructor(private fb: FormBuilder) { 
     this.profileForm = this.fb.group({
@@ -24,10 +25,11 @@ export class ProfileComponent implements OnInit{
       password: ['']
     });
   }
-
+  public userInfo: any = {};
+  
   ngOnInit(): void {
-    this.saveProfile();
-    this.loadProfile();
+    //this.saveProfile();
+    this.loadData();
   }
 
   togglePasswordVisibility() {
@@ -41,6 +43,7 @@ export class ProfileComponent implements OnInit{
   showLikedStories() {
     // Implement the logic to show the user's liked stories
   }
+
   loadProfile() {
       const storedUserInfo = localStorage.getItem('userInfo');
       
@@ -49,6 +52,22 @@ export class ProfileComponent implements OnInit{
         this.profileForm.patchValue(userInfo);
       }
   }
+
+  loadData() {
+    const data = localStorage.getItem('userInfo');
+    if (data) {
+      const userInfo = JSON.parse(data);
+      this.profileForm.patchValue({
+        username: userInfo.userName,
+        email: userInfo.userEmail,
+        age: userInfo.age,
+        gender: userInfo.gender,
+        password: "userInfo.password"
+      });
+    }
+    password: "bugfree"
+  }
+
   saveProfile() {
     const userInfo = {
       username: 'bugfree@123.com',
