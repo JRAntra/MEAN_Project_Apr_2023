@@ -18,15 +18,6 @@ export class ProfileComponent implements OnInit {
 			'🚀 ~ file: profile.component.ts:27 ~ ProfileComponent ~ ngOnInit ~ user:',
 			this.user
 		)
-		this.userAccountService.getUserInfoFromDB().subscribe((data) => {
-			this.userFromDB = data.users.map((user: any) => {
-				return user.firstName
-			}) // Update this line to get the user from the database
-			console.log(
-				'🚀 ~ file: profile.component.ts:27 ~ ProfileComponent ~ ngOnInit ~ userFromDB:',
-				this.userFromDB
-			)
-		})
 	}
 
 	//condition for the input field

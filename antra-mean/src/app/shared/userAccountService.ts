@@ -5,29 +5,33 @@
 import { Injectable } from '@angular/core'
 import { UserInfo } from './userInfo.model'
 import { HttpClient } from '@angular/common/http'
-import { Observable } from 'rxjs'
+import { Observable, of } from 'rxjs'
 import { API } from 'src/app/shared/api'
 
+import { catchError, map } from 'rxjs/operators'
 @Injectable({
 	providedIn: 'root'
 })
 export class UserAccountService {
 	constructor(private http: HttpClient) {}
-	checkExistEmail(email: string) {
-		return this.http.get<boolean>(
-			`${API.url}/api/register/checkExistByEmail/` + email
-		)
-	}
+
+	localUserInfo: UserInfo = {}
 
 	checkExistUsername(username: string) {
 		return this.http.get<boolean>(
 			`${API.url}/api/register/checkExistByUsername/` + username
 		)
 	}
+	checkExistEmail(email: string) {
+		return this.http.get<boolean>(
+			`${API.url}/api/register/checkExistByEmail/` + email
+		)
+	}
+
 	registerUser(user: UserInfo) {
 		const body = {
 			userName: user.userName,
-			userEmail: user.userEmail?.toLowerCase(),
+			userEmail: user.userEmail!.toLowerCase(),
 			password: user.password,
 
 			userRole: 'user',
@@ -54,7 +58,33 @@ export class UserAccountService {
 			avatar: '../../assets/profile-image/profile.jpg'
 		}
 	}
-	getUserInfoFromDB(): Observable<any> {
-		return this.http.get('https://dummyjson.com/users')
+	loginUser(username: string, password: string): Observable<boolean> {
+		const body = {
+			userEmail: username.toLowerCase(),
+			password: password
+		}
+		return this.http
+			.post<any>(
+				`${API.url}/api/login/`, // assuming that your backend login API route is '/api/login'
+				body
+			)
+			.pipe(
+				map((response) => {
+					if (response && response.bearerToken) {
+						this.localUserInfo = response // save user information if needed
+						return true
+					} else {
+						return false
+					}
+				}),
+				catchError((error) => {
+					console.error(error)
+					return of(false)
+				})
+			)
+	}
+
+	getLocalUserInfo(): UserInfo {
+		return this.localUserInfo
 	}
 }

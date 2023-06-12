@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core'
+import { Component, OnInit, OnDestroy } from '@angular/core'
 import { UserAccountService } from 'src/app/shared/userAccountService'
 import { RegisterInfoCheckService } from 'src/app/shared/registerInfoCheck.service'
 import { NzMessageService } from 'ng-zorro-antd/message'
@@ -8,31 +8,25 @@ import {
 	Validators,
 	AbstractControl
 } from '@angular/forms'
-import { UserInfo } from 'src/app/shared/userInfo.model'
+import { Subscription } from 'rxjs'
+import { Router } from '@angular/router'
 @Component({
 	selector: 'app-register',
 	templateUrl: 'register.component.html',
 	styleUrls: ['register.component.sass'],
 	providers: [RegisterInfoCheckService, NzMessageService]
 })
-export class RegisterComponent implements OnInit {
+export class RegisterComponent implements OnInit, OnDestroy {
 	title = 'Register page'
-	// username: string = ''
 	passwordVisible = false
-	// password: string = ''
-	// confirmPassword: string = ''
-	// phone: string = ''
-	// email: string = ''
-	// gender: string = ''
-	// checked: boolean = false
-	// age: number = NaN
 	formCompleted: boolean = false
 	registerForm!: FormGroup
-
+	private registerSubscription?: Subscription
 	constructor(
 		private message: NzMessageService,
 		private registerInfoCheckService: RegisterInfoCheckService,
-		private userAccountService: UserAccountService
+		private userAccountService: UserAccountService,
+		private router: Router
 	) {}
 
 	ngOnInit(): void {
@@ -78,8 +72,7 @@ export class RegisterComponent implements OnInit {
 	}
 
 	onSubmit(): void {
-		console.log('registerForm : ', this.registerForm.value)
-		this.userAccountService
+		this.registerSubscription = this.userAccountService
 			.registerUser(this.registerForm.value)
 			.subscribe((data) => {
 				console.log('register : ', data)
@@ -89,6 +82,13 @@ export class RegisterComponent implements OnInit {
 		}).messageId
 		setTimeout(() => {
 			this.message.remove(id)
-		}, 3000)
+			this.router.navigate(['/login'])
+		}, 1000)
+	}
+
+	ngOnDestroy(): void {
+		if (this.registerSubscription) {
+			this.registerSubscription.unsubscribe()
+		}
 	}
 }
