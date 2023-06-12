@@ -4,6 +4,18 @@ import { Story } from 'src/app/shared/userInfo.model'
 import { FormBuilder, FormGroup, Validators } from '@angular/forms'
 import { DatePipe } from '@angular/common'
 import { NewsFeedService } from '../news-feed.service'
+import { UserInfo } from 'src/app/shared/userInfo.model'
+import { UserAccountService } from 'src/app/shared/userAccountService'
+export interface Post {
+	image: string
+	video: string
+	text: string
+	publisherName: string
+	publishedTime: string
+	content: object
+	comment: object
+	likedIdList: any
+}
 
 @Component({
 	selector: 'app-news-feed-page',
@@ -15,13 +27,13 @@ export class NewsFeedPageComponent implements OnInit {
 	inputValue?: string
 	storyList$?: Observable<Story[]>
 	likedList$?: Observable<Story[]>
-
 	likedlistVisible = false
-
+	localUserInfo: UserInfo | null = null
 	constructor(
 		private datePipe: DatePipe,
 		private newsFeedService: NewsFeedService,
-		private fb: FormBuilder
+		private fb: FormBuilder,
+		private userAccountService: UserAccountService
 	) {}
 
 	ngOnInit(): void {
@@ -31,6 +43,11 @@ export class NewsFeedPageComponent implements OnInit {
 
 		this.storyList$ = this.newsFeedService.getNewsFeed()
 		this.likedList$ = this.newsFeedService.getLikedList()
+		this.localUserInfo = this.userAccountService.getLocalUserInfo()
+		console.log(
+			'news-feed-page.component.ts: ngOnInit(): this.localUserInfo: ',
+			this.localUserInfo
+		)
 	}
 
 	submitPostForm(): void {

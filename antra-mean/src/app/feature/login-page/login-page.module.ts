@@ -7,7 +7,7 @@ import { NzInputModule } from 'ng-zorro-antd/input'
 import { NzCheckboxModule } from 'ng-zorro-antd/checkbox'
 import { RouterLink, RouterModule, Routes } from '@angular/router'
 import { NzButtonModule } from 'ng-zorro-antd/button'
-import { LoginService } from './login.service'
+
 import { NzNotificationService } from 'ng-zorro-antd/notification'
 
 @NgModule({
@@ -22,7 +22,6 @@ import { NzNotificationService } from 'ng-zorro-antd/notification'
 	],
 	declarations: [LoginPageComponent],
 	exports: [LoginPageComponent],
-	providers: [LoginService, NzNotificationService]
-
+	providers: [NzNotificationService]
 })
 export class LoginPageModule {}
