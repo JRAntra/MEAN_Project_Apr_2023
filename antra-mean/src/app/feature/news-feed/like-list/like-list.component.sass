@@ -1,18 +1,35 @@
-.pagination-container
-  display: flex
-  justify-content: center
-  margin-top: 20px
-  margin-bottom: 100px
+.likelist-title
+  padding-bottom: 0
 
-.pagination-center
+.news-feed
+  margin-top: 10px
+
+.body-container
   display: flex
+  flex-direction: rows
+  justify-content: space-between
+  padding: 10px 20px
+  .news-feed-image
+    width: 300px
+    height: 200px
+    padding-right: 10px
+
+  .news-feed-video
+    width: 300px
+    height: 200px
+
+
+.body-container-likelist
+  display: flex
+  flex-direction: column
+  margin-left: 25px
+  padding-top: 10px
+  .news-feed-image, .news-feed-video
+    width: 90%
+    height: 80%
+    padding-right: 0px
+    padding-bottom: 10px
 
 .post-body
-  padding: 20px
+  padding-left: 20px
 
-.comment-icon,
-.like-icon
-  margin-right: 5px
-
-.like-list-page
-  width: 600px

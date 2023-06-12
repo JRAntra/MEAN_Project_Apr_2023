@@ -1,32 +1,30 @@
-import { Component, OnInit } from '@angular/core'
-import { DatePipe } from '@angular/common';
+import { Component, Input } from '@angular/core'
+import { Story } from 'src/app/shared/userInfo.model'
+import { NewsFeedService } from '../news-feed.service'
 
 @Component({
 	selector: 'app-like-list',
 	templateUrl: './like-list.component.html',
 	styleUrls: ['./like-list.component.sass']
 })
-export class LikeListComponent implements OnInit {
-	likedNews: any[] = []
-	constructor(private datePipe: DatePipe) {
-		this.generateFakeData();
-	}
-	generateFakeData(): void {
-		// Generate fake data for the likedNews array
-		for (let i = 1; i <= 10; i++) {
-			const currentDate = new Date();
-			const formattedDate = this.datePipe.transform(currentDate, 'yyyy-MM-dd HH:mm:ss');
+export class LikeListComponent {
+	@Input() storyList!: Story[]
+	@Input() isLikedList: boolean = false
+	like = false
 
-			this.likedNews.push({
-				userID: `User ${i}`,
-				body: `This is the body of liked item ${i}`,
-				comments: Math.floor(Math.random() * 1000),
-				likes: Math.floor(Math.random() * 10000),
-				date: formattedDate, // Add the formatted date to the object
-			});
-		}
+	constructor(private newsFeedService: NewsFeedService) {}
+
+	setLikeStory(story: Story) {
+		this.newsFeedService.addToLikeList(story)
+		this.like = true
 	}
 
+	removeLikeStory(story: Story) {
+		this.newsFeedService.removeFromLikeList(story)
+		this.like = false
+	}
 
-	ngOnInit(): void {}
+	isLiked(story: Story) {
+		return this.newsFeedService.isLiked(story)
+	}
 }
