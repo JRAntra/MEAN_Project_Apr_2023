@@ -14,11 +14,15 @@ export class AdminService {
 	constructor(
 		private http: HttpClient,
 		private userAccount: UserAccountService
-	) {}
+	) {
+		this.changeRole()
+	}
 
 	changeRole() {
 		const user = this.userAccount.getLocalUserInfo()
-		console.log(user)
+		if (user && user.userRole === 'admin') {
+			this.isAdmin = true
+		}
 	}
 
 	isAuthorized() {

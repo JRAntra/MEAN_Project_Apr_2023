@@ -27,7 +27,7 @@ export class AuthGuard implements CanActivate {
 		if (val) {
 			return true
 		} else {
-			alert('Please login first')
+			alert('You are not authorized to view this page')
 			return false
 		}
 	}
