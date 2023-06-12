@@ -1,6 +1,8 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { SettingPageComponent } from './setting-page/setting-page.component';
+import { SettingPageComponent } from './setting-page-component';
+import { RouterModule } from '@angular/router';
+import { CoreModule } from '../core/core.module';
 
 
 
@@ -9,7 +11,9 @@ import { SettingPageComponent } from './setting-page/setting-page.component';
     SettingPageComponent
   ],
   imports: [
-    CommonModule
+    CommonModule,
+    RouterModule,
+    CoreModule,
   ],
   exports: [
     SettingPageComponent
