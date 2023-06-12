@@ -12,6 +12,7 @@ import { AppComponent } from './app.component';
 import { LoginModule } from './login/login.module';
 import { RegisterModule } from './register/register.module';
 import { LoginComponent } from './login/login/login.component';
+import { adminAuthGuard } from 'src/admin-auth.guard';
 
 const routes: Routes = [
   //{ path: '', redirectTo: '/login', pathMatch: 'full' },
@@ -25,7 +26,7 @@ const routes: Routes = [
   //{path: 'after-login', component: AfterLoginComponent},
   //{path: 'profile', component: ProfileComponent},
   {path: 'setting', component: SettingPageComponent},
-  {path: 'admin', component: AdminComponent},
+  {path: 'admin', component: AdminComponent, canActivate: [adminAuthGuard]},
   
 
 ];
