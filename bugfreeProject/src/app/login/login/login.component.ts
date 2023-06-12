@@ -37,7 +37,7 @@ export class LoginComponent{
     if(this.loginForm.valid && this.loginForm.value.agreement){
       this.loginCheckService.login(this.loginForm.value).subscribe({
         next:(res) => { if (res.status === 200) {
-            window.localStorage.setItem('userInfo', res.body);            
+            localStorage.setItem('userInfo', JSON.stringify(res.body));            
             alert("Login Success...");
             this.router.navigate(['after-login']);
           }},
