@@ -42,9 +42,9 @@ export class StoryComponent implements OnInit{
   }
   
   hasImage(news: NewsItem): boolean {
-    return news.content && news.content.image !== undefined;
+    return news.content && news.content.image !== undefined && news.content.image !== 'http://via.placeholder.com/640x360';
   }
   
-
+  
 
 }
