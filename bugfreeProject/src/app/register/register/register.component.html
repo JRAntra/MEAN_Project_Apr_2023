@@ -5,7 +5,7 @@
   <mat-card-content>
     <mat-tab-group>
       <mat-tab label="User">
-        <form class="register-form" [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+        <form class="register-form" [formGroup]="registerForm" (ngSubmit)="userRegister()">
           <mat-form-field appearance="outline">
             <mat-label>Username</mat-label>
             <input matInput placeholder="Username" id="username" formControlName="userName">
@@ -36,12 +36,12 @@
               </button>
             <mat-error *ngIf="registerForm.controls['userEmail'].errors">{{getErrorMessage()}}</mat-error>
           </mat-form-field>
-          <button class="register-submit" type="submit" mat-raised-button color="primary">Register</button>
+          <button class="register-submit" mat-raised-button color="primary">Register</button>
           <!-- <button type="submit" class="btn btn-primary">Register</button> -->
         </form>
       </mat-tab>
       <mat-tab label="Admin">
-        <form class="register-form" [formGroup]="registerForm" (ngSubmit)="onSubmit()">          
+        <form class="register-form" [formGroup]="registerForm" (ngSubmit)="adminRegister()">          
           <mat-form-field appearance="outline">
             <mat-label>Admin name</mat-label>
             <input matInput placeholder="Username" id="username" formControlName="userName">
@@ -72,7 +72,7 @@
               </button>
             <mat-error *ngIf="registerForm.controls['userEmail'].errors">{{getErrorMessage()}}</mat-error>
           </mat-form-field>
-          <button class="register-submit" (click)="adminRegister()" mat-raised-button color="primary">Register</button>
+          <button class="register-submit" mat-raised-button color="primary">Register</button>
           <!-- <button type="submit" class="btn btn-primary">Register</button> -->
         </form>
       </mat-tab>

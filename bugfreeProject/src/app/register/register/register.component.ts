@@ -13,7 +13,7 @@ export class RegisterComponent {
   hide = true;
   registerForm = this.fb.group({
       userName: ["",[],[this.registerService.checkUserNameExist()]],
-      password: ["",[ this.registerService.passwordValidator()]],
+      password: ["",[this.registerService.passwordValidator()]],
       passwordConfirm:["",[]],
       userEmail:["",[ Validators.email], [this.registerService.checkEmailExist()]]
   },{validator: this.registerService.matchPassword()})
@@ -33,11 +33,13 @@ export class RegisterComponent {
 
     
   }
-  onSubmit(){
+  userRegister(){
     // console.log(this.registerForm); 
     if (this.registerForm.errors) {
       alert("Password and Confirm Password do not match!");
     }else if (this.registerForm.status === "VALID"){
+      console.log("user register");
+      
       this.registerService.register(this.registerForm.value).subscribe({
             next:(res:any) => { if (res.status === 200) {
                 alert("Register Success! Redirecting to Login Page...");
@@ -53,6 +55,8 @@ export class RegisterComponent {
     if (this.registerForm.errors) {
       alert("Password and Confirm Password do not match!");
     }else if (this.registerForm.status === "VALID"){
+      // console.log("admin register");
+      
       // console.log({...this.registerForm.value, userRole: "admin"});
       
       this.registerService.register({...this.registerForm.value, userRole: "admin"}).subscribe({

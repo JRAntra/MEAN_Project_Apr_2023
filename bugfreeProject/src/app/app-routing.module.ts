@@ -13,6 +13,8 @@ import { LoginModule } from './login/login.module';
 import { RegisterModule } from './register/register.module';
 import { LoginComponent } from './login/login/login.component';
 
+import { authGuard } from './admin/auth.guard';
+
 const routes: Routes = [
   //{ path: '', redirectTo: '/login', pathMatch: 'full' },
   //{path: 'login', component: LoginComponent},
@@ -25,7 +27,7 @@ const routes: Routes = [
   //{path: 'after-login', component: AfterLoginComponent},
   //{path: 'profile', component: ProfileComponent},
   {path: 'setting', component: SettingPageComponent},
-  {path: 'admin', component: AdminComponent},
+  {path: 'admin', component: AdminComponent,canActivate: [authGuard]},
   
 
 ];

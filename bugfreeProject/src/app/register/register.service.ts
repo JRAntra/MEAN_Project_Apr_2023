@@ -72,6 +72,7 @@ export class RegisterService {
       userEmail: registerInfo.userEmail,
       password: registerInfo.password,
       userName: registerInfo.userName,
+      userRole: registerInfo.userRole || 'user'
     };
   
     return this.http.post('http://localhost:4231/api/register/createNewAccount/', body, { observe: 'response' });
