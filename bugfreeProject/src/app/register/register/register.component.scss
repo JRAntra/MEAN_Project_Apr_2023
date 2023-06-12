@@ -1,50 +1,28 @@
-.register-container {
+header{
+  text-align: center;
+}
+mat-card{
+  margin: 0 auto;
+  // margin-top: 100px;
+}
+
+.register-form {
+    height: 500px;
     display: flex;
-    justify-content: center;
+    flex-direction: column;
     align-items: center;
-    height: 100vh;
-  }
-  
-  .form-container {
-    width: 300px;
-  
-    h2 {
-      text-align: center;
-      margin-bottom: 1.5rem;
+    margin-top: 50px;
+    font-family: Helvetica;
+
+    mat-form-field{
+      width: 450px;
     }
-  
-    form {
-      .form-group {
-        margin-bottom: 1rem;
-  
-        label {
-          display: block;
-          font-weight: bold;
-        }
-  
-        input[type="text"],
-        input[type="password"],
-        input[type="email"] {
-          width: 100%;
-          padding: 0.5rem;
-          border: 1px solid #ccc;
-          border-radius: 4px;
-        }
-      }
-  
-      .button-container {
-        display: flex;
-        justify-content: center;
-        margin-top: 1rem;
-  
-        .register-button {
-          padding: 0.5rem 1rem;
-          border-radius: 4px;
-          cursor: pointer;
-          background-color: #28a745;
-          color: #fff;
-        }
-      }
+    .register-submit{
+      width: 450px;
     }
-  }
-  
+}
+mat-card{
+  width: 600px;
+  height: 550px;
+}
+

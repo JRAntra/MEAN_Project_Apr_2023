@@ -1,5 +1,8 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { User } from '../User';
+
+declare const window: any;
 
 @Injectable({
   providedIn: 'root'
@@ -16,7 +19,7 @@ export class LoginCheckService {
 
   
 
-  login(user: any) {
+  login(user: User) {
     const body = {
       userEmail: user.userEmail,
       password: user.password,

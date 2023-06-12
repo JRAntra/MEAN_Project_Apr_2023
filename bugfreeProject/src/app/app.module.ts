@@ -13,6 +13,7 @@ import { AdminModule } from './admin/admin.module';
 import { CoreModule } from './core/core.module';
 
 import  { UserInfoService } from './service/user-info.service';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [
@@ -29,7 +30,8 @@ import  { UserInfoService } from './service/user-info.service';
     ProfileModule,
     SettingModule,
     AdminModule,
-    CoreModule 
+    CoreModule,
+    BrowserAnimationsModule 
   ],
   providers: [UserInfoService],
   bootstrap: [AppComponent]

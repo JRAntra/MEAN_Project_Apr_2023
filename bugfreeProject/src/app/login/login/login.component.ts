@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { LoginCheckService } from '../login-check.service';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { UserInfoService } from '../../service/user-info.service';
+import { Router } from '@angular/router';
 
 declare const window: any;
 
@@ -20,7 +20,7 @@ export class LoginComponent{
 });
 
   constructor(private loginCheckService : LoginCheckService,
-              private userInfoService: UserInfoService) {
+              private router: Router) {
    }
 
   onCheckboxChange(event: any): void {
@@ -33,37 +33,22 @@ export class LoginComponent{
   }
 
    onSubmit(){    
-    // console.log(this.loginForm.value); //object
-    // console.log(this.loginForm);
-    if (this.loginForm.valid && this.loginForm.value.agreement) {
-      // this.inputData = this.loginForm.value;
+
+    if(this.loginForm.valid && this.loginForm.value.agreement){
       this.loginCheckService.login(this.loginForm.value).subscribe({
         next:(res) => { if (res.status === 200) {
-            // console.log(res.body);
-            window.localStorage.setItem('userInfo', res.body);
-            
+            window.localStorage.setItem('userInfo', res.body);            
             alert("Login Success...");
-            this.userInfoService.setUserEmail(this.loginForm.value.userEmail);
-            // this.router.navigate(['news-feed']);
+            this.router.navigate(['after-login']);
           }},
         error:(error) => {alert(error.error)},
     });
     }else if(!this.loginForm.value.agreement){
       const agreementError = <HTMLElement>document.querySelector('.agreement-error');
-      console.log(agreementError);
-      agreementError.style.display = 'inline';
-      
+      agreementError.style.display = 'inline';      
     }
   }
 
-  
-  // register(){
-  //   this.loginCheckService.register().subscribe({next:(res) => { if (res.status === 200) {
-  //     console.log("200!!");
-  //       }},
-  //     error:(error) => {alert(error.error)}
-  //   });
-  // }
 }
 
 

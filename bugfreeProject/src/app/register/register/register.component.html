@@ -1,32 +1,88 @@
-<div class="register-container">
-    <div class="form-container">
-      <h2>Register</h2>
-  
-      <form>
-        <div class="form-group">
-          <label for="username">Username:</label>
-          <input type="text" id="username" name="username" required>
-        </div>
-  
-        <div class="form-group">
-          <label for="password">Password:</label>
-          <input type="password" id="password" name="password" required>
-        </div>
-  
-        <div class="form-group">
-          <label for="confirmPassword">Confirm Password:</label>
-          <input type="password" id="confirmPassword" name="confirmPassword" required>
-        </div>
-  
-        <div class="form-group">
-          <label for="email">Email:</label>
-          <input type="email" id="email" name="email" required>
-        </div>
-  
-        <div class="button-container">
-          <button type="submit" class="register-button">Register</button>
-        </div>
-      </form>
-    </div>
-  </div>
-  
+<header>
+  <h2>Register</h2>
+</header>
+<mat-card>
+  <mat-card-content>
+    <mat-tab-group>
+      <mat-tab label="User">
+        <form class="register-form" [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+          <mat-form-field appearance="outline">
+            <mat-label>Username</mat-label>
+            <input matInput placeholder="Username" id="username" formControlName="userName">
+            <mat-error *ngIf="registerForm.controls['userName'].errors">{{getErrorMessage()}}</mat-error>
+          </mat-form-field>
+      
+          <mat-form-field appearance="outline">
+            <mat-label>Email</mat-label>
+            <input matInput placeholder="Email" type="email" id="userEmail" formControlName="userEmail">
+            <mat-error *ngIf="registerForm.controls['userEmail'].errors">{{getErrorMessage()}}</mat-error>
+          </mat-form-field>
+      
+          <mat-form-field appearance="outline">
+            <mat-label>Password</mat-label>
+            <input type="password" matInput placeholder="Enter your Password" id="password" formControlName="password">
+            <mat-error *ngIf="registerForm.controls['password'].errors">{{getErrorMessage()}}</mat-error>
+          </mat-form-field>
+      
+          <mat-form-field appearance="outline">
+            <mat-label>Confirm Password</mat-label>
+            <input matInput 
+                placeholder="Confirm your password" 
+                id="confirmPassword" 
+                formControlName="passwordConfirm"
+                [type]="hide ? 'password' : 'text'">
+            <button type="button" mat-icon-button matSuffix (click)="hide = !hide">
+                <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+              </button>
+            <mat-error *ngIf="registerForm.controls['userEmail'].errors">{{getErrorMessage()}}</mat-error>
+          </mat-form-field>
+          <button class="register-submit" type="submit" mat-raised-button color="primary">Register</button>
+          <!-- <button type="submit" class="btn btn-primary">Register</button> -->
+        </form>
+      </mat-tab>
+      <mat-tab label="Admin">
+        <form class="register-form" [formGroup]="registerForm" (ngSubmit)="onSubmit()">          
+          <mat-form-field appearance="outline">
+            <mat-label>Admin name</mat-label>
+            <input matInput placeholder="Username" id="username" formControlName="userName">
+            <mat-error *ngIf="registerForm.controls['userName'].errors">{{getErrorMessage()}}</mat-error>
+          </mat-form-field>
+      
+          <mat-form-field appearance="outline">
+            <mat-label>Email</mat-label>
+            <input matInput placeholder="Email" type="email" id="userEmail" formControlName="userEmail">
+            <mat-error *ngIf="registerForm.controls['userEmail'].errors">{{getErrorMessage()}}</mat-error>
+          </mat-form-field>
+      
+          <mat-form-field appearance="outline">
+            <mat-label>Password</mat-label>
+            <input type="password" matInput placeholder="Enter your Password" id="password" formControlName="password">
+            <mat-error *ngIf="registerForm.controls['password'].errors">{{getErrorMessage()}}</mat-error>
+          </mat-form-field>
+      
+          <mat-form-field appearance="outline">
+            <mat-label>Confirm Password</mat-label>
+            <input matInput 
+                placeholder="Confirm your password" 
+                id="confirmPassword" 
+                formControlName="passwordConfirm"
+                [type]="hide ? 'password' : 'text'">
+            <button type="button" mat-icon-button matSuffix (click)="hide = !hide">
+                <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+              </button>
+            <mat-error *ngIf="registerForm.controls['userEmail'].errors">{{getErrorMessage()}}</mat-error>
+          </mat-form-field>
+          <button class="register-submit" (click)="adminRegister()" mat-raised-button color="primary">Register</button>
+          <!-- <button type="submit" class="btn btn-primary">Register</button> -->
+        </form>
+      </mat-tab>
+    </mat-tab-group>
+  </mat-card-content>
+</mat-card>
+
+
+<pre>
+  userEmail: "bugfree@123.com"
+  password: "bugfree"
+  userName: "bugfree"
+</pre>
