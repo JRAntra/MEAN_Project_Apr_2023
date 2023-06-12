@@ -13,6 +13,8 @@ import { AdminModule } from './admin/admin.module';
 import { CoreModule } from './core/core.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
+import  { UserInfoService } from './service/user-info.service';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [
@@ -32,7 +34,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     CoreModule,
     BrowserAnimationsModule 
   ],
-  providers: [],
+  providers: [UserInfoService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

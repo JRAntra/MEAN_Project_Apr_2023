@@ -11,6 +11,7 @@ import { AdminComponent } from './admin/components/admin/admin.component';
 import { AppComponent } from './app.component';
 import { LoginModule } from './login/login.module';
 import { RegisterModule } from './register/register.module';
+import { LoginComponent } from './login/login/login.component';
 
 const routes: Routes = [
   //{ path: '', redirectTo: '/login', pathMatch: 'full' },
