@@ -1,99 +1,12 @@
 
-<div class="wrapper__username-panel__item" *ngFor="let user of users">
+<ng-container *ngFor="let user of users">
+    <div class="wrapper__username-panel__item" (click)="onClickUser(user)">
+        <p>{{user.userName}}</p>
+        <button class="wrapper__username-panel__item__btn">Delete</button>
+    </div>
+</ng-container>
+<!-- <div class="wrapper__username-panel__item" *ngFor="let user of users" (click)="onClickUser()">
     <p>{{user.userName}}</p>
     <button class="wrapper__username-panel__item__btn">Delete</button>
-</div>
-<!-- <div class="wrapper__username-panel__item">
-    <p>hot sauce</p>
-    <button class="wrapper__username-panel__item__btn">Delete</button>
-</div>
-<div class="wrapper__username-panel__item">
-    <p>hot sauce</p>
-    <button class="wrapper__username-panel__item__btn">Delete</button>
-</div>
-<div class="wrapper__username-panel__item">
-    <p>hot sauce</p>
-    <button class="wrapper__username-panel__item__btn">Delete</button>
-</div>
-<div class="wrapper__username-panel__item">
-    <p>hot sauce</p>
-    <button class="wrapper__username-panel__item__btn">Delete</button>
-</div>
-<div class="wrapper__username-panel__item">
-    <p>hot sauce</p>
-    <button class="wrapper__username-panel__item__btn">Delete</button>
-</div>
-<div class="wrapper__username-panel__item">
-    <p>hot sauce</p>
-    <button class="wrapper__username-panel__item__btn">Delete</button>
-</div>
-<div class="wrapper__username-panel__item">
-    <p>hot sauce</p>
-    <button class="wrapper__username-panel__item__btn">Delete</button>
-</div>
-<div class="wrapper__username-panel__item">
-    <p>hot sauce</p>
-    <button class="wrapper__username-panel__item__btn">Delete</button>
-</div>
-<div class="wrapper__username-panel__item">
-    <p>hot sauce</p>
-    <button class="wrapper__username-panel__item__btn">Delete</button>
-</div>
-<div class="wrapper__username-panel__item">
-    <p>hot sauce</p>
-    <button class="wrapper__username-panel__item__btn">Delete</button>
-</div>
-<div class="wrapper__username-panel__item">
-    <p>hot sauce</p>
-    <button class="wrapper__username-panel__item__btn">Delete</button>
-</div>
-<div class="wrapper__username-panel__item">
-    <p>hot sauce</p>
-    <button class="wrapper__username-panel__item__btn">Delete</button>
-</div>
-<div class="wrapper__username-panel__item">
-    <p>hot sauce</p>
-    <button class="wrapper__username-panel__item__btn">Delete</button>
-</div>
-<div class="wrapper__username-panel__item">
-    <p>hot sauce</p>
-    <button class="wrapper__username-panel__item__btn">Delete</button>
-</div>
-<div class="wrapper__username-panel__item">
-    <p>hot sauce</p>
-    <button class="wrapper__username-panel__item__btn">Delete</button>
-</div>
-<div class="wrapper__username-panel__item">
-    <p>hot sauce</p>
-    <button class="wrapper__username-panel__item__btn">Delete</button>
-</div>
-<div class="wrapper__username-panel__item">
-    <p>hot sauce</p>
-    <button class="wrapper__username-panel__item__btn">Delete</button>
-</div>
-<div class="wrapper__username-panel__item">
-    <p>hot sauce</p>
-    <button class="wrapper__username-panel__item__btn">Delete</button>
-</div>
-<div class="wrapper__username-panel__item">
-    <p>hot sauce</p>
-    <button class="wrapper__username-panel__item__btn">Delete</button>
-</div>
-<div class="wrapper__username-panel__item">
-    <p>hot sauce</p>
-    <button class="wrapper__username-panel__item__btn">Delete</button>
-</div>
-<div class="wrapper__username-panel__item">
-    <p>hot sauce</p>
-    <button class="wrapper__username-panel__item__btn">Delete</button>
-</div>
-<div class="wrapper__username-panel__item">
-    <p>hot sauce</p>
-    <button class="wrapper__username-panel__item__btn">Delete</button>
-</div>
-<div class="wrapper__username-panel__item">
-    <p>hot sauce</p>
-    <button class="wrapper__username-panel__item__btn">Delete</button>
 </div> -->
-
 <button class="wrapper__username-panel__add-user-btn">Add User</button>

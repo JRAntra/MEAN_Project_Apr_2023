@@ -1,0 +1,12 @@
+
+<p *ngIf="chosenUser === null;else showDetail">Please select a user for detailed information!</p>
+
+<ng-template #showDetail>
+<p>Name: {{ chosenUser === null ? '' : chosenUser.name}}</p>
+<p>Username: {{ chosenUser === null ? '' : chosenUser.userName}}</p>
+<p>Email: {{ chosenUser === null ? '' : chosenUser.userEmail}}</p>
+<p>Role: {{ chosenUser === null ? '' : chosenUser.userRole}}</p>
+<p>Age: {{ chosenUser === null ? '' : chosenUser.age}}</p>
+<p>gender: {{ chosenUser === null ? '' : chosenUser.gender}}</p>
+<p>phone: {{ chosenUser === null ? '' : chosenUser.phone}}</p>
+</ng-template>
