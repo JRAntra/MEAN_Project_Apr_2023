@@ -1,23 +1,68 @@
 <div class="after-login-container">
     <div class="top-bar">
-      <button class="like-list-button">Like List</button>
+      <!--<button class="like-list-button" routerLink="/like-list">Like List</button>
+      <button class="like-list-button"  (click)="toggleLikeList()">Like List</button>-->
+      <!--
+        <button class="like-list-button" mat-button [matMenuTriggerFor]="likeMenu">Like List</button>
+
+      <mat-menu #likeMenu="matMenu">
+        <ng-container *ngFor="let newsItem of likeList">
+          <button mat-menu-item>
+            <h2>{{ newsItem.publisherName }}</h2>
+            <p>{{ newsItem.content.text|truncate }}</p>
+          </button>
+        </ng-container>
+      </mat-menu>
+      -->
+      <mat-sidenav-container>        
+        <button class="like-list-button" mat-icon-button [matMenuTriggerFor]="likeMenu">
+          <mat-icon>favorite</mat-icon>
+        </button>
+        <mat-menu #likeMenu="matMenu">
+          <ng-container *ngFor="let newsItem of likeList">
+            <button mat-menu-item>
+              <!-- Display your news item data here -->
+              <h2>{{ newsItem.publisherName }}</h2>
+              <p>{{ newsItem.content.text | truncate }}</p>
+            </button>
+          </ng-container>
+        </mat-menu>
+      </mat-sidenav-container>
+      
+      <div class="like-list-container" *ngIf="showLikeList">
+        <app-like-list></app-like-list>
+      </div>     
     </div>
-  
+
+    <!--<div class="SearchBar">
+      <input type="text" [(ngModel)]="searchText" placeholder="Search..." />
+    </div>-->
+    <div class="container">
+      <div class="centered">
+        <div class="SearchBar">
+          <input type="text" [(ngModel)]="searchText" placeholder="Search..." />
+        </div>
+      </div>
+    </div>
+    
+    
+    <div class="button-container">
+      <button class="button button-primary" (click)="onSearch()">Search</button>
+    </div>
+    <div class="hint">
+      <p>Your search text is limited to 20 characters: {{ searchText | truncate }}</p>
+    </div>
+    <!--
+      <div class="rectangle" *ngFor="let news of newsFeed">
+        <h3>{{ news.publisherName }}</h3>
+        <p>{{ news.content.text }}</p>
+        <div *ngFor="let comment of news.comment">
+          <p>{{ comment.publisherName }}: {{ comment.content.text }}</p>
+        </div>
+      </div>
+    -->
     <div class="body">
-      <div class="rectangle">
-        <h3>News 1</h3>
-        <p>This is a placeholder for the news content.</p>
-      </div>
-  
-      <div class="rectangle">
-        <h3>News 2</h3>
-        <p>This is a placeholder for the news content.</p>
-      </div>
-  
-      <div class="rectangle">
-        <h3>News 3</h3>
-        <p>This is a placeholder for the news content.</p>
-      </div>
+      <app-story></app-story>
     </div>
   </div>
   <app-navbar></app-navbar> 
