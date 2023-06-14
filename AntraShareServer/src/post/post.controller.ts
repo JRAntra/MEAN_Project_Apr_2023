@@ -1,4 +1,14 @@
-import { Controller, Delete, Get, Post } from '@nestjs/common';
+import {
+  Body,
+  Controller,
+  Delete,
+  Get,
+  Param,
+  Post,
+  UsePipes,
+  ValidationPipe,
+} from '@nestjs/common';
+import { CreateCommentDto, CreatePostDto } from './post.model';
 
 @Controller('post')
 export class PostController {
@@ -8,32 +18,37 @@ export class PostController {
   }
 
   @Get('/:id')
-  getPostById() {
+  getPostById(@Param('id') id: string) {
     //TODO
   }
 
   @Post()
-  createPost() {
+  @UsePipes(new ValidationPipe())
+  createPost(@Body() createPostDto: CreatePostDto) {
     //TODO
   }
 
   @Delete('/:id')
-  deletePost() {
+  deletePost(@Param('id') id: string) {
     //TODO
   }
 
   @Get('/:id/comments')
-  getCommentsByPostId() {
+  getCommentsByPostId(@Param('id') id: string) {
     //TODO
   }
 
   @Post('/:id/comments')
-  createCommentByPostId() {
+  @UsePipes(new ValidationPipe())
+  createCommentByPostId(
+    @Param('id') id: string,
+    @Body() createCommentDto: CreateCommentDto,
+  ) {
     //TODO
   }
 
   @Delete('/comments/:commentId')
-  deleteCommentById() {
+  deleteCommentById(@Param('commentId') commentId: string) {
     //TODO
   }
 }
