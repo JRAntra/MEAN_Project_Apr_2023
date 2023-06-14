@@ -19,7 +19,7 @@ export class CreateUserDto {
   userEmail: string;
 
   @IsNotEmpty()
-  @Matches(/^(?=[0-9a-f]{64})$/) // 256-bit hex string
+  @Matches(/^(?:[0-9a-f]{64})$/) // 256-bit hex string
   passwordHashed: string;
 
   @IsOptional()
