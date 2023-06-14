@@ -23,7 +23,7 @@ export class User {
   @Prop()
   gender: string;
 
-  @Prop()
+  @Prop({ select: false })
   phone: number;
 
   @Prop({ required: true, select: false })
